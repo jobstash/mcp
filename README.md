@@ -40,6 +40,18 @@ yarn build
 
 ### Running the MCP Client Demo
 
+#### Using the demo script (recommended)
+
+```bash
+# Create a .env file with your OpenAI API key
+echo "OPENAI_API_KEY=your_api_key_here" > .env
+
+# Run the demo script with a job search query
+./demo.sh "Looking for a senior Solidity developer role in a remote position"
+```
+
+#### Manually
+
 ```bash
 # Set your OpenAI API key
 export OPENAI_API_KEY=your_api_key_here
@@ -71,4 +83,4 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for details on the system design.
 
 ## License
 
-ISC 
+MIT 

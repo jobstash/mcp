@@ -78,6 +78,30 @@ app.post("/messages", async (req, res) => {
 app.listen(3000);
 ```
 
+## Testing
+
+### Using the demo script
+
+From the root of the monorepo, you can use the demo.sh script to quickly test the MCP functionality:
+
+```bash
+# Create a .env file with your OpenAI API key
+echo "OPENAI_API_KEY=your_api_key_here" > .env
+
+# Run the demo script with a job search query
+./demo.sh "Looking for a senior React developer in Berlin"
+```
+
+### Run unit tests
+
+```bash
+# Run all tests
+yarn test
+
+# Run with coverage
+yarn test --coverage
+```
+
 ## Development
 
 ```bash
@@ -96,4 +120,4 @@ yarn dev
 
 ## License
 
-ISC 
+MIT 
