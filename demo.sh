@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Load environment variables from .env if it exists
+if [ -f ".env" ]; then
+  echo "Loading environment variables from .env file..."
+  export $(cat .env | grep -v '^#' | xargs)
+fi
+
 # Check if OPENAI_API_KEY is set
 if [ -z "$OPENAI_API_KEY" ]; then
   echo "Error: OPENAI_API_KEY environment variable is not set."
@@ -20,4 +26,4 @@ yarn workspace @jobstash/mcp build
 
 # Run the test client with the provided query
 echo -e "\nRunning MCP demo with query: \"$1\"\n"
-node packages/mcp/dist/test-client.js "$1" 
+OPENAI_API_KEY="$OPENAI_API_KEY" node packages/mcp/dist/test-client.js "$1" 

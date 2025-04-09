@@ -28,16 +28,32 @@ async function main() {
     process.exit(1);
   }
 
-  // Spawn the server process
-  const serverProcess = spawn('node', [cliPath], {
-    env: { ...process.env },
+  // Ensure OPENAI_API_KEY is available from process.env
+  if (!process.env.OPENAI_API_KEY) {
+    console.error('Error: OPENAI_API_KEY environment variable is required');
+    process.exit(1);
+  }
+
+  // Get the path to the node executable
+  const nodePath = process.execPath;
+
+  // Prepare environment for server
+  const serverEnv = {
+    ...process.env,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || ''
+  };
+
+  // Spawn the server process with explicit environment variables
+  const serverProcess = spawn(nodePath, [cliPath], {
+    env: serverEnv,
     stdio: ['pipe', 'pipe', 'inherit'] // pipe stdin/stdout, inherit stderr
   });
 
-  // Create transport
+  // Create transport with explicit environment
   const transport = new StdioClientTransport({
-    command: 'node',
-    args: [cliPath]
+    command: nodePath,
+    args: [cliPath],
+    env: { OPENAI_API_KEY: process.env.OPENAI_API_KEY || '' }
   });
 
   // Create client
