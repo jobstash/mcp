@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from 'zod';
-import { JobSearchParamsSchema, MCPResponse } from './types.js';
+import { MCPResponse } from './types.js';
 import { createJobSearchPrompt } from './prompts.js';
 import { OpenAI } from 'openai';
 
@@ -69,7 +69,7 @@ export class JobStashMcpServer {
             messages: [
               {
                 role: "system",
-                content: "You are a helpful assistant that extracts job search parameters from user queries. Return a JSON object with filter parameters."
+                content: "You are a helpful assistant that extracts job search parameters from user queries. Return a JSON object with filter parameters such as roles, skills, remote, experienceLevel, etc."
               },
               {
                 role: "user",
@@ -86,15 +86,12 @@ export class JobStashMcpServer {
 
           const parsedContent = JSON.parse(content);
           
-          // Validate parameters
-          const validatedParams = JobSearchParamsSchema.parse(parsedContent);
-          
-          // Create response with structured parameters and natural language response
+          // Create response with parsed parameters and natural language response
           const response: MCPResponse = {
             responseType: 'jobSearch',
             content: `I've processed your job search request for ${query}`,
             data: {
-              queryParams: validatedParams,
+              queryParams: parsedContent,
               suggestions: []
             }
           };

@@ -85,8 +85,16 @@ async function main() {
         }
       }
     }
+    
+    console.log("\nDemo completed successfully.");
+    
+    // Ensure clean exit
+    setTimeout(() => {
+      process.exit(0);
+    }, 100);
   } catch (error) {
     console.error('Error:', error);
+    process.exit(1);
   } finally {
     // Kill the server process
     serverProcess.kill();
