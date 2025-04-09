@@ -26,4 +26,4 @@ yarn workspace @jobstash/mcp build
 
 # Run the test client with the provided query
 echo -e "\nRunning MCP demo with query: \"$1\"\n"
-OPENAI_API_KEY="$OPENAI_API_KEY" node packages/mcp/dist/test-client.cjs "$1" 
+OPENAI_API_KEY="$OPENAI_API_KEY" node packages/mcp/dist/test-client.js "$1" 
