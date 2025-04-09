@@ -1,4 +1,4 @@
-import { JobStashMcpServer } from '../src/server';
+import { JobStashMcpServer } from '../src/server.js';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 // Mock OpenAI API
@@ -41,6 +41,13 @@ jest.mock('@modelcontextprotocol/sdk/server/mcp.js', () => {
         connect: jest.fn()
       };
     })
+  };
+});
+
+// Mock StdioServerTransport
+jest.mock('@modelcontextprotocol/sdk/server/stdio.js', () => {
+  return {
+    StdioServerTransport: jest.fn().mockImplementation(() => ({}))
   };
 });
 
