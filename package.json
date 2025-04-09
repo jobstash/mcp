@@ -1,0 +1,31 @@
+{
+  "name": "jobstash-mcp-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test",
+    "lint": "yarn workspaces run lint",
+    "dev": "yarn workspaces run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobstash/mcp.git"
+  },
+  "keywords": [
+    "jobstash",
+    "mcp",
+    "ai",
+    "llm"
+  ],
+  "author": "JobStash Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobstash/mcp/issues"
+  },
+  "homepage": "https://github.com/jobstash/mcp#readme",
+  "description": "JobStash MCP integration"
+}
