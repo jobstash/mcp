@@ -1,7 +1,7 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { z } from 'zod';
-import { MCPResponse } from './types.js';
-import { createJobSearchPrompt } from './prompts.js';
+import { MCPResponse } from './types';
+import { createJobSearchPrompt } from './prompts';
 import { OpenAI } from 'openai';
 
 export interface JobStashMcpServerConfig {
@@ -37,10 +37,10 @@ export class JobStashMcpServer {
     this.server.prompt(
       "jobSearch",
       { query: z.string() },
-      ({ query }) => {
-        const prompt = createJobSearchPrompt(query);
+      (params: { query: string }) => {
+        const prompt = createJobSearchPrompt(params.query);
         return {
-          messages: prompt.messages.map(msg => {
+          messages: prompt.messages.map((msg: any) => {
             // Ensure role is either user or assistant (MCP requires)
             const role = msg.role === "user" || msg.role === "assistant" 
               ? msg.role 
@@ -61,7 +61,7 @@ export class JobStashMcpServer {
     this.server.tool(
       "processJobQuery",
       { query: z.string() },
-      async ({ query }) => {
+      async (params: { query: string }) => {
         try {
           // Use LLM to extract job search parameters from the query
           const completion = await this.openai.chat.completions.create({
@@ -73,7 +73,7 @@ export class JobStashMcpServer {
               },
               {
                 role: "user",
-                content: `Extract job search parameters from this query: "${query}"`
+                content: `Extract job search parameters from this query: "${params.query}"`
               }
             ],
             response_format: { type: "json_object" }
@@ -89,7 +89,7 @@ export class JobStashMcpServer {
           // Create response with parsed parameters and natural language response
           const response: MCPResponse = {
             responseType: 'jobSearch',
-            content: `I've processed your job search request for ${query}`,
+            content: `I've processed your job search request for ${params.query}`,
             data: {
               queryParams: parsedContent,
               suggestions: []
@@ -121,8 +121,9 @@ export class JobStashMcpServer {
 
   /**
    * Connect the server to a transport
+   * @param {any} transport
    */
-  async connect(transport: any) {
+  async connect(transport) {
     return this.server.connect(transport);
   }
 

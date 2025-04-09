@@ -1,3 +1,5 @@
+"use strict";
+
 import { z } from 'zod';
 
 export const MCPResponseSchema = z.object({
@@ -8,7 +10,6 @@ export const MCPResponseSchema = z.object({
 
 export type MCPResponse = z.infer<typeof MCPResponseSchema>;
 
-// Configuration options for the MCP client
 export interface MCPClientConfig {
   apiKey: string;
   model: string;

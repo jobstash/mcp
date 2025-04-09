@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { JobStashMcpServer } from './server.js';
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { JobStashMcpServer } from './server';
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio";
 
 async function main() {
   // Check for required environment variable

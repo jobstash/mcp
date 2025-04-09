@@ -1,5 +1,6 @@
 /**
  * Creates a job search prompt template for the OpenAI LLM
+ * @param query The user's job search query
  */
 export function createJobSearchPrompt(query: string) {
   return {
