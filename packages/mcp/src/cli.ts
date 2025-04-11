@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { JobStashMcpServer } from './server';
+import { McpManager } from './server';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 async function main() {
@@ -11,11 +11,11 @@ async function main() {
     process.exit(1);
   }
 
-  // Create server
-  const server = new JobStashMcpServer({
+  // Create server (now McpManager)
+  const server = new McpManager({
     name: 'jobstash-mcp-cli',
     version: '0.1.0',
-    openaiApiKey
+    supportedFilters: [],
   });
 
   // Create transport

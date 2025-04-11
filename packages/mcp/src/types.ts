@@ -15,4 +15,4 @@ export interface MCPClientConfig {
   model: string;
   maxTokens?: number;
   temperature?: number;
-} 
+}
