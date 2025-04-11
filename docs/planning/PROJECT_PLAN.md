@@ -43,18 +43,18 @@ We'll use a modular architecture with separate packages:
 - [x] Create documentation for MCP package
 
 ### 3. Milestone 2: Server Core & UI-less Prototype
-- [ ] Set up server framework (Express/NestJS)
-- [ ] Create JobStash API client
-  - [ ] Implement authentication
-  - [ ] Implement job search endpoints
-  - [ ] Implement job detail endpoints
-- [ ] Develop integration between server and MCP package
-- [ ] Implement query translation logic (user query → JobStash API params)
-- [ ] Create response formatting service
-- [ ] Set up logging and error handling
-- [x] Create CLI testing tool for prototype
-- [ ] Test with various job search scenarios
-- [ ] Document findings and optimize prompt strategies
+- [ ] Set up NestJS server package (`jobstash-server`)
+- [ ] Create JobStash API client within `jobstash-server`
+  - [ ] Implement job search endpoint interaction (assuming public API initially)
+  - [ ] Implement job detail endpoint interaction (assuming public API initially)
+- [ ] Define and implement server API endpoint for MCP package interaction
+- [ ] Implement query translation logic (MCP output -> JobStash API params) in server
+- [ ] Implement response formatting logic in server
+- [ ] Integrate `mcp` package to call the new server endpoint
+- [ ] Set up basic logging using standard NestJS `Logger`
+- [x] Update/Create CLI testing tool for end-to-end testing (CLI -> MCP -> Server -> JobStash)
+- [ ] Test end-to-end flow with various job search scenarios via CLI tool
+- [ ] Document findings and potentially optimize prompt strategies based on E2E tests
 
 ### 4. Milestone 3: Simple Text Chat Interface
 - [ ] Design simple chat UI for website embedding

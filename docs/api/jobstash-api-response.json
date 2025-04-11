@@ -1,0 +1,2370 @@
+{
+    "page": 1,
+    "count": 10,
+    "total": 26,
+    "data": [
+        {
+            "id": "6173850a-10e2-489a-84c8-73440902492a",
+            "access": "protected",
+            "url": null,
+            "title": "Growth Lead",
+            "summary": "Exponent is looking for a growth lead to assist us with our growth efforts and expand Exponent’s presence.",
+            "description": "You will take over our communications and make Exponent accessible to the Solana ecosystem, establishing it as the #1 place for DeFi users to generate predictable yield or improve their yield strategies on Solana. You will plan and execute targeted marketing campaigns, keep users updated with announcements and product updates, create educational content, and engage with the community to onboard new users.",
+            "requirements": [
+                "Deep understanding of DeFi concepts",
+                "Capable of creating in-depth DeFi content",
+                "Familiarity with Solana and its DeFi ecosystem",
+                "Resourceful and proactive mindset"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Plan and execute targeted marketing campaigns",
+                "Keep existing users up to date with announcements and product updates",
+                "Create educational content to facilitate access to Exponent’s yield products and strategies",
+                "Engage with the community to educate them about yield strategies and help onboard new users",
+                "Establish new strategic relationships and manage existing ones",
+                "Create marketing partnerships with other protocols",
+                "Attend Solana conference events to represent Exponent"
+            ],
+            "shortUUID": "i3IuoV",
+            "minimumSalary": 90000,
+            "maximumSalary": 120000,
+            "salary": 105000,
+            "seniority": "3",
+            "benefits": [],
+            "culture": null,
+            "location": null,
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1743797252057,
+            "tags": [
+                {
+                    "id": "7fc5634c-bf8c-4620-99ee-7d432aae8889",
+                    "name": "marketing",
+                    "normalizedName": "marketing"
+                },
+                {
+                    "id": "fd2ef5f3-9def-40c0-8cdb-d87a23d6101c",
+                    "name": "community engagement",
+                    "normalizedName": "community-engagement"
+                },
+                {
+                    "id": "7f6d8517-e861-4134-8d2f-fd413b85260e",
+                    "name": "DeFi",
+                    "normalizedName": "defi"
+                },
+                {
+                    "id": "c23aeef7-7474-4056-8dca-b5ace3cb5ba7",
+                    "name": "Solana",
+                    "normalizedName": "solana"
+                },
+                {
+                    "id": "cb84c68a-e093-4613-a066-bac1db5ed587",
+                    "name": "content creation",
+                    "normalizedName": "content-creation"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": null,
+            "classification": "GROWTH",
+            "organization": {
+                "summary": "Infrastructure for powerful web3 products at scale.",
+                "investors": [
+                    {
+                        "id": "c1e719b1-a65a-472c-8da8-ef261a6039bb",
+                        "name": "Cherry Ventures",
+                        "normalizedName": "cherry-ventures"
+                    },
+                    {
+                        "id": "9aca3cfb-7c0b-499b-869e-4670096e2421",
+                        "name": "RockawayX",
+                        "normalizedName": "rockawayx"
+                    },
+                    {
+                        "id": "89fb3ff9-d340-412b-8d99-8e62b72096ce",
+                        "name": "Mechanism Capital",
+                        "normalizedName": "mechanism-capital"
+                    },
+                    {
+                        "id": "61decf42-b945-414f-999f-584ea6be176a",
+                        "name": "Solana Ventures",
+                        "normalizedName": "solana-ventures"
+                    },
+                    {
+                        "id": "639b8475-4121-47f1-b04d-d96dc1995e47",
+                        "name": "Robot Ventures",
+                        "normalizedName": "robot-ventures"
+                    }
+                ],
+                "location": "USA",
+                "docs": null,
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "discord": null,
+                "orgId": "42",
+                "id": "060499ee-e15e-490e-9762-b38b903c3a5f",
+                "twitter": "syndicateio",
+                "description": "Syndicate is building the infrastructure to take web3 mainstream. Developers leverage Syndicate’s products to abstract web3’s complexity, allowing teams to spend less time managing complex web3 infrastructure and more time building an exceptional end-to-end experience for their customers.",
+                "name": "Exponent",
+                "fundingRounds": [
+                    {
+                        "id": "cf1da4a1-3e7b-448f-a646-1a13e823e8e1",
+                        "createdTimestamp": 1744329729115,
+                        "roundName": "Unknown",
+                        "sourceLink": "https://x.com/ExponentFinance/status/1859620007937806617",
+                        "raisedAmount": 2.1,
+                        "date": 1732147200,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "exponent",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1723812524299,
+                "website": "https://exponent.finance",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1724953041561,
+                "headcountEstimate": 50,
+                "grants": [],
+                "github": null,
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=exponent.finance&sz=64"
+            },
+            "project": null
+        },
+        {
+            "id": "0387891e-4add-470a-a331-fbba7f84fdd1",
+            "access": "public",
+            "url": "https://job-boards.greenhouse.io/polychaincapital/jobs/6795468",
+            "title": "IT Engineer",
+            "summary": "Polychain Capital is looking for a IT Engineer to manage corporate IT systems and ensure seamless end-user experiences.",
+            "description": "In this role, you will serve as the primary helpdesk technician, resolving day-to-day IT issues for a global team. You will troubleshoot and maintain Apple endpoints, provide operational support for corporate IT systems, and manage laptops and mobile devices. You will also support AV tech during webinars and collaborate with security teams to automate IT operations. Your contributions will help shape the long-term IT and security strategy.",
+            "requirements": [
+                "3-5 years of experience managing corporate IT systems",
+                "Strong hands-on experience with macOS and iOS administration",
+                "Deep understanding of user administration",
+                "Familiarity with MDM platforms",
+                "Working knowledge of AV systems",
+                "Experience with SaaS application management",
+                "Familiar with office networking",
+                "Experience with EDR endpoint security tools",
+                "Ability to work independently and multitask"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Serve as the primary helpdesk technician",
+                "Troubleshoot and maintain Apple endpoints",
+                "Provide operational support for corporate IT systems",
+                "Provision, configure, and manage laptops and mobile devices",
+                "Provide AV tech support during webinars and remote meetings",
+                "Support logistics for hardware shipping and deployment",
+                "Collaborate with security and engineering teams",
+                "Write and maintain technical documentation",
+                "Participate in on-call rotation",
+                "Continuously improve vendor relationships"
+            ],
+            "shortUUID": "AuL2y1",
+            "minimumSalary": 150000,
+            "maximumSalary": 150000,
+            "salary": 150000,
+            "seniority": "3",
+            "benefits": [],
+            "culture": null,
+            "location": "San Francisco",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744336809000,
+            "tags": [
+                {
+                    "id": "5b41b378-7d6b-4e7a-bef7-e22805d42240",
+                    "name": "MDM",
+                    "normalizedName": "mdm"
+                },
+                {
+                    "id": "524fc5b3-40be-45c6-8a27-9399615db406",
+                    "name": "security",
+                    "normalizedName": "security"
+                },
+                {
+                    "id": "86236d90-889c-4951-b21a-6c36960fe437",
+                    "name": "macOS",
+                    "normalizedName": "macos"
+                },
+                {
+                    "id": "835ede9e-d1ab-495c-9425-7f8739c8f901",
+                    "name": "Infrastructure",
+                    "normalizedName": "infrastructure"
+                },
+                {
+                    "id": "db5e7838-a8a0-4bf9-8065-eb5bccc52672",
+                    "name": "A/V",
+                    "normalizedName": "av"
+                },
+                {
+                    "id": "33d8b73b-71c7-473b-bd25-8cd919590ab9",
+                    "name": "A/V",
+                    "normalizedName": "av"
+                },
+                {
+                    "id": "9894f1d7-124b-4518-90fa-88aac0c912de",
+                    "name": "Support",
+                    "normalizedName": "support"
+                },
+                {
+                    "id": "1e67179c-9e1b-4fa2-9398-23bb0a3bb84b",
+                    "name": "IT",
+                    "normalizedName": "it"
+                },
+                {
+                    "id": "ed1a1543-7e93-4d79-9978-7b4af2f5dd3f",
+                    "name": "iOS",
+                    "normalizedName": "ios"
+                },
+                {
+                    "id": "3d9091a9-eb6b-49ba-af15-4cad5117e3bd",
+                    "name": "EDR",
+                    "normalizedName": "edr"
+                },
+                {
+                    "id": "1f947546-3c16-46d2-8ba9-27a623476bfd",
+                    "name": "SaaS",
+                    "normalizedName": "saas"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "HYBRID",
+            "classification": "OTHER",
+            "organization": {
+                "atsClient": null,
+                "summary": "Polychain is an investment firm focused on blockchain assets.",
+                "reviews": [],
+                "createdTimestamp": 1730289507883,
+                "website": "https://polychain.capital/",
+                "investors": [
+                    {
+                        "id": "ed905f22-f834-4f36-a95b-6e24c8a55caf",
+                        "name": "Cameron McLain",
+                        "normalizedName": "cameron-mclain"
+                    },
+                    {
+                        "id": "1e3c0e0d-f52a-4711-a048-92117f52cf3e",
+                        "name": "DCM Ventures",
+                        "normalizedName": "dcm-ventures"
+                    },
+                    {
+                        "id": "24cb13e7-e0bd-4d1c-b9a3-6899e7d63cdf",
+                        "name": "Alexander Pack",
+                        "normalizedName": "alexander-pack"
+                    },
+                    {
+                        "id": "5f4b4dc1-0223-4a1e-ab9d-4beff6547608",
+                        "name": "Abstract Ventures",
+                        "normalizedName": "abstract-ventures"
+                    },
+                    {
+                        "id": "2655f9f6-16c7-4775-8520-2ec087916778",
+                        "name": "USV",
+                        "normalizedName": "usv"
+                    },
+                    {
+                        "id": "5241bd49-e04f-4499-a496-221df1ab6819",
+                        "name": "DHVC",
+                        "normalizedName": "dhvc"
+                    },
+                    {
+                        "id": "66a81d03-5bfb-4e4a-b432-9f3e313e7d96",
+                        "name": "Pantera Capital",
+                        "normalizedName": "pantera-capital"
+                    },
+                    {
+                        "id": "c3475845-4f8d-4672-89e3-40f200eda932",
+                        "name": "a16z",
+                        "normalizedName": "a16z"
+                    }
+                ],
+                "location": "Distributed",
+                "docs": null,
+                "community": [],
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "telegram": null,
+                "discord": null,
+                "orgId": "10673",
+                "id": "44fead3a-813c-4db8-9ef7-b0f0fbe05ad5",
+                "projects": [],
+                "twitter": null,
+                "description": "Polychain is an investment firm committed to exceptional returns for investors through actively managed portfolios of blockchain-based digital assets.",
+                "name": "Polychain",
+                "fundingRounds": [
+                    {
+                        "id": "9b1c31c7-72e2-4c02-b803-b97a9fed1bae",
+                        "createdTimestamp": 1744329752553,
+                        "roundName": "Seed",
+                        "raisedAmount": 10,
+                        "date": 1481414400,
+                        "updatedTimestamp": null,
+                        "sourceLink": null
+                    }
+                ],
+                "normalizedName": "polychain",
+                "grants": [],
+                "github": null,
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=polychain.capital&sz=64",
+                "headcountEstimate": null,
+                "updatedTimestamp": null
+            },
+            "project": null
+        },
+        {
+            "id": "bfaf21dd-20b9-4cde-b382-2d7f5cd20137",
+            "access": "public",
+            "url": "https://job-boards.greenhouse.io/aptoslabs/jobs/4552856005",
+            "title": "Executive Assistant to the Head of Ecosystem",
+            "summary": "Aptos is looking for a Executive Assistant to support the Head of Ecosystem to enable leadership to operate at maximum efficiency.",
+            "description": "In this role, you will proactively manage the Head of Ecosystem’s schedule, draft communications, coordinate projects, organize travel and events, engage stakeholders, streamline processes, and handle sensitive information with discretion.",
+            "requirements": [
+                "3+ years of experience supporting executives in startups, tech, VC, or web3",
+                "Exceptional organizational and time-management skills",
+                "Strong written and verbal communication abilities",
+                "Self-starter attitude with a high degree of ownership and accountability",
+                "Comfortable with ambiguity and rapid change in a high-growth environment",
+                "Familiarity with blockchain, crypto, and the web3 ecosystem",
+                "Proficient with tools like Google Workspace, Notion, Slack, Zoom, and project management platforms"
+            ],
+            "onboardIntoWeb3": true,
+            "responsibilities": [
+                "Manage and prioritize the Head of Ecosystem’s schedule",
+                "Draft and organize communications, agendas, and follow-ups",
+                "Track deadlines and action items across ecosystem efforts",
+                "Organize travel, accommodations, and conference registrations",
+                "Serve as a liaison between the Head of Ecosystem and internal team members and external partners",
+                "Identify ways to streamline systems and processes",
+                "Handle sensitive information with integrity and professionalism"
+            ],
+            "shortUUID": "viSpqG",
+            "minimumSalary": 90000,
+            "maximumSalary": 129600,
+            "salary": 109800,
+            "seniority": "3",
+            "benefits": [
+                "100% insurance premium coverage for medical, dental, and vision for you and your dependents",
+                "Equipment of your choice",
+                "Flexible vacation time, 11 holidays, and floating company days off",
+                "Competitive Salary",
+                "Equity (RSUs)",
+                "Protocol Token Grants",
+                "401k matching",
+                "Fun and inclusive in-person and digital events"
+            ],
+            "culture": null,
+            "location": "New York",
+            "salaryCurrency": "USD",
+            "paysInCrypto": false,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": true,
+            "timestamp": 1744329274000,
+            "tags": [
+                {
+                    "id": "4e5d8622-0ce1-44f6-8c15-aa7729483c5a",
+                    "name": "Web3",
+                    "normalizedName": "web3"
+                },
+                {
+                    "id": "e74655c9-e21a-4c7c-afeb-a0f78ce98cbe",
+                    "name": "organization",
+                    "normalizedName": "organization"
+                },
+                {
+                    "id": "edb26415-7cae-4121-9458-3e87a5969470",
+                    "name": "blockchain",
+                    "normalizedName": "blockchain"
+                },
+                {
+                    "id": "ffea7dac-4b39-4166-bdc9-8a70c3f2dc72",
+                    "name": "project management",
+                    "normalizedName": "project-management"
+                },
+                {
+                    "id": "67cce648-459b-4be3-bf47-d0cff57e3812",
+                    "name": "Stakeholder Engagement",
+                    "normalizedName": "stakeholder-engagement"
+                },
+                {
+                    "id": "807f402c-020a-40e8-9edf-03feb3d91894",
+                    "name": "Discretion",
+                    "normalizedName": "discretion"
+                },
+                {
+                    "id": "36ebd23f-d050-42cf-b34e-090223456b32",
+                    "name": "crypto",
+                    "normalizedName": "crypto"
+                },
+                {
+                    "id": "65f601ac-1a21-4a7f-8486-086724a36335",
+                    "name": "event planning",
+                    "normalizedName": "event-planning"
+                },
+                {
+                    "id": "5d7afc63-f119-4e99-842e-8ec4f25e0f7c",
+                    "name": "communication",
+                    "normalizedName": "communication"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "ONSITE",
+            "classification": "OTHER",
+            "organization": {
+                "summary": "Developing products and applications on the Aptos blockchain to redefine the web3 user experience.",
+                "investors": [
+                    {
+                        "id": "0b8cbdd2-4b5d-4530-af43-5b3c7260bb77",
+                        "name": "Paxos",
+                        "normalizedName": "paxos"
+                    },
+                    {
+                        "id": "194c9323-196d-4772-a0c4-edd136a8644a",
+                        "name": "BlockTower Capital",
+                        "normalizedName": "blocktower-capital"
+                    },
+                    {
+                        "id": "5c176aae-3567-4da6-9b75-34af05c6f0d7",
+                        "name": "Tiger Global",
+                        "normalizedName": "tiger-global"
+                    },
+                    {
+                        "id": "199bc340-2723-4465-84e0-859e93bdd57a",
+                        "name": "Variant Fund",
+                        "normalizedName": "variant-fund"
+                    },
+                    {
+                        "id": "4d9d09ab-143f-41cb-886a-963126ff8938",
+                        "name": "Hashed",
+                        "normalizedName": "hashed"
+                    },
+                    {
+                        "id": "3dcf20c0-dc29-4e00-8c19-09eec3871f8d",
+                        "name": "IRONGREY",
+                        "normalizedName": "irongrey"
+                    },
+                    {
+                        "id": "41fcb85e-e9d5-4962-b139-4244e1dd2ee4",
+                        "name": "ParaFi Capital",
+                        "normalizedName": "parafi-capital"
+                    },
+                    {
+                        "id": "400fb89a-879d-4e73-8593-3578e649d2d3",
+                        "name": "Katie Haun",
+                        "normalizedName": "katie-haun"
+                    },
+                    {
+                        "id": "c3475845-4f8d-4672-89e3-40f200eda932",
+                        "name": "a16z",
+                        "normalizedName": "a16z"
+                    },
+                    {
+                        "id": "5c14038b-564b-4a13-a401-e9c7b58371c0",
+                        "name": "Multicoin Capital",
+                        "normalizedName": "multicoin-capital"
+                    },
+                    {
+                        "id": "4a7675f3-3820-4be4-a4bd-1abc2867e330",
+                        "name": "FTX Ventures",
+                        "normalizedName": "ftx-ventures"
+                    },
+                    {
+                        "id": "20f0b4df-4258-456e-a64c-f353de9236fb",
+                        "name": "a16z crypto",
+                        "normalizedName": "a16z-crypto"
+                    },
+                    {
+                        "id": "c950bd6a-bf2d-434c-a3f2-4030b1c38482",
+                        "name": "Superscrypt ",
+                        "normalizedName": "superscrypt"
+                    },
+                    {
+                        "id": "c44c0522-34c1-41c0-baec-132e0ccf5f31",
+                        "name": "Circle Ventures",
+                        "normalizedName": "circle-ventures"
+                    },
+                    {
+                        "id": "cd3096e9-4c6f-4d5d-8cde-e37cf75d422c",
+                        "name": "Franklin Templeton",
+                        "normalizedName": "franklin-templeton"
+                    },
+                    {
+                        "id": "7131aebc-e188-4b22-b73c-53fd85e5324c",
+                        "name": "Griffin Gaming Partners",
+                        "normalizedName": "griffin-gaming-partners"
+                    },
+                    {
+                        "id": "4a3d607c-6271-441e-b320-c9c2e94baaf3",
+                        "name": "Apollo",
+                        "normalizedName": "apollo"
+                    },
+                    {
+                        "id": "89901e4e-d22c-42de-a2ca-5d8019862a58",
+                        "name": "Jump Crypto",
+                        "normalizedName": "jump-crypto"
+                    }
+                ],
+                "location": "Distributed",
+                "docs": "https://aptos.dev/",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [
+                    "Aptos"
+                ],
+                "discord": "https://discord.com/invite/aptoslabs",
+                "orgId": "105",
+                "id": "7f7b06db-f469-4c4e-ab27-29e5780cec5d",
+                "twitter": "aptoslabs",
+                "description": "Aptos Labs is committed to developing products and applications on the Aptos blockchain that redefine the web3 user experience. The team consists of accomplished technical experts focused on creating better network tooling and seamless usability to bring the benefits of decentralization to the masses.",
+                "name": "Aptos Labs",
+                "fundingRounds": [
+                    {
+                        "id": "aed63829-8786-4ee0-a006-56f00185b8cd",
+                        "createdTimestamp": 1744329601351,
+                        "roundName": "Series A",
+                        "sourceLink": "https://twitter.com/AptosLabs/status/1551559864744386560",
+                        "raisedAmount": 150,
+                        "date": 1658793600,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "8b871818-1869-4d6c-83a8-bbb2f69ae3a6",
+                        "createdTimestamp": 1744329601512,
+                        "roundName": "Strategic ",
+                        "sourceLink": "https://twitter.com/moshaikhs/status/1503739653291081728",
+                        "raisedAmount": 200,
+                        "date": 1647388800,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "aptos-labs",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1697716632507,
+                "website": "https://aptoslabs.com/",
+                "community": [],
+                "telegram": "aptos",
+                "projects": [
+                    {
+                        "summary": "Occaecat ipsum magna aute pariatur occaecat adipisicing culpa adipisicing ex occaecat. Cupidatat excepteur officia aliqua eu fugiat non sit quis veniam pariatur dolore ad irure qui ea. Aliquip labore quis irure tempor ea magna dolore voluptate do proident voluptate ex.",
+                        "investors": [
+                            {
+                                "id": "0b8cbdd2-4b5d-4530-af43-5b3c7260bb77",
+                                "name": "Paxos",
+                                "normalizedName": "paxos"
+                            },
+                            {
+                                "id": "194c9323-196d-4772-a0c4-edd136a8644a",
+                                "name": "BlockTower Capital",
+                                "normalizedName": "blocktower-capital"
+                            },
+                            {
+                                "id": "5c176aae-3567-4da6-9b75-34af05c6f0d7",
+                                "name": "Tiger Global",
+                                "normalizedName": "tiger-global"
+                            },
+                            {
+                                "id": "199bc340-2723-4465-84e0-859e93bdd57a",
+                                "name": "Variant Fund",
+                                "normalizedName": "variant-fund"
+                            },
+                            {
+                                "id": "4d9d09ab-143f-41cb-886a-963126ff8938",
+                                "name": "Hashed",
+                                "normalizedName": "hashed"
+                            },
+                            {
+                                "id": "3dcf20c0-dc29-4e00-8c19-09eec3871f8d",
+                                "name": "IRONGREY",
+                                "normalizedName": "irongrey"
+                            },
+                            {
+                                "id": "41fcb85e-e9d5-4962-b139-4244e1dd2ee4",
+                                "name": "ParaFi Capital",
+                                "normalizedName": "parafi-capital"
+                            },
+                            {
+                                "id": "400fb89a-879d-4e73-8593-3578e649d2d3",
+                                "name": "Katie Haun",
+                                "normalizedName": "katie-haun"
+                            },
+                            {
+                                "id": "c3475845-4f8d-4672-89e3-40f200eda932",
+                                "name": "a16z",
+                                "normalizedName": "a16z"
+                            },
+                            {
+                                "id": "5c14038b-564b-4a13-a401-e9c7b58371c0",
+                                "name": "Multicoin Capital",
+                                "normalizedName": "multicoin-capital"
+                            },
+                            {
+                                "id": "4a7675f3-3820-4be4-a4bd-1abc2867e330",
+                                "name": "FTX Ventures",
+                                "normalizedName": "ftx-ventures"
+                            },
+                            {
+                                "id": "20f0b4df-4258-456e-a64c-f353de9236fb",
+                                "name": "a16z crypto",
+                                "normalizedName": "a16z-crypto"
+                            },
+                            {
+                                "id": "c950bd6a-bf2d-434c-a3f2-4030b1c38482",
+                                "name": "Superscrypt ",
+                                "normalizedName": "superscrypt"
+                            },
+                            {
+                                "id": "c44c0522-34c1-41c0-baec-132e0ccf5f31",
+                                "name": "Circle Ventures",
+                                "normalizedName": "circle-ventures"
+                            },
+                            {
+                                "id": "cd3096e9-4c6f-4d5d-8cde-e37cf75d422c",
+                                "name": "Franklin Templeton",
+                                "normalizedName": "franklin-templeton"
+                            },
+                            {
+                                "id": "7131aebc-e188-4b22-b73c-53fd85e5324c",
+                                "name": "Griffin Gaming Partners",
+                                "normalizedName": "griffin-gaming-partners"
+                            },
+                            {
+                                "id": "4a3d607c-6271-441e-b320-c9c2e94baaf3",
+                                "name": "Apollo",
+                                "normalizedName": "apollo"
+                            },
+                            {
+                                "id": "89901e4e-d22c-42de-a2ca-5d8019862a58",
+                                "name": "Jump Crypto",
+                                "normalizedName": "jump-crypto"
+                            }
+                        ],
+                        "docs": null,
+                        "ecosystems": [],
+                        "discord": null,
+                        "id": "c8af261f-90a4-4dd5-a22c-7f2bfbaa1e80",
+                        "twitter": "aptos_network",
+                        "tvl": null,
+                        "description": "The Aptos blockchain is a new blockchain infrastructure designed to enable mass adoption in the web3 era by providing a trusted, scalable, cost-efficient, and continually improving platform for building widely-used applications. Developed over three years by over 350+ developers worldwide, Aptos offers new and novel innovations in consensus, smart contract design, system security, performance, and decentralization. It natively integrates the Move language for fast and secure transaction execution, enables flexible key management and hybrid custodial options, achieves high throughput and low latency through a pipelined and modular approach for transaction processing, supports atomicity with arbitrarily complex transactions, optimizes for frequent and instant upgrades, and experiments with future initiatives to scale beyond individual validator performance. The Aptos blockchain provides a fundamental building block to bring web3 to the masses.",
+                        "name": "Aptos",
+                        "fundingRounds": [
+                            {
+                                "id": "aed63829-8786-4ee0-a006-56f00185b8cd",
+                                "createdTimestamp": 1744329601351,
+                                "roundName": "Series A",
+                                "sourceLink": "https://twitter.com/AptosLabs/status/1551559864744386560",
+                                "raisedAmount": 150,
+                                "date": 1658793600,
+                                "updatedTimestamp": null
+                            },
+                            {
+                                "id": "8b871818-1869-4d6c-83a8-bbb2f69ae3a6",
+                                "createdTimestamp": 1744329601512,
+                                "roundName": "Strategic ",
+                                "sourceLink": "https://twitter.com/moshaikhs/status/1503739653291081728",
+                                "raisedAmount": 200,
+                                "date": 1647388800,
+                                "updatedTimestamp": null
+                            }
+                        ],
+                        "normalizedName": "aptos",
+                        "hacks": [],
+                        "mcap": 2818577909.12806,
+                        "isMainnet": true,
+                        "createdTimestamp": 1697716632692,
+                        "website": "https://aptosfoundation.org/",
+                        "chains": [
+                            {
+                                "id": "6c99906c-0d29-48c0-a440-7174389bdd17",
+                                "logo": "https://icons.llamao.fi/icons/chains/rsz_aptos?w=48&h=48",
+                                "name": "Aptos",
+                                "normalizedName": "aptos"
+                            }
+                        ],
+                        "logoUrl": "",
+                        "telegram": null,
+                        "orgIds": [
+                            "105",
+                            "431"
+                        ],
+                        "category": "Network",
+                        "updatedTimestamp": 1706829705241,
+                        "grants": [],
+                        "github": "aptos-labs",
+                        "audits": [],
+                        "defiLlamaId": null,
+                        "defiLlamaSlug": null,
+                        "defiLlamaParent": null,
+                        "tokenAddress": null,
+                        "tokenSymbol": null,
+                        "monthlyVolume": null,
+                        "monthlyFees": null,
+                        "monthlyRevenue": null,
+                        "monthlyActiveUsers": null,
+                        "logo": null,
+                        "jobs": [],
+                        "repos": []
+                    }
+                ],
+                "updatedTimestamp": 1711747056908,
+                "grants": [],
+                "github": "aptos-labs",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=aptoslabs.com&sz=64",
+                "headcountEstimate": null
+            },
+            "project": null
+        },
+        {
+            "id": "123eb5b2-fbeb-4374-af7b-81db3c61711c",
+            "access": "public",
+            "url": "https://consensys.io/open-roles/6781685?gh_jid=6781685",
+            "title": "Head of Ecosystem Relations",
+            "summary": "Consensys is looking for a Head of Ecosystem Relations to lead and grow our most important institutional and strategic partnerships.",
+            "description": "You will own the strategy and execution for Linea’s top-tier partner relationships, ensuring mutual value creation and long-term success. You’ll lead a growing team of partner success managers focused on key verticals and collaborate closely with business development, product, and marketing to deliver a best-in-class experience for institutional and strategic builders.",
+            "requirements": [
+                "8–12 years in strategic partnerships, enterprise account management, or ecosystem roles",
+                "Experience working with or selling to banks, financial institutions, or large enterprises",
+                "Track record of managing teams and scaling operations",
+                "Excellent executive presence and communication skills",
+                "Strong operational and commercial acumen",
+                "Familiarity with blockchain infrastructure, smart contracts, and L1/L2 ecosystems"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Serve as the primary commercial contact for Linea’s most important institutional and strategic accounts",
+                "Lead a team responsible for relationship management, partner success, and account growth across strategic verticals",
+                "Develop account plans, support onboarding, and coordinate internally to deliver on complex partner needs",
+                "Represent institutional partners internally and surface strategic feedback",
+                "Collaborate with BD, product, and growth teams to drive adoption and active usage",
+                "Help define Linea’s approach to enterprise and large partner support",
+                "Contribute to strategic initiatives like institutional liquidity programs and co-marketing activations",
+                "Maintain strong understanding of evolving crypto market and regulatory implications"
+            ],
+            "shortUUID": "mPKz1w",
+            "minimumSalary": 209000,
+            "maximumSalary": 300000,
+            "salary": 254500,
+            "seniority": "4",
+            "benefits": [],
+            "culture": null,
+            "location": "UNITED STATES - Remote",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744304422000,
+            "tags": [
+                {
+                    "id": "8aa99dc7-3f1a-4e88-b906-c05294f95ccf",
+                    "name": "account management",
+                    "normalizedName": "account-management"
+                },
+                {
+                    "id": "2e3710b6-1e11-4155-a1d7-17a6fdeb8b7b",
+                    "name": "ecosystem",
+                    "normalizedName": "ecosystem"
+                },
+                {
+                    "id": "4e5d8622-0ce1-44f6-8c15-aa7729483c5a",
+                    "name": "Web3",
+                    "normalizedName": "web3"
+                },
+                {
+                    "id": "27da63f3-c24d-4042-853f-3a7b01a87db7",
+                    "name": "fintech",
+                    "normalizedName": "fintech"
+                },
+                {
+                    "id": "edb26415-7cae-4121-9458-3e87a5969470",
+                    "name": "blockchain",
+                    "normalizedName": "blockchain"
+                },
+                {
+                    "id": "3ac9b202-4bd3-400b-94a2-bfcd180bd9f8",
+                    "name": "strategy",
+                    "normalizedName": "strategy"
+                },
+                {
+                    "id": "f526ea95-6848-4828-a25e-e0e872467dde",
+                    "name": "partnerships",
+                    "normalizedName": "partnerships"
+                },
+                {
+                    "id": "1f947546-3c16-46d2-8ba9-27a623476bfd",
+                    "name": "SaaS",
+                    "normalizedName": "saas"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "REMOTE",
+            "classification": "OTHER",
+            "organization": {
+                "summary": "Blockchain studio building decentralized applications",
+                "investors": [
+                    {
+                        "id": "41c4a4ec-5345-431b-9716-0d5d42dcddbc",
+                        "name": "SK Group",
+                        "normalizedName": "sk-group"
+                    },
+                    {
+                        "id": "acd3ead6-a3aa-4a97-b0ab-7015079fd8b5",
+                        "name": "CMT Digital",
+                        "normalizedName": "cmt-digital"
+                    },
+                    {
+                        "id": "a16ed387-0ffd-46bf-9b78-8073ebca3d1d",
+                        "name": "UBS",
+                        "normalizedName": "ubs"
+                    },
+                    {
+                        "id": "20880386-8580-4d8e-b6a1-9ab81365f0d8",
+                        "name": "The Lao",
+                        "normalizedName": "the-lao"
+                    },
+                    {
+                        "id": "cd02a40b-7ba8-42f3-8f20-a4270e711625",
+                        "name": "SNZ Capital",
+                        "normalizedName": "snz-capital"
+                    },
+                    {
+                        "id": "626d931f-9bc3-43ad-8acf-8607f1f6e6a5",
+                        "name": "Quotidian Ventures",
+                        "normalizedName": "quotidian-ventures"
+                    },
+                    {
+                        "id": "a7ab1f38-c619-4ff8-a2f6-59eb0ae147d7",
+                        "name": "Mastercard",
+                        "normalizedName": "mastercard"
+                    },
+                    {
+                        "id": "54afaa52-1c92-434a-92f5-e63843db0468",
+                        "name": "MakerDAO",
+                        "normalizedName": "makerdao"
+                    },
+                    {
+                        "id": "d6debed1-3bb1-432e-9975-60e7b9e63355",
+                        "name": "Liberty City Ventures",
+                        "normalizedName": "liberty-city-ventures"
+                    },
+                    {
+                        "id": "89a63d49-2b00-4e9d-9d13-5af14e6547b6",
+                        "name": "JP Morgan Chase",
+                        "normalizedName": "jp-morgan-chase"
+                    },
+                    {
+                        "id": "a132225b-a223-4463-8d28-ab988402ebcd",
+                        "name": "Greater Bay Area Homeland Development Fund",
+                        "normalizedName": "greater-bay-area-homeland-development-fund"
+                    },
+                    {
+                        "id": "6ae72478-9d1e-415e-9ac2-6f1b91dfc462",
+                        "name": "BlackRock",
+                        "normalizedName": "blackrock"
+                    },
+                    {
+                        "id": "e5e54976-1d05-4c51-9849-9512b58dbd2e",
+                        "name": "BNY Mellon",
+                        "normalizedName": "bny-mellon"
+                    },
+                    {
+                        "id": "20e22bf0-a4c2-4e18-951b-f0625134f1df",
+                        "name": "Protocol Labs",
+                        "normalizedName": "protocol-labs"
+                    },
+                    {
+                        "id": "5e7993a5-d943-49d4-876a-a9520bada53b",
+                        "name": "Fenbushi Capital",
+                        "normalizedName": "fenbushi-capital"
+                    },
+                    {
+                        "id": "ae273680-f06c-4864-8f23-f31231522b41",
+                        "name": "Alameda Research",
+                        "normalizedName": "alameda-research"
+                    },
+                    {
+                        "id": "f9141ae2-1bd0-4ac5-b8a3-2aa3fa5db737",
+                        "name": "NGC Ventures",
+                        "normalizedName": "ngc-ventures"
+                    },
+                    {
+                        "id": "0bfd23d4-eadd-4253-a937-37dd9711dbbf",
+                        "name": "Third Point Ventures",
+                        "normalizedName": "third-point-ventures"
+                    },
+                    {
+                        "id": "bcd84d48-b22c-4717-b608-a41f7c7eca8f",
+                        "name": "Think Investments",
+                        "normalizedName": "think-investments"
+                    },
+                    {
+                        "id": "652c94ef-c712-4cf7-b016-70cdae14eea4",
+                        "name": "Sterling.VC",
+                        "normalizedName": "sterlingvc"
+                    },
+                    {
+                        "id": "9c6a647a-31f0-4369-bf2a-046b5f36bf0a",
+                        "name": "Sanctor Capital",
+                        "normalizedName": "sanctor-capital"
+                    },
+                    {
+                        "id": "2c479007-10e0-403c-bd3b-bb16ad877424",
+                        "name": "HSBC",
+                        "normalizedName": "hsbc"
+                    },
+                    {
+                        "id": "d024015c-1370-4420-bfaa-36a68d47582b",
+                        "name": "DeFiance Capital",
+                        "normalizedName": "defiance-capital"
+                    },
+                    {
+                        "id": "1215183b-9bab-46c8-bd87-7ceff36d8d79",
+                        "name": "BLN Capital",
+                        "normalizedName": "bln-capital"
+                    },
+                    {
+                        "id": "ee0b9150-ed74-4ffc-bae0-486929932c40",
+                        "name": "Marshall Wace",
+                        "normalizedName": "marshall-wace"
+                    },
+                    {
+                        "id": "e6012809-fd56-4f33-812b-3e7f6f731144",
+                        "name": "Animoca Brands",
+                        "normalizedName": "animoca-brands"
+                    },
+                    {
+                        "id": "c96d12d7-c9e1-433a-8307-f2bdebd1c0fe",
+                        "name": "The Spartan Group",
+                        "normalizedName": "the-spartan-group"
+                    },
+                    {
+                        "id": "962545b1-8b5f-4922-8edc-5c5713e44cc4",
+                        "name": "Electric Capital",
+                        "normalizedName": "electric-capital"
+                    },
+                    {
+                        "id": "b00d9c1e-a67a-4ec7-87ff-d7c8b25ac42a",
+                        "name": "Dragonfly Capital",
+                        "normalizedName": "dragonfly-capital"
+                    },
+                    {
+                        "id": "41fcb85e-e9d5-4962-b139-4244e1dd2ee4",
+                        "name": "ParaFi Capital",
+                        "normalizedName": "parafi-capital"
+                    },
+                    {
+                        "id": "06543fff-5391-4e06-af40-2fa074a10a9f",
+                        "name": "UTA VC",
+                        "normalizedName": "uta-vc"
+                    },
+                    {
+                        "id": "085260e3-a9c8-40be-bb43-e7e1f203320a",
+                        "name": "C Ventures",
+                        "normalizedName": "c-ventures"
+                    },
+                    {
+                        "id": "22c11b4a-51c2-4662-a639-b7e17f0f8e0c",
+                        "name": "Anthos Capital",
+                        "normalizedName": "anthos-capital"
+                    },
+                    {
+                        "id": "03aa0b3b-d752-436f-a8c9-f8d33d53d0af",
+                        "name": "Microsoft",
+                        "normalizedName": "microsoft"
+                    },
+                    {
+                        "id": "1f3e5970-0d5a-4856-b049-901c4ac98dae",
+                        "name": "SoftBank Vision Fund 2",
+                        "normalizedName": "softbank-vision-fund-2"
+                    },
+                    {
+                        "id": "da21d9e8-2ec1-4fa9-aebc-d62a008cf09f",
+                        "name": "Temasek",
+                        "normalizedName": "temasek"
+                    },
+                    {
+                        "id": "d72d8042-207e-47a5-af78-b9d89f9c82c6",
+                        "name": "Sound Ventures",
+                        "normalizedName": "sound-ventures"
+                    },
+                    {
+                        "id": "cdc5c70c-05f8-4f5b-bf53-2ad96734bcb7",
+                        "name": "TRUE Capital Management",
+                        "normalizedName": "true-capital-management"
+                    },
+                    {
+                        "id": "edff3d1e-7b60-48d0-99ac-fd8bb512cf71",
+                        "name": "Third Point",
+                        "normalizedName": "third-point"
+                    }
+                ],
+                "location": "New York, USA",
+                "docs": "https://consensys.net/docs/",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [
+                    "ConsenSys"
+                ],
+                "discord": "https://discord.com/invite/9QwXqsyAps",
+                "orgId": "156",
+                "id": "fa0e7b01-6134-4d97-ac98-b6b22dc99109",
+                "twitter": "consensys",
+                "description": "With MetaMask, Infura, and a leading suite of blockchain products, we make it easy to build applications on Ethereum and participate in DeFi, NFTs, DAOs, and the metaverse.",
+                "name": "ConsenSys Software Inc.",
+                "fundingRounds": [
+                    {
+                        "id": "5ae2f2a3-f042-44c3-8124-556416958f31",
+                        "createdTimestamp": 1744329610007,
+                        "roundName": "Series D",
+                        "sourceLink": "https://twitter.com/ConsenSys/status/1503748087575191556",
+                        "raisedAmount": 450,
+                        "date": 1647388800,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "e9d01abc-7898-41b0-8438-3b69edcfe363",
+                        "createdTimestamp": 1744329610202,
+                        "roundName": "Series C",
+                        "raisedAmount": 200,
+                        "date": 1637107200,
+                        "updatedTimestamp": null,
+                        "sourceLink": null
+                    },
+                    {
+                        "id": "9c6b5a49-36a0-4627-bb18-3fb7c7dafde7",
+                        "createdTimestamp": 1744329610440,
+                        "roundName": "Convertible note issuance",
+                        "raisedAmount": 65,
+                        "date": 1618272000,
+                        "updatedTimestamp": null,
+                        "sourceLink": null
+                    },
+                    {
+                        "id": "945d484c-6f5a-45b9-9c76-93a8e9fa1186",
+                        "createdTimestamp": 1744329610709,
+                        "roundName": "Unknown",
+                        "sourceLink": "https://www.tokenpost.com/Blockchain-firm-ConsenSys-secures-10M-opportunity-fund-from-South-Koreas-SK-Group-2490",
+                        "raisedAmount": 10,
+                        "date": 1562025600,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "consensys-software-inc",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1697716653835,
+                "website": "https://consensys.net/",
+                "community": [],
+                "telegram": "consensys",
+                "projects": [],
+                "updatedTimestamp": 1706829708092,
+                "headcountEstimate": 1000,
+                "grants": [],
+                "github": "ConsenSys",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=consensys.net&sz=64"
+            },
+            "project": null
+        },
+        {
+            "id": "d6f33d73-6440-44d1-a28b-b01038bdb9a1",
+            "access": "public",
+            "url": "https://www.fireblocks.com/careers/current-openings/4558132006?gh_jid=4558132006",
+            "title": "Payments Lead",
+            "summary": "Fireblocks is looking for a Payments Lead to drive Payments Product Adoption from onboarding to ongoing success.",
+            "description": "You will be responsible for driving payments success across the customer lifecycle, improving key success metrics, and serving as a trusted advisor to payments executives. You will conduct technical workshops and lead data-driven executive business reviews while leveraging your deep payments industry knowledge.",
+            "requirements": [
+                "8-10 years of experience in Payments or Payments Consulting",
+                "Background in top-tier payments companies or Big 4 consulting",
+                "Deep knowledge of payments infrastructure and workflows",
+                "Fluency in payments vernacular",
+                "Strong experience in technical enablement and stakeholder management",
+                "Proven ability to lead strategic business reviews"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Drive post-sales payments success",
+                "Improve GDR, NDR, and NPS through proactive engagement",
+                "Serve as a trusted advisor to payments executives",
+                "Conduct technical workshops and training",
+                "Lead data-driven executive business reviews",
+                "Leverage deep payments industry knowledge",
+                "Work closely with Product, Engineering, Sales, and Marketing"
+            ],
+            "shortUUID": "Eqd284",
+            "minimumSalary": 150000,
+            "maximumSalary": 210000,
+            "salary": 180000,
+            "seniority": "4",
+            "benefits": [
+                "Competitive equity grant",
+                "Generous benefits package"
+            ],
+            "culture": null,
+            "location": "New York",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744296291000,
+            "tags": [
+                {
+                    "id": "61f2391f-dfe0-41b9-aab7-0f65b50c6853",
+                    "name": "Business Reviews",
+                    "normalizedName": "business-reviews"
+                },
+                {
+                    "id": "6c9d250f-3c36-4720-86ba-28111f0edd09",
+                    "name": "technical enablement",
+                    "normalizedName": "technical-enablement"
+                },
+                {
+                    "id": "45ab4173-9760-4bc2-bbdd-833f959e8761",
+                    "name": "cross-functional collaboration",
+                    "normalizedName": "cross-functional-collaboration"
+                },
+                {
+                    "id": "b453afaa-a404-4746-95c7-54b799089c33",
+                    "name": "customer success",
+                    "normalizedName": "customer-success"
+                },
+                {
+                    "id": "c9eac8ff-8a8c-463a-988d-ae379e78333d",
+                    "name": "stakeholder management",
+                    "normalizedName": "stakeholder-management"
+                },
+                {
+                    "id": "31d5df42-4e0a-4811-a3bb-ac64aad31bc5",
+                    "name": "payments",
+                    "normalizedName": "payments"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "ONSITE",
+            "classification": "CUSTOMER_SUPPORT",
+            "organization": {
+                "summary": "Fireblocks provides a suite of applications for managing digital asset operations and a development platform for blockchain businesses.",
+                "investors": [
+                    {
+                        "id": "237d1594-49a9-4107-8807-29ae60dc0761",
+                        "name": "SVB Capital",
+                        "normalizedName": "svb-capital"
+                    },
+                    {
+                        "id": "7033b12c-e1e5-4ae8-aed3-5877fd9742e8",
+                        "name": "Stripes",
+                        "normalizedName": "stripes"
+                    },
+                    {
+                        "id": "e5e54976-1d05-4c51-9849-9512b58dbd2e",
+                        "name": "BNY Mellon",
+                        "normalizedName": "bny-mellon"
+                    },
+                    {
+                        "id": "d959f36e-dbed-47fe-aa5a-aa193a9bff15",
+                        "name": "Coatue",
+                        "normalizedName": "coatue"
+                    },
+                    {
+                        "id": "73d3ca60-c6fc-40b3-b70d-4e38058ed87f",
+                        "name": "Ribbit Capital",
+                        "normalizedName": "ribbit-capital"
+                    },
+                    {
+                        "id": "585656d4-36f0-49aa-b4f3-0bec662e5ed7",
+                        "name": "DRW Venture Capital",
+                        "normalizedName": "drw-venture-capital"
+                    },
+                    {
+                        "id": "3bc03937-bac0-4f8a-aeba-4349b40e35ab",
+                        "name": "Spark Capital",
+                        "normalizedName": "spark-capital"
+                    },
+                    {
+                        "id": "c0373478-5ab3-4fc1-81ac-788ee1a610df",
+                        "name": "SCB 10X",
+                        "normalizedName": "scb-10x"
+                    },
+                    {
+                        "id": "228d1c90-a67d-4b2b-87eb-ce42418b57d4",
+                        "name": "Sequoia Capital",
+                        "normalizedName": "sequoia-capital"
+                    },
+                    {
+                        "id": "e063462f-1570-4a29-a92c-ad96a2be45d4",
+                        "name": "Cedar Hill Capital",
+                        "normalizedName": "cedar-hill-capital"
+                    },
+                    {
+                        "id": "ec88163a-3227-493a-a27b-6b2145320a02",
+                        "name": "Cyberstarts",
+                        "normalizedName": "cyberstarts"
+                    },
+                    {
+                        "id": "12d32429-4ca1-4ed1-95b3-8cc6936689a7",
+                        "name": "Tenaya Capital",
+                        "normalizedName": "tenaya-capital"
+                    },
+                    {
+                        "id": "a445f2dd-f067-48a2-bf44-a5834f5bcf38",
+                        "name": "Swisscom",
+                        "normalizedName": "swisscom"
+                    },
+                    {
+                        "id": "e85c1792-7dd6-425b-a74a-634543f9409b",
+                        "name": "DCG",
+                        "normalizedName": "dcg"
+                    },
+                    {
+                        "id": "d420f497-c9d5-4796-8ffb-db61b946470a",
+                        "name": "Paradigm",
+                        "normalizedName": "paradigm"
+                    },
+                    {
+                        "id": "3a192c8b-989a-4f09-843d-45903f605088",
+                        "name": "Galaxy Digital",
+                        "normalizedName": "galaxy-digital"
+                    },
+                    {
+                        "id": "f48883cf-651e-48c2-ad15-392b87c99602",
+                        "name": "Eight Roads",
+                        "normalizedName": "eight-roads"
+                    },
+                    {
+                        "id": "018a56aa-c350-46fe-8e8d-fd1f7e31e4fb",
+                        "name": "MState",
+                        "normalizedName": "mstate"
+                    }
+                ],
+                "location": "Distributed",
+                "docs": "https://developers.fireblocks.com/",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "discord": null,
+                "orgId": "8646",
+                "id": "7a1018e0-7797-4908-bb59-27b65dbc21af",
+                "twitter": "FireblocksHQ",
+                "description": "Fireblocks is an enterprise-grade platform delivering a secure infrastructure for moving, storing, and issuing digital assets. It enables exchanges, custodians, banks, trading desks, and hedge funds to securely scale digital asset operations through patent-pending SGX & MPC technology.",
+                "name": "Fireblocks",
+                "fundingRounds": [
+                    {
+                        "id": "14326f27-d57c-4523-b184-39813f599148",
+                        "createdTimestamp": 1744329720968,
+                        "roundName": "Series E",
+                        "sourceLink": "https://twitter.com/ForbesCrypto/status/1486671221869662217",
+                        "raisedAmount": 550,
+                        "date": 1643241600,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "b47e2771-2a3b-4b41-a0f2-a5dfcf877fc3",
+                        "createdTimestamp": 1744329721043,
+                        "roundName": "Series D",
+                        "sourceLink": "https://twitter.com/Exmo_Com/status/1420440676790120456",
+                        "raisedAmount": 310,
+                        "date": 1627344000,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "5a5d8d95-4adb-4bfc-b789-e6b1260daa42",
+                        "createdTimestamp": 1744329721086,
+                        "roundName": "Series C",
+                        "sourceLink": "https://twitter.com/FireblocksHQ/status/1372528288367775744",
+                        "raisedAmount": 133,
+                        "date": 1616025600,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "e7c28fd2-7948-4b4e-b2ef-1c7cfa89c42b",
+                        "createdTimestamp": 1744329721007,
+                        "roundName": "Series B",
+                        "sourceLink": "https://news.bitcoin.com/crypto-security-firm-fireblocks-raises-30-million-in-series-b-funding-targets-global-expansion/",
+                        "raisedAmount": 30,
+                        "date": 1605744000,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "1315adfe-621a-4b45-b344-f4ba3ca48e9e",
+                        "createdTimestamp": 1744329720975,
+                        "roundName": "Series A",
+                        "sourceLink": "https://twitter.com/finSMEs/status/1138475674610675716",
+                        "raisedAmount": 16,
+                        "date": 1560211200,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "fireblocks",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1711779420724,
+                "website": "https://fireblocks.com",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1730978035725,
+                "grants": [],
+                "github": "fireblocks",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=fireblocks.com&sz=64",
+                "headcountEstimate": null
+            },
+            "project": null
+        },
+        {
+            "id": "d5087231-24f7-4ba3-b81e-fbb341ed3450",
+            "access": "public",
+            "url": "https://job-boards.eu.greenhouse.io/gsrmarkets/jobs/4565815101",
+            "title": "Venture Investments Analyst Associate",
+            "summary": "GSR is looking for a Investment Analyst to dive deep into the evolving world of crypto and unearth the next big thing.",
+            "description": "You will conduct in-depth research on market trends and emerging narratives, perform due diligence on potential investments, and analyze data from on-chain and off-chain sources. You will enhance the investment process by streamlining data aggregation and improving overall workflows.",
+            "requirements": [
+                "Bachelor's or higher degree in finance, economics, computer science, engineering, or a related technical field",
+                "At least 2+ years of experience in crypto markets, DeFi, or blockchain ecosystems",
+                "Deep analytical skills with the ability to assess financial models",
+                "Exemplary communication skills",
+                "Preference for individuals with functional experience in Web3",
+                "Prior professional experience in Venture Capital"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Conduct in-depth research on market trends and emerging narratives",
+                "Perform deep due diligence on potential investments",
+                "Contribute to the underwriting of technical aspects",
+                "Engage with early-stage networks and protocols",
+                "Analyze data from on-chain and off-chain sources",
+                "Enhance the investment process by streamlining data aggregation"
+            ],
+            "shortUUID": "FXO0Mz",
+            "minimumSalary": 100000,
+            "maximumSalary": 200000,
+            "salary": 150000,
+            "seniority": "3",
+            "benefits": [
+                "Healthcare",
+                "Dental",
+                "Vision",
+                "Retirement Planning",
+                "30 days holiday",
+                "Free lunches when in the office",
+                "Hybrid working pattern",
+                "Corporate and Social Responsibility program",
+                "Immigration and relocation support"
+            ],
+            "culture": null,
+            "location": "New York",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744294311000,
+            "tags": [
+                {
+                    "id": "ad1acf71-a236-4287-aacd-40e5b3f8aa44",
+                    "name": "data analysis",
+                    "normalizedName": "data-analysis"
+                },
+                {
+                    "id": "c3d95d69-af08-43d4-ab12-587bda9c01b2",
+                    "name": "Investment",
+                    "normalizedName": "investment"
+                },
+                {
+                    "id": "4e5d8622-0ce1-44f6-8c15-aa7729483c5a",
+                    "name": "Web3",
+                    "normalizedName": "web3"
+                },
+                {
+                    "id": "edb26415-7cae-4121-9458-3e87a5969470",
+                    "name": "blockchain",
+                    "normalizedName": "blockchain"
+                },
+                {
+                    "id": "36ebd23f-d050-42cf-b34e-090223456b32",
+                    "name": "crypto",
+                    "normalizedName": "crypto"
+                },
+                {
+                    "id": "4b6eb9b3-c58b-471d-9cdb-9fcb068ae6e6",
+                    "name": "due diligence",
+                    "normalizedName": "due-diligence"
+                },
+                {
+                    "id": "d019d84d-eabc-42ad-9a5c-3dd81a55664b",
+                    "name": "Tokenomics",
+                    "normalizedName": "tokenomics"
+                },
+                {
+                    "id": "c4b63d0c-be82-470e-8e22-1ed666c82ff4",
+                    "name": "financial modeling",
+                    "normalizedName": "financial-modeling"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "HYBRID",
+            "classification": "FINANCE",
+            "organization": {
+                "atsClient": null,
+                "summary": "GSR is a crypto trading firm and liquidity provider with a decade of experience in the crypto market.",
+                "reviews": [],
+                "createdTimestamp": 1713003092815,
+                "website": "https://gsr.io",
+                "investors": [],
+                "location": "Distributed",
+                "docs": null,
+                "community": [],
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "telegram": null,
+                "discord": null,
+                "orgId": "9512",
+                "id": "a6cd7d14-559a-47c8-86c0-78726389d021",
+                "projects": [],
+                "twitter": "GSR_io",
+                "description": "GSR specializes in providing deep liquidity and personalized service to cryptocurrency projects and institutions. With a history dating back to 2013, GSR has been an active liquidity provider and investor in the crypto ecosystem, offering services such as OTC Trading, Derivatives, and Market Making. GSR's expertise spans across serving token issuers, institutional investors, miners, and leading trading venues.",
+                "name": "GSR Markets",
+                "fundingRounds": [],
+                "normalizedName": "gsr-markets",
+                "grants": [],
+                "github": null,
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=gsr.io&sz=64",
+                "headcountEstimate": null,
+                "updatedTimestamp": null
+            },
+            "project": null
+        },
+        {
+            "id": "1e645168-2126-454f-838c-4adb351bf1e9",
+            "access": "public",
+            "url": "https://jobs.ashbyhq.com/privy/96f07fe8-c163-46fe-bf1e-f05e022328f1",
+            "title": "Developer Relations",
+            "summary": "Privy is looking for a Developer Relations to bridge the gaps between our product and developer community.",
+            "description": "You will create and maintain code samples, establish a regular cadence of developer-focused content, collaborate with internal teams to improve documentation, and engage with the developer community through events and other channels.",
+            "requirements": [
+                "3+ years of experience in a developer advocacy, technical evangelism, technical writing or similar role",
+                "Strong programming skills and a deep understanding of the technologies the company uses",
+                "Excellent written and verbal communication skills",
+                "Passion for building and engaging with developer communities",
+                "Strong problem solving skills",
+                "Ability to build relationships and collaborate with others"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Create and maintain code samples, starter repos, and recipes that help developers integrate our product effectively",
+                "Establish and create a regular cadence of developer-focused content",
+                "Collaborate with internal teams to organize our documentation and gather developer feedback",
+                "Engage with the developer community through industry events and hackathons"
+            ],
+            "shortUUID": "0f5GfW",
+            "minimumSalary": 120000,
+            "maximumSalary": 180000,
+            "salary": 150000,
+            "seniority": "3",
+            "benefits": [
+                "Offers Equity"
+            ],
+            "culture": null,
+            "location": "New York",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744292337239,
+            "tags": [
+                {
+                    "id": "cb84c68a-e093-4613-a066-bac1db5ed587",
+                    "name": "content creation",
+                    "normalizedName": "content-creation"
+                },
+                {
+                    "id": "fd2ef5f3-9def-40c0-8cdb-d87a23d6101c",
+                    "name": "community engagement",
+                    "normalizedName": "community-engagement"
+                },
+                {
+                    "id": "ddf11430-3bfe-4271-9e14-5eda1e5b3b8f",
+                    "name": "programming",
+                    "normalizedName": "programming"
+                },
+                {
+                    "id": "3737fd25-59a8-4cf7-8405-066c05df2177",
+                    "name": "documentation",
+                    "normalizedName": "documentation"
+                },
+                {
+                    "id": "62db365c-74dd-40a8-8e24-de89cffbd7c2",
+                    "name": "technical writing",
+                    "normalizedName": "technical-writing"
+                },
+                {
+                    "id": "6560ac82-f58e-43b4-a81f-ad44c327aa19",
+                    "name": "Developer Advocacy",
+                    "normalizedName": "developer-advocacy"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "ONSITE",
+            "classification": "DEVREL",
+            "organization": {
+                "summary": "One simple library to add beautiful authentication flows and powerful embedded wallets to your app",
+                "investors": [
+                    {
+                        "id": "15b1b9b2-2e91-450a-bb57-af9191a4587f",
+                        "name": "Cooper Turley",
+                        "normalizedName": "cooper-turley"
+                    },
+                    {
+                        "id": "684a2b2d-6a15-4b37-8b4a-19d329ff705c",
+                        "name": "Patricio Worthalter",
+                        "normalizedName": "patricio-worthalter"
+                    },
+                    {
+                        "id": "6e479b82-2ddb-4f7f-a388-c79f67acf865",
+                        "name": "Linda Xie",
+                        "normalizedName": "linda-xie"
+                    },
+                    {
+                        "id": "3dbd57a4-f529-47d3-81f0-ba92a4dc3ba4",
+                        "name": "Tarun Chitra",
+                        "normalizedName": "tarun-chitra"
+                    },
+                    {
+                        "id": "dc980d73-a670-4937-9514-b63cfb133bba",
+                        "name": "James Prestwich",
+                        "normalizedName": "james-prestwich"
+                    },
+                    {
+                        "id": "d1e03684-d6ba-4620-9532-51dafc2bbcea",
+                        "name": "Dan Romero",
+                        "normalizedName": "dan-romero"
+                    },
+                    {
+                        "id": "65710dad-e178-4fd4-aaad-eec4fff09270",
+                        "name": "Ben Leventhal",
+                        "normalizedName": "ben-leventhal"
+                    },
+                    {
+                        "id": "8baac2cd-bd03-4d93-8bc2-0d8f25a78741",
+                        "name": "Justin Waldron",
+                        "normalizedName": "justin-waldron"
+                    },
+                    {
+                        "id": "c60335fa-db7f-4cac-a422-967089f8c8a4",
+                        "name": "BlueYard Capital",
+                        "normalizedName": "blueyard-capital"
+                    },
+                    {
+                        "id": "e1d96a79-e2a5-46c4-86d0-a27cd77b3b28",
+                        "name": "Archetype",
+                        "normalizedName": "archetype"
+                    },
+                    {
+                        "id": "228d1c90-a67d-4b2b-87eb-ce42418b57d4",
+                        "name": "Sequoia Capital",
+                        "normalizedName": "sequoia-capital"
+                    },
+                    {
+                        "id": "d420f497-c9d5-4796-8ffb-db61b946470a",
+                        "name": "Paradigm",
+                        "normalizedName": "paradigm"
+                    },
+                    {
+                        "id": "73d3ca60-c6fc-40b3-b70d-4e38058ed87f",
+                        "name": "Ribbit Capital",
+                        "normalizedName": "ribbit-capital"
+                    }
+                ],
+                "location": "New York, USA",
+                "docs": "https://docs.privy.io/",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [
+                    "Horkos, Inc."
+                ],
+                "discord": null,
+                "orgId": "346",
+                "id": "e25bcbe8-ee31-48c3-bb0d-90c44c11652f",
+                "twitter": "privy_io",
+                "description": "At Privy, we’re building the tools that empower developers to build secure, self-custodial web3 products with delightful UX. Our mission is to build a better internet.",
+                "name": "Privy",
+                "fundingRounds": [
+                    {
+                        "id": "c91bd3cb-56e4-41b5-af8b-e2e43c7e5a75",
+                        "createdTimestamp": 1744329631226,
+                        "roundName": "Unknown",
+                        "sourceLink": "https://fortune.com/crypto/2025/03/19/crypto-wallet-privy-funding-round-ribbit-capital/",
+                        "raisedAmount": 15,
+                        "date": 1742342400,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "efc608de-aaac-43a3-988e-0373354720fc",
+                        "createdTimestamp": 1744329631273,
+                        "roundName": "Series A",
+                        "sourceLink": "https://x.com/privy_io/status/1726967584472576157",
+                        "raisedAmount": 18,
+                        "date": 1700524800,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "0dd9ed8d-21db-4807-a662-98407e3d76c3",
+                        "createdTimestamp": 1744329631216,
+                        "roundName": "Seed",
+                        "sourceLink": "https://twitter.com/privy_io/status/1516817604970692617",
+                        "raisedAmount": 8.3,
+                        "date": 1650499200,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "privy",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1701277700521,
+                "website": "https://privy.io",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1706829714506,
+                "grants": [],
+                "github": "privy-io",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=privy.io&sz=64",
+                "headcountEstimate": null
+            },
+            "project": null
+        },
+        {
+            "id": "ca703c1e-2837-4b94-9bd5-79454253f7e5",
+            "access": "public",
+            "url": "https://aleo.org/job/developer-relations-lead/",
+            "title": "Developer Relations Lead",
+            "summary": "Aleo is looking for a Developer Relations Lead to foster and grow a developer ecosystem.",
+            "description": "You will develop and publish content to educate and inspire developers on using Aleo's products and services. You will manage critical interfaces with the developer community, including Core Developer Calls, Discord, and in-person events. You will research and develop novel applications of the Aleo technology and work closely with internal teams to align developer relations activities with business objectives and product roadmaps. You will contribute to and maintain high-quality technical documentation and user guides to assist developers in understanding and utilizing our technologies. You will build relationships with and advocate for developers within the Aleo ecosystem.",
+            "requirements": [
+                "Strong background in engineering, with an emphasis on protocol engineering or full-stack blockchain development",
+                "Solid understanding of blockchain concepts and, ideally, zero-knowledge proofs and their applications",
+                "Excellent written and verbal communication skills",
+                "Experience in creating technical content",
+                "Experience in engaging with and growing technical communities"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Develop and publish content to educate and inspire developers on using Aleo's products and services",
+                "Be the face of the Foundation and manage critical interfaces with the developer community, including Core Developer Calls, Discord, and in-person events",
+                "Research and develop novel applications of the Aleo technology",
+                "Work closely with internal teams to align developer relations activities with business objectives and product roadmaps",
+                "Contribute to and maintain high-quality technical documentation and user guides to assist developers in understanding and utilizing our technologies",
+                "Build relationships with and advocate for developers within the Aleo ecosystem"
+            ],
+            "shortUUID": "LOUVgo",
+            "minimumSalary": 125000,
+            "maximumSalary": 160000,
+            "salary": 142500,
+            "seniority": "3",
+            "benefits": [
+                "Comprehensive healthcare coverage",
+                "Monthly budget for expenses (home office setup & supplies, transportation, fitness & personal well-being, continued learning, etc.)",
+                "Ability to attend major industry conferences and global events at the company’s expense"
+            ],
+            "culture": null,
+            "location": "Remote",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744292337239,
+            "tags": [
+                {
+                    "id": "54a29286-6dc7-4f44-814a-a328403335a6",
+                    "name": "technical documentation",
+                    "normalizedName": "technical-documentation"
+                },
+                {
+                    "id": "a07c1471-b9c5-403b-942b-94a55a0f83f3",
+                    "name": "Zero knowledge proofs",
+                    "normalizedName": "zero-knowledge-proofs"
+                },
+                {
+                    "id": "cb84c68a-e093-4613-a066-bac1db5ed587",
+                    "name": "content creation",
+                    "normalizedName": "content-creation"
+                },
+                {
+                    "id": "edb26415-7cae-4121-9458-3e87a5969470",
+                    "name": "blockchain",
+                    "normalizedName": "blockchain"
+                },
+                {
+                    "id": "fd2ef5f3-9def-40c0-8cdb-d87a23d6101c",
+                    "name": "community engagement",
+                    "normalizedName": "community-engagement"
+                },
+                {
+                    "id": "c8d599ed-9de7-4d55-9a37-74e7203d2310",
+                    "name": "zero-knowledge proofs",
+                    "normalizedName": "zero-knowledge-proofs"
+                },
+                {
+                    "id": "d5aa16ca-0761-439a-b896-12bf31598dd3",
+                    "name": "developer relations",
+                    "normalizedName": "developer-relations"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "REMOTE",
+            "classification": "OTHER",
+            "organization": {
+                "summary": "Aleo offers a platform for building private applications using zero-knowledge proofs on a layer 1 blockchain.",
+                "investors": [
+                    {
+                        "id": "11daea6a-3963-43c7-b6ad-72458e1cd7dd",
+                        "name": "Sea Capital",
+                        "normalizedName": "sea-capital"
+                    },
+                    {
+                        "id": "0e263ca6-7793-4225-b371-2f3a33966cf6",
+                        "name": "Kora Management",
+                        "normalizedName": "kora-management"
+                    },
+                    {
+                        "id": "74f9f074-4f0d-4c0c-9ecb-68ed3331db18",
+                        "name": "Slow Ventures",
+                        "normalizedName": "slow-ventures"
+                    },
+                    {
+                        "id": "a63077be-01b4-40ee-a2ed-a71b864719a0",
+                        "name": "Samsung Next",
+                        "normalizedName": "samsung-next"
+                    },
+                    {
+                        "id": "fbace60a-b1d6-4945-be70-31401d42c309",
+                        "name": "SoftBank",
+                        "normalizedName": "softbank"
+                    },
+                    {
+                        "id": "5c176aae-3567-4da6-9b75-34af05c6f0d7",
+                        "name": "Tiger Global",
+                        "normalizedName": "tiger-global"
+                    },
+                    {
+                        "id": "c3475845-4f8d-4672-89e3-40f200eda932",
+                        "name": "a16z",
+                        "normalizedName": "a16z"
+                    },
+                    {
+                        "id": "48a0903a-0d0f-4597-bed6-0f321e95bac4",
+                        "name": "zkValidator",
+                        "normalizedName": "zkvalidator"
+                    },
+                    {
+                        "id": "7accdfd3-f5ab-4825-b24f-e5d8dfa0a2f0",
+                        "name": "a_capital",
+                        "normalizedName": "acapital"
+                    },
+                    {
+                        "id": "f374340c-35f9-4ee8-8e57-2f1893c8c132",
+                        "name": "Ethereal Ventures",
+                        "normalizedName": "ethereal-ventures"
+                    },
+                    {
+                        "id": "8ab29b46-9d53-446b-a1e1-6c7b507af25a",
+                        "name": "Scalar Capital",
+                        "normalizedName": "scalar-capital"
+                    },
+                    {
+                        "id": "ca8df3f9-ec00-4827-969e-bd46a88f6596",
+                        "name": "Balaji Srinivasan",
+                        "normalizedName": "balaji-srinivasan"
+                    },
+                    {
+                        "id": "b97af4e7-43af-4dd2-b58f-aefeb6706454",
+                        "name": "Placeholder",
+                        "normalizedName": "placeholder"
+                    },
+                    {
+                        "id": "a33d3909-bf19-4104-b95a-3a3f34514830",
+                        "name": "Dekrypt Capital",
+                        "normalizedName": "dekrypt-capital"
+                    },
+                    {
+                        "id": "3a192c8b-989a-4f09-843d-45903f605088",
+                        "name": "Galaxy Digital",
+                        "normalizedName": "galaxy-digital"
+                    },
+                    {
+                        "id": "199bc340-2723-4465-84e0-859e93bdd57a",
+                        "name": "Variant Fund",
+                        "normalizedName": "variant-fund"
+                    },
+                    {
+                        "id": "db78a767-aa84-425b-89ca-8e1b1b585cbe",
+                        "name": "Polychain Capital",
+                        "normalizedName": "polychain-capital"
+                    }
+                ],
+                "location": "Distributed",
+                "docs": "https://developer.aleo.org/getting_started/",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "discord": "https://discord.com/invite/aleohq",
+                "orgId": "344",
+                "id": "69ffdb9a-d01f-4ccf-aee2-61187a55165d",
+                "twitter": "AleoHQ",
+                "description": "Aleo is pioneering the development of a new platform that enables the creation of fully private applications leveraging zero-knowledge proofs to ensure data privacy and security. By integrating decentralization, scalability, and privacy, Aleo aims to provide a comprehensive solution for developers looking to build applications that protect user data and enhance security without compromising on performance. The platform includes a Rust-based domain-specific language, Leo, designed to simplify the expression of logic in zero-knowledge, and snarkOS, a permissionless and scalable network for ZK-powered smart contracts.",
+                "name": "Aleo",
+                "fundingRounds": [
+                    {
+                        "id": "5982b5a9-9fd7-4c70-822e-25339b447b11",
+                        "createdTimestamp": 1744329633328,
+                        "roundName": "Series B",
+                        "sourceLink": "https://twitter.com/AleoHQ/status/1490689308457684996",
+                        "raisedAmount": 200,
+                        "date": 1644192000,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "9be0e240-fbac-494c-9ec0-be2faa765bb3",
+                        "createdTimestamp": 1744329633202,
+                        "roundName": "Series A",
+                        "sourceLink": "https://www.businesswire.com/news/home/20220207005251/en/Aleo-Raises-200M-in-Series-B-to-Expand-Products-and-Services-Built-on-Private-by-Default-Blockchain-Based-Platform",
+                        "raisedAmount": 28,
+                        "date": 1618876800,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "aleo",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1701120823525,
+                "website": "https://aleo.org",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1711742668300,
+                "grants": [],
+                "github": "AleoHQ",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=aleo.org&sz=64",
+                "headcountEstimate": null
+            },
+            "project": null
+        },
+        {
+            "id": "ba03850b-c931-495b-8866-197b5384178a",
+            "access": "protected",
+            "url": null,
+            "title": "Protocol Engineer",
+            "summary": "Exponent is looking for a Protocol Engineer to work on protocol updates and advance Exponent as a core financial infrastructure for Solana’s onchain economy.",
+            "description": "In this role you will work with our engineering team and contribute to, maintain, and improve Exponent’s core programs such as our AMM. You will work closely with our smart contract and product teams to scope and implement new protocol features. When needed, you will integrate new Solana-based protocols into Exponent and write interfaces for them. You will enjoy this role if you are interested in tackling complex DeFi challenges and designing financial infrastructure that is critical to powering Solana's on-chain economic activities.",
+            "requirements": [
+                "Highly proficient in Rust",
+                "Easily understand major DeFi primitives (AMM, borrow/lend, order book, perpetual margin trading)",
+                "A passion for decentralized finance"
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Contribute to, maintain, and improve Exponent’s core programs such as our AMM",
+                "Work closely with our smart contract and product teams to scope and implement new protocol features",
+                "Integrate new Solana-based protocols into Exponent and write interfaces for them"
+            ],
+            "shortUUID": "FOHhiv",
+            "minimumSalary": 100000,
+            "maximumSalary": 165000,
+            "salary": 132500,
+            "seniority": "3",
+            "benefits": [],
+            "culture": null,
+            "location": null,
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1743797213782,
+            "tags": [
+                {
+                    "id": "092f455f-fbf8-45c5-85f4-234d092fa3bd",
+                    "name": "smart contracts",
+                    "normalizedName": "smart-contracts"
+                },
+                {
+                    "id": "fa46a9f3-e934-4901-8131-19d589633d01",
+                    "name": "smart-contracts",
+                    "normalizedName": "smart-contracts"
+                },
+                {
+                    "id": "7f6d8517-e861-4134-8d2f-fd413b85260e",
+                    "name": "DeFi",
+                    "normalizedName": "defi"
+                },
+                {
+                    "id": "c23aeef7-7474-4056-8dca-b5ace3cb5ba7",
+                    "name": "Solana",
+                    "normalizedName": "solana"
+                },
+                {
+                    "id": "7cd30987-aec3-4561-9946-66b1f18ee66c",
+                    "name": "AMM",
+                    "normalizedName": "amm"
+                },
+                {
+                    "id": "8f616bc2-e01d-43c7-8252-9af71041107a",
+                    "name": "Rust",
+                    "normalizedName": "rust"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": null,
+            "classification": "ENGINEERING",
+            "organization": {
+                "summary": "Infrastructure for powerful web3 products at scale.",
+                "investors": [
+                    {
+                        "id": "c1e719b1-a65a-472c-8da8-ef261a6039bb",
+                        "name": "Cherry Ventures",
+                        "normalizedName": "cherry-ventures"
+                    },
+                    {
+                        "id": "9aca3cfb-7c0b-499b-869e-4670096e2421",
+                        "name": "RockawayX",
+                        "normalizedName": "rockawayx"
+                    },
+                    {
+                        "id": "89fb3ff9-d340-412b-8d99-8e62b72096ce",
+                        "name": "Mechanism Capital",
+                        "normalizedName": "mechanism-capital"
+                    },
+                    {
+                        "id": "61decf42-b945-414f-999f-584ea6be176a",
+                        "name": "Solana Ventures",
+                        "normalizedName": "solana-ventures"
+                    },
+                    {
+                        "id": "639b8475-4121-47f1-b04d-d96dc1995e47",
+                        "name": "Robot Ventures",
+                        "normalizedName": "robot-ventures"
+                    }
+                ],
+                "location": "USA",
+                "docs": null,
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "discord": null,
+                "orgId": "42",
+                "id": "060499ee-e15e-490e-9762-b38b903c3a5f",
+                "twitter": "syndicateio",
+                "description": "Syndicate is building the infrastructure to take web3 mainstream. Developers leverage Syndicate’s products to abstract web3’s complexity, allowing teams to spend less time managing complex web3 infrastructure and more time building an exceptional end-to-end experience for their customers.",
+                "name": "Exponent",
+                "fundingRounds": [
+                    {
+                        "id": "cf1da4a1-3e7b-448f-a646-1a13e823e8e1",
+                        "createdTimestamp": 1744329729115,
+                        "roundName": "Unknown",
+                        "sourceLink": "https://x.com/ExponentFinance/status/1859620007937806617",
+                        "raisedAmount": 2.1,
+                        "date": 1732147200,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "exponent",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1723812524299,
+                "website": "https://exponent.finance",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1724953041561,
+                "headcountEstimate": 50,
+                "grants": [],
+                "github": null,
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=exponent.finance&sz=64"
+            },
+            "project": null
+        },
+        {
+            "id": "f6737aae-4ec3-4694-89b1-a5822b3724ed",
+            "access": "public",
+            "url": "https://www.comeet.com/jobs/chaoslabs/E8.007/business-development-associate/D8.059",
+            "title": "Business Development Associate",
+            "summary": "Chaos Labs is looking for a Business Development Associate to manage inbound leads drive deal cycles and represent the company at Web3 events.",
+            "description": "You will manage and qualify inbound leads progressing them through the pipeline to ensure a seamless customer journey from initial outreach to closed-won deals. You will spearhead outbound efforts to identify and engage key projects and stakeholders driving new business opportunities. You will support the Head of Strategy and partner with the VP of Business Operations to advance deals by preparing proposals contract templates and other materials while facilitating legal and commercial aspects to ensure alignment with company objectives. You will act as the primary point of contact for prospects and clients throughout the deal cycle ensuring consistent and professional communication. You will coordinate and schedule calls meetings and follow-ups to maintain deal momentum. You will track and document meeting notes action items and updates ensuring all stakeholders are aligned. You will serve as a business overlay to vertical leads and customer success facilitating renewal and upsell strategies by aligning customer needs with business objectives and maximizing value. You will work closely with internal teams to ensure seamless handoffs and ongoing communication with clients. You will build and nurture key customer relationships focusing on driving long-term value and satisfaction. You will clearly articulate and develop value propositions for projects in the pipeline to drive and qualify leads effectively. You will represent the company at key Web3 Fintech Blockchain and DeFi events to network with potential partners and customers and identify and pursue strategic opportunities by engaging with industry leaders and influencers.",
+            "requirements": [
+                "Bachelor’s degree in Business Marketing Finance or a related field.",
+                "3-4 years of experience in traditional sales or account management roles preferably in a B2B SaaS company with knowledge in Web3 DeFi and Blockchain.",
+                "Demonstrated ability to manage a sales pipeline build client relationships and close deals effectively.",
+                "Experience with CRM tools pipeline management and sales methodologies."
+            ],
+            "onboardIntoWeb3": false,
+            "responsibilities": [
+                "Manage and qualify inbound leads progressing them through the pipeline to ensure a seamless customer journey from initial outreach to closed-won deals.",
+                "Spearhead outbound efforts to identify and engage key projects and stakeholders driving new business opportunities.",
+                "Support the Head of Strategy and partner with the VP of Business Operations to advance deals by preparing proposals contract templates and other materials while facilitating legal and commercial aspects to ensure alignment with company objectives.",
+                "Act as the primary point of contact for prospects and clients throughout the deal cycle ensuring consistent and professional communication.",
+                "Coordinate and schedule calls meetings and follow-ups to maintain deal momentum.",
+                "Track and document meeting notes action items and updates ensuring all stakeholders are aligned.",
+                "Serve as a business overlay to vertical leads and customer success facilitating renewal and upsell strategies by aligning customer needs with business objectives and maximizing value.",
+                "Work closely with internal teams to ensure seamless handoffs and ongoing communication with clients.",
+                "Build and nurture key customer relationships focusing on driving long-term value and satisfaction.",
+                "Clearly articulate and develop value propositions for projects in the pipeline to drive and qualify leads effectively.",
+                "Represent the company at key Web3 Fintech Blockchain and DeFi events to network with potential partners and customers.",
+                "Identify and pursue strategic opportunities by engaging with industry leaders and influencers."
+            ],
+            "shortUUID": "NA3Qz3",
+            "minimumSalary": 133000,
+            "maximumSalary": 165000,
+            "salary": 149000,
+            "seniority": "3",
+            "benefits": [
+                "Flexible hybrid work environment.",
+                "Competitive PTO (21 days) + sick days (7) + 8 observed US-company holidays.",
+                "100% employer-paid health benefit options (Medical dental & vision insurance) for you and your dependents.",
+                "FSA or HSA (pending on selected health insurance).",
+                "Generous 401k plan with employer match.",
+                "Thoughtful Parental Leave Policy.",
+                "Corporate wellness programs with OneMedical Teladoc Talkspace EAP.",
+                "Career growth opportunities at a rapidly expanding global technology company in an emerging field with personalized professional development.",
+                "Pre-tax Commuter Benefits."
+            ],
+            "culture": null,
+            "location": "New York",
+            "salaryCurrency": "USD",
+            "paysInCrypto": null,
+            "featured": false,
+            "featureStartDate": null,
+            "featureEndDate": null,
+            "offersTokenAllocation": null,
+            "timestamp": 1744292337239,
+            "tags": [
+                {
+                    "id": "1af56713-dbdf-4958-87c2-ec03c788fc37",
+                    "name": "development",
+                    "normalizedName": "development"
+                },
+                {
+                    "id": "5d7afc63-f119-4e99-842e-8ec4f25e0f7c",
+                    "name": "communication",
+                    "normalizedName": "communication"
+                },
+                {
+                    "id": "7fa0296a-0151-47b7-b523-f922b08741eb",
+                    "name": "sales",
+                    "normalizedName": "sales"
+                },
+                {
+                    "id": "e74655c9-e21a-4c7c-afeb-a0f78ce98cbe",
+                    "name": "organization",
+                    "normalizedName": "organization"
+                },
+                {
+                    "id": "283c75ab-f95a-4090-a18d-ed7f165a62e6",
+                    "name": "account",
+                    "normalizedName": "account"
+                },
+                {
+                    "id": "4e5d8622-0ce1-44f6-8c15-aa7729483c5a",
+                    "name": "Web3",
+                    "normalizedName": "web3"
+                },
+                {
+                    "id": "91c1ea09-f9c5-4c05-89a0-40da40c3aafc",
+                    "name": "CRM",
+                    "normalizedName": "crm"
+                },
+                {
+                    "id": "edb26415-7cae-4121-9458-3e87a5969470",
+                    "name": "blockchain",
+                    "normalizedName": "blockchain"
+                },
+                {
+                    "id": "a377fbf0-4161-4da4-bf53-2967657bbeee",
+                    "name": "pipeline",
+                    "normalizedName": "pipeline"
+                },
+                {
+                    "id": "218d740b-e37b-4481-bf9c-4a9ef5a5d60c",
+                    "name": "business",
+                    "normalizedName": "business"
+                },
+                {
+                    "id": "7f6d8517-e861-4134-8d2f-fd413b85260e",
+                    "name": "DeFi",
+                    "normalizedName": "defi"
+                },
+                {
+                    "id": "4a0ab499-829c-4158-b127-008574b284a3",
+                    "name": "management",
+                    "normalizedName": "management"
+                }
+            ],
+            "commitment": "FULL_TIME",
+            "locationType": "HYBRID",
+            "classification": "BIZDEV",
+            "organization": {
+                "summary": "Our platform transforms on-chain risk management, security, and incentive strategies. We automate real-time protocol parameter recommendations through advanced Risk Oracles, sophisticated data analytics, modeling, and simulations.",
+                "investors": [
+                    {
+                        "id": "68b42f16-b42a-48a2-8e25-63483bec189c",
+                        "name": "Bessemer Venture Partners",
+                        "normalizedName": "bessemer-venture-partners"
+                    },
+                    {
+                        "id": "38c8bb9e-2478-459c-8d81-c673942be942",
+                        "name": "PayPal Ventures",
+                        "normalizedName": "paypal-ventures"
+                    },
+                    {
+                        "id": "8a825083-e778-4bb7-9f72-5a054cae26cd",
+                        "name": "Uniswap Labs Ventures",
+                        "normalizedName": "uniswap-labs-ventures"
+                    },
+                    {
+                        "id": "ca8df3f9-ec00-4827-969e-bd46a88f6596",
+                        "name": "Balaji Srinivasan",
+                        "normalizedName": "balaji-srinivasan"
+                    },
+                    {
+                        "id": "e4f6a450-893e-4e9c-981e-c8789e5d066e",
+                        "name": "Lightspeed Venture Partners",
+                        "normalizedName": "lightspeed-venture-partners"
+                    },
+                    {
+                        "id": "859bf233-9527-4d83-a3a7-9bcfbb9be3f8",
+                        "name": "Naval Ravikant",
+                        "normalizedName": "naval-ravikant"
+                    },
+                    {
+                        "id": "3a192c8b-989a-4f09-843d-45903f605088",
+                        "name": "Galaxy Digital",
+                        "normalizedName": "galaxy-digital"
+                    },
+                    {
+                        "id": "d733de57-6999-4756-829d-e4fd173d632a",
+                        "name": "F-Prime Capital",
+                        "normalizedName": "f-prime-capital"
+                    },
+                    {
+                        "id": "fb374b07-1c5f-4c5a-9428-bed12a4381dd",
+                        "name": "Haun Ventures",
+                        "normalizedName": "haun-ventures"
+                    },
+                    {
+                        "id": "f4ebc5b1-2a13-4a98-9c86-2936dc488229",
+                        "name": "Lightspeed Faction",
+                        "normalizedName": "lightspeed-faction"
+                    },
+                    {
+                        "id": "b4dfd556-d9c7-4d06-9dd3-2b5043309123",
+                        "name": "Wintermute",
+                        "normalizedName": "wintermute"
+                    },
+                    {
+                        "id": "74f9f074-4f0d-4c0c-9ecb-68ed3331db18",
+                        "name": "Slow Ventures",
+                        "normalizedName": "slow-ventures"
+                    },
+                    {
+                        "id": "c96d12d7-c9e1-433a-8307-f2bdebd1c0fe",
+                        "name": "The Spartan Group",
+                        "normalizedName": "the-spartan-group"
+                    },
+                    {
+                        "id": "beadb2fe-ba6b-4382-85ef-a55ac4b41990",
+                        "name": "Galaxy",
+                        "normalizedName": "galaxy"
+                    }
+                ],
+                "location": "NYC and Tel Aviv",
+                "docs": "https://chaoslabs.xyz/blog",
+                "hasUser": false,
+                "ecosystems": [],
+                "aliases": [],
+                "discord": null,
+                "orgId": "41",
+                "id": "d7568c6e-9c19-4cd6-b303-f31bf78f3a4f",
+                "twitter": "chaos_labs",
+                "description": "At Chaos Labs, we're reimagining the future of DeFi with automated, on-chain economic security systems. Our mission is simple: optimize risk management and capital efficiency for DeFi protocols while safeguarding user funds.",
+                "name": "Chaos Labs",
+                "fundingRounds": [
+                    {
+                        "id": "4cb5e99c-82ab-44d9-a377-b0006dbe08ed",
+                        "createdTimestamp": 1744329729008,
+                        "roundName": "Series A",
+                        "sourceLink": "https://x.com/chaos_labs/status/1824083311230107719",
+                        "raisedAmount": 55,
+                        "date": 1723680000,
+                        "updatedTimestamp": null
+                    },
+                    {
+                        "id": "7709560b-8524-454a-bb9d-c2d907dcfd02",
+                        "createdTimestamp": 1744329729056,
+                        "roundName": "Seed",
+                        "sourceLink": "https://fortune.com/crypto/2023/02/21/chaos-labs-omer-goldberg-20m-seed-funding-mango-markets/",
+                        "raisedAmount": 20,
+                        "date": 1676937600,
+                        "updatedTimestamp": null
+                    }
+                ],
+                "normalizedName": "chaos-labs",
+                "atsClient": null,
+                "reviews": [],
+                "createdTimestamp": 1721132230020,
+                "website": "https://chaoslabs.xyz/",
+                "community": [],
+                "telegram": null,
+                "projects": [],
+                "updatedTimestamp": 1724953041508,
+                "headcountEstimate": 30,
+                "grants": [],
+                "github": "ChaosLabsInc",
+                "aggregateRating": 0,
+                "aggregateRatings": {
+                    "benefits": 0,
+                    "careerGrowth": 0,
+                    "diversityInclusion": 0,
+                    "management": 0,
+                    "onboarding": 0,
+                    "product": 0,
+                    "compensation": 0,
+                    "workLifeBalance": 0
+                },
+                "reviewCount": 0,
+                "logoUrl": "https://www.google.com/s2/favicons?domain=chaoslabs.xyz&sz=64"
+            },
+            "project": null
+        }
+    ]
+}
