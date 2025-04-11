@@ -8,8 +8,9 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { McpManagerProviderService } from './mcp-manager-provider.service';
-// import { JobstashService } from './jobstash.service'; // Temporarily comment out
+// No JobstashService import needed
 import { IsNotEmpty, IsString } from 'class-validator';
+import { URLSearchParams } from 'url'; // Use built-in URLSearchParams
 
 // DTO for incoming request validation
 export class QueryDto {
@@ -21,10 +22,11 @@ export class QueryDto {
 @Controller('api/v1/query')
 export class QueryController {
   private readonly logger = new Logger(QueryController.name);
+  private readonly jobstashBaseUrl = 'https://jobstash.xyz/jobs'; // Base URL for the website
 
   constructor(
     private readonly mcpManagerProvider: McpManagerProviderService,
-    // private readonly jobstashService: JobstashService, // Temporarily comment out
+    // No JobstashService injection needed
   ) {}
 
   @Post()
@@ -39,32 +41,20 @@ export class QueryController {
         `MCP Extracted Params: ${JSON.stringify(structuredParams)}`,
       );
 
-      // --- TEMPORARY: Return structured params directly for testing --- 
-      // this.logger.warn('TEMP: Returning raw structured params from controller!');
-      // return structuredParams;
-      // --- END TEMPORARY ---
-      
-      // Temporarily commented out due to JobstashService issues
-      this.logger.warn('JobStash API call and formatting are temporarily disabled.');
-      return { message: "Query processed, JobStash interaction disabled.", structuredParams };
-      /* 
-      const jobstashParams = this.mapToJobstashParams(structuredParams);
-      this.logger.log(
-        `Mapped JobStash Params: ${JSON.stringify(jobstashParams)}`,
-      );
-      const jobstashResponse = await this.jobstashService.searchJobs(
-        jobstashParams,
-      );
-      const formattedResponse = this.formatJobstashResponse(jobstashResponse);
-      return formattedResponse;
-      */
+      // 2. Construct JobStash website URL query string
+      const urlParams = this.buildUrlQueryString(structuredParams);
+      const finalUrl = `${this.jobstashBaseUrl}?${urlParams}`;
+      this.logger.log(`Constructed URL: ${finalUrl}`);
+
+      // 3. Return the URL
+      return { jobstashUrl: finalUrl };
+
     } catch (error) {
       this.logger.error(`Error handling query: ${error.message}`, error.stack);
-      // Throw a generic HTTP exception for now
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: 'Failed to process query',
+          error: 'Failed to process query and construct URL',
           message: error.message,
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -72,20 +62,27 @@ export class QueryController {
     }
   }
 
-  // --- Placeholder Helper Methods (to be implemented) ---
+  // Updated method to build URL query string
+  private buildUrlQueryString(
+    params: Record<string, any>,
+  ): string {
+    this.logger.log('Building URL query string...');
+    const searchParams = new URLSearchParams();
 
-  private mapToJobstashParams(
-    structuredParams: Record<string, any>,
-  ): Record<string, any> {
-    this.logger.warn('mapToJobstashParams: Using placeholder implementation!');
-    const mapped = { ...structuredParams };
-    return mapped;
+    for (const key in params) {
+      if (params.hasOwnProperty(key) && params[key] != null) {
+        const value = params[key];
+        if (Array.isArray(value)) {
+          // Join array values with comma (as seen in example URL)
+          if (value.length > 0) {
+            searchParams.set(key, value.join(','));
+          }
+        } else {
+          searchParams.set(key, String(value));
+        }
+      }
+    }
+    return searchParams.toString();
   }
 
-  private formatJobstashResponse(jobstashResponse: any): any {
-    this.logger.warn(
-      'formatJobstashResponse: Using placeholder implementation!',
-    );
-    return jobstashResponse?.data || [];
-  }
 } 

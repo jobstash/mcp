@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { JobstashModule } from './jobstash.module';
 import { QueryModule } from './query.module';
 import { StructuredDataModule } from './structured-data.module';
 
@@ -12,7 +11,6 @@ import { StructuredDataModule } from './structured-data.module';
       isGlobal: true,
       envFilePath: '../../.env',
     }),
-    JobstashModule,
     QueryModule,
     StructuredDataModule,
   ],

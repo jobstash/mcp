@@ -43,18 +43,33 @@ We'll use a modular architecture with separate packages:
 - [x] Create documentation for MCP package
 
 ### 3. Milestone 2: Server Core & UI-less Prototype
-- [ ] Set up NestJS server package (`jobstash-server`)
-- [ ] Create JobStash API client within `jobstash-server`
-  - [ ] Implement job search endpoint interaction (assuming public API initially)
-  - [ ] Implement job detail endpoint interaction (assuming public API initially)
-- [ ] Define and implement server API endpoint for MCP package interaction
-- [ ] Implement query translation logic (MCP output -> JobStash API params) in server
-- [ ] Implement response formatting logic in server
-- [ ] Integrate `mcp` package to call the new server endpoint
-- [ ] Set up basic logging using standard NestJS `Logger`
-- [x] Update/Create CLI testing tool for end-to-end testing (CLI -> MCP -> Server -> JobStash)
-- [ ] Test end-to-end flow with various job search scenarios via CLI tool
-- [ ] Document findings and potentially optimize prompt strategies based on E2E tests
+- [x] Setup NestJS Server (`jobstash-mcp-server`)
+- [x] Refactor MCP package (`@jobstash/mcp`)
+  - [x] Rename `JobStashMcpServer` to `McpManager`.
+  - [x] Make `McpManager` configurable via server-provided filter definitions (derived from `filters.json`).
+  - [x] Implement `getStructuredData` method in `McpManager` using configured filter definitions and env API key.
+- [x] Integrate `McpManager` into Server (`jobstash-mcp-server`)
+  - [x] Add `@jobstash/mcp` dependency.
+  - [x] Create `McpManagerProviderService` to read/process `filters.json` and instantiate `McpManager`.
+  - [x] Configure necessary modules (`McpManagerProviderModule`).
+- [x] Implement Server Endpoints
+  - [x] Create `QueryController` and `POST /api/v1/query` endpoint.
+  - [x] Create `StructuredDataController` and `POST /api/v1/structured-data/extract-params` for testing extraction.
+- [ ] Implement Core Logic in `QueryController`
+  - [x] Use `McpManagerProviderService` to call `McpManager.getStructuredData`.
+- [ ] Implement `mapToJobstashParams` (Mapper: Structured Data -> JobStash API Params).
+- [ ] Restore/Fix `JobstashService` and `JobstashModule` for JobStash API calls.
+- [ ] Implement `formatJobstashResponse` (Formatter: JobStash Response -> Client Response).
+- [ ] Implement URL Construction Logic in `QueryController`
+  - [x] Use `McpManagerProviderService` to call `McpManager.getStructuredData`.
+  - [ ] Implement logic to map structured data to JobStash website URL query parameters.
+  - [ ] Return the constructed JobStash website URL.
+- [ ] Testing
+  - [x] Test parameter extraction via `/api/v1/structured-data/extract-params` using script/curl.
+  - [ ] Implement unit/integration tests for URL construction.
+  - [ ] Test end-to-end flow via `/api/v1/query`.
+- [ ] Documentation / Optimization
+  - [ ] Document findings, optimize prompts/mapping.
 
 ### 4. Milestone 3: Simple Text Chat Interface
 - [ ] Design simple chat UI for website embedding
