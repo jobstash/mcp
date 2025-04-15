@@ -11,7 +11,7 @@ async function testExtraction() {
   const query = process.argv[2]; // Get query from command line argument
   const apiKey = process.env.OPENAI_API_KEY;
   const serverUrl = 'http://localhost:3000'; // Assuming default port
-  const endpoint = `${serverUrl}/api/v1/structured-data/extract-params`;
+  const endpoint = `${serverUrl}/api/v1/parameters/extract`;
 
   if (!query) {
     console.error('Error: Please provide a query string as an argument.');

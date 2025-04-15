@@ -8,11 +8,9 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { McpManagerProviderService } from './mcp-manager-provider.service';
-// No JobstashService import needed
 import { IsNotEmpty, IsString } from 'class-validator';
-import { URLSearchParams } from 'url'; // Use built-in URLSearchParams
+import { URLSearchParams } from 'url';
 
-// DTO for incoming request validation
 export class QueryDto {
   @IsString()
   @IsNotEmpty()
@@ -20,13 +18,12 @@ export class QueryDto {
 }
 
 @Controller('api/v1/query')
-export class QueryController {
-  private readonly logger = new Logger(QueryController.name);
-  private readonly jobstashBaseUrl = 'https://jobstash.xyz/jobs'; // Base URL for the website
+export class JobStashUrlController {
+  private readonly logger = new Logger(JobStashUrlController.name);
+  private readonly jobstashBaseUrl = 'https://jobstash.xyz/jobs';
 
   constructor(
     private readonly mcpManagerProvider: McpManagerProviderService,
-    // No JobstashService injection needed
   ) {}
 
   @Post()

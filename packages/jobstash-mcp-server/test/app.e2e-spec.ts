@@ -44,12 +44,12 @@ describe('App E2E Tests', () => {
     });
   });
 
-  // Test for POST /api/v1/structured-data/extract-params
-  describe('/api/v1/structured-data/extract-params (POST)', () => {
+  // Test for POST /api/v1/parameters/extract
+  describe('/api/v1/parameters/extract (POST)', () => {
     it('should process a query and return structured parameters', () => {
       const query = 'Senior frontend engineer in Berlin';
       return request(app.getHttpServer())
-        .post('/api/v1/structured-data/extract-params')
+        .post('/api/v1/parameters/extract')
         .send({ query })
         .expect(201) // Assuming POST requests return 201 Created
         .expect((res) => {
@@ -64,7 +64,7 @@ describe('App E2E Tests', () => {
 
      it('should return 400 for missing query', () => {
       return request(app.getHttpServer())
-        .post('/api/v1/structured-data/extract-params')
+        .post('/api/v1/parameters/extract')
         .send({}) // Send empty body
         .expect(400); // Expect Bad Request
     });

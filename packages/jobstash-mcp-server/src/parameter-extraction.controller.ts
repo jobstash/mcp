@@ -8,17 +8,17 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { McpManagerProviderService } from './mcp-manager-provider.service';
-import { QueryDto } from './query.controller'; // Reuse the DTO from QueryController
+import { QueryDto } from './jobstash-url.controller'; // Updated import path for shared DTO
 
-@Controller('api/v1/structured-data') // Changed route prefix
-export class StructuredDataController {
-  private readonly logger = new Logger(StructuredDataController.name);
+@Controller('api/v1/parameters') // Changed route prefix for clarity
+export class ParameterExtractionController { // Renamed class
+  private readonly logger = new Logger(ParameterExtractionController.name); // Updated logger name
 
   constructor(
     private readonly mcpManagerProvider: McpManagerProviderService,
   ) {}
 
-  @Post('extract-params') // Endpoint now: /api/v1/structured-data/extract-params
+  @Post('extract') // Changed endpoint for clarity: /api/v1/parameters/extract
   async extractParams(@Body(new ValidationPipe()) body: QueryDto) {
     this.logger.log(
       `Debug extractParams received query: "${body.query}"`,

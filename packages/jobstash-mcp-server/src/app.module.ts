@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { QueryModule } from './query.module';
-import { StructuredDataModule } from './structured-data.module';
+import { JobStashUrlModule } from './jobstash-url.module';
+import { ParameterExtractionModule } from './parameter-extraction.module';
 
 @Module({
   imports: [
@@ -9,8 +9,8 @@ import { StructuredDataModule } from './structured-data.module';
       isGlobal: true,
       envFilePath: '../../.env',
     }),
-    QueryModule,
-    StructuredDataModule,
+    JobStashUrlModule,
+    ParameterExtractionModule,
   ],
 })
 export class AppModule {}

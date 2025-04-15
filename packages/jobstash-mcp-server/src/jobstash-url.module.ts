@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { QueryController } from './query.controller';
+import { JobStashUrlController } from './jobstash-url.controller';
 import { McpManagerProviderModule } from './mcp-manager-provider.module';
 
 @Module({
   imports: [
     McpManagerProviderModule, 
   ],
-  controllers: [QueryController],
+  controllers: [JobStashUrlController],
 })
-export class QueryModule {} 
+export class JobStashUrlModule {} 
