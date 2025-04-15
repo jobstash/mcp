@@ -68,16 +68,13 @@ yarn start:dev
 
 ### Testing the Server Endpoints
 
-These scripts send requests to the running MCP server. Ensure the server is running before executing these. Run these from the **root** directory.
+End-to-end tests for the server API are included within the `jobstash-mcp-server` package. Ensure the server is **not** running separately, then run the tests from the server package directory:
 
 ```bash
-# Test structured data extraction endpoint (/api/v1/structured-data/extract-params)
-node scripts/test-structured-data.mjs "Software engineer in London"
-
-# Test JobStash URL construction endpoint (/api/v1/query)
-node scripts/test-url-construction.mjs "Remote solidity developer"
+# Make sure you are in the root directory
+cd packages/jobstash-mcp-server
+yarn test:e2e
 ```
-
 
 ## Project Status
 
@@ -88,7 +85,7 @@ This project is in active development. Here's what's implemented so far:
   - ✅ Endpoint for natural language to structured job parameters conversion
   - ✅ Endpoint for constructing JobStash search URLs from queries
 - ✅ Demo script for `@jobstash/mcp` package
-- ✅ Test scripts for server endpoints
+- ✅ End-to-end tests for server endpoints (`yarn test:e2e`)
 - ✅ Basic unit tests (some require environment setup)
 
 Coming soon:
