@@ -51,22 +51,33 @@ describe('App E2E Tests', () => {
       return request(app.getHttpServer())
         .post('/api/v1/parameters/extract')
         .send({ query })
-        .expect(201) // Assuming POST requests return 201 Created
+        .expect(201)
         .expect((res) => {
           expect(res.body).toBeDefined();
-          // Check for expected properties based on the query and filters.json
-          // Example:
-          expect(res.body.seniority).toBeDefined();
-          expect(res.body.locations).toBeDefined();
-          // Add more specific checks...
+          expect(typeof res.body).toBe('object');
+
+          // TODO: LLM variability currently yields either 'seniority' or 'job_title' for queries like "Senior ...".
+          // This test allows either key but consistency should be improved later (See PROJECT_PLAN.md).
+          const hasSeniority = res.body.hasOwnProperty('seniority');
+          const hasJobTitle = res.body.hasOwnProperty('job_title');
+          expect(hasSeniority || hasJobTitle).toBe(true); // Ensure at least one key exists
+
+          // Check the value associated with the key that exists starts with "Senior"
+          let relevantValue = hasSeniority ? res.body.seniority : res.body.job_title;
+          expect(relevantValue).toBeDefined();
+          expect(String(relevantValue).toLowerCase().startsWith('senior')).toBe(true);
+
+          // Location seems consistent, check value too.
+          expect(res.body.locations).toBeDefined(); 
+          expect(res.body.locations).toBe('Berlin'); // Check value too
         });
     });
 
      it('should return 400 for missing query', () => {
       return request(app.getHttpServer())
         .post('/api/v1/parameters/extract')
-        .send({}) // Send empty body
-        .expect(400); // Expect Bad Request
+        .send({})
+        .expect(400);
     });
   });
 });

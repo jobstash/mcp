@@ -7,7 +7,7 @@ import {
   HttpStatus,
   ValidationPipe,
 } from '@nestjs/common';
-import { McpManagerProviderService } from '../mcp-manager-provider.service';
+import { McpManagerProviderService } from '../providers/mcp-manager/mcp-manager-provider.service';
 import { QueryDto } from '../common/dtos/query.dto';
 
 @Controller('api/v1/parameters')

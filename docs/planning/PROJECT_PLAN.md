@@ -62,7 +62,7 @@ We'll use a modular architecture with separate packages:
 - [ ] Refinement & Testing
   - [x] Test parameter extraction via `/api/v1/structured-data/extract-params`.
   - [x] Test end-to-end URL construction via `/api/v1/query` using script.
-  - [ ] Refine `buildUrlQueryString` logic for edge cases and parameter types.
+  - [ ] Improve LLM parameter extraction consistency (e.g., ensure "Senior" consistently maps to `seniority`, now it's flaky, some times is returned as job_title).
   - [ ] Consider dynamic filter configuration using `filters.json` structure (instead of hardcoded list in provider).
   - [ ] Implement unit/integration tests for `QueryController` / URL construction.
   - [ ] Enhance error handling.

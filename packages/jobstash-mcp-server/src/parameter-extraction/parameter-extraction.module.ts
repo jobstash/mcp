@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ParameterExtractionController } from './parameter-extraction.controller';
-import { McpManagerProviderModule } from '../mcp-manager-provider.module';
+import { McpManagerProviderModule } from '../providers';
 
 @Module({
   imports: [McpManagerProviderModule],
