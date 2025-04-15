@@ -7,15 +7,9 @@ import {
   HttpStatus,
   ValidationPipe,
 } from '@nestjs/common';
-import { McpManagerProviderService } from './mcp-manager-provider.service';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { McpManagerProviderService } from '../mcp-manager-provider.service';
 import { URLSearchParams } from 'url';
-
-export class QueryDto {
-  @IsString()
-  @IsNotEmpty()
-  query: string;
-}
+import { QueryDto } from '../common/dtos/query.dto';
 
 @Controller('api/v1/query')
 export class JobStashUrlController {

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { JobStashUrlModule } from './jobstash-url.module';
-import { ParameterExtractionModule } from './parameter-extraction.module';
+import { JobStashUrlModule } from './jobstash-url/jobstash-url.module';
+import { ParameterExtractionModule } from './parameter-extraction/parameter-extraction.module';
 
 @Module({
   imports: [

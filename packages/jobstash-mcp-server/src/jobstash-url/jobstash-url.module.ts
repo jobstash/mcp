@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JobStashUrlController } from './jobstash-url.controller';
-import { McpManagerProviderModule } from './mcp-manager-provider.module';
+import { McpManagerProviderModule } from '../mcp-manager-provider.module';
 
 @Module({
   imports: [
