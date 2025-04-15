@@ -33,7 +33,7 @@ The server exposes the following v1 endpoints:
 
 ### 2. Construct JobStash URL
 
--   **Endpoint:** `POST /api/v1/query`
+-   **Endpoint:** `POST /api/v1/filtered-jobs-url`
 -   **Description:** Takes a natural language query, extracts structured parameters using MCP, and constructs a JobStash search URL (`https://jobstash.xyz/jobs?...`) based on those parameters.
 -   **Request Body:**
     ```json

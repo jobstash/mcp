@@ -53,13 +53,25 @@ jest.mock('@modelcontextprotocol/sdk/server/stdio', () => {
 
 describe('JobStashMcpServer', () => {
   let server;
+  let originalEnv;
 
   beforeEach(() => {
+    // Save original environment
+    originalEnv = process.env;
+    // Setup test environment
+    process.env = { ...originalEnv };
+    process.env.OPENAI_API_KEY = 'test-api-key';
+    
     server = new McpManager({
       name: 'test-server',
       version: '1.0.0',
       supportedFilters: []
     });
+  });
+
+  afterEach(() => {
+    // Restore original environment
+    process.env = originalEnv;
   });
 
   it('should initialize correctly', () => {

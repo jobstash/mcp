@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { JobStashUrlModule } from './jobstash-url/jobstash-url.module';
+import { FilteredJobsUrlModule } from './filtered-jobs-url/filtered-jobs-url.module';
 import { ParameterExtractionModule } from './parameter-extraction/parameter-extraction.module';
 
 @Module({
@@ -9,7 +9,7 @@ import { ParameterExtractionModule } from './parameter-extraction/parameter-extr
       isGlobal: true,
       envFilePath: '../../.env',
     }),
-    JobStashUrlModule,
+    FilteredJobsUrlModule,
     ParameterExtractionModule,
   ],
 })

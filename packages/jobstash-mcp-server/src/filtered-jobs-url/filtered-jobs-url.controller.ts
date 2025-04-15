@@ -11,9 +11,9 @@ import { McpManagerProviderService } from '../providers/mcp-manager/mcp-manager-
 import { URLSearchParams } from 'url';
 import { QueryDto } from '../common/dtos/query.dto';
 
-@Controller('api/v1/query')
-export class JobStashUrlController {
-  private readonly logger = new Logger(JobStashUrlController.name);
+@Controller('api/v1/filtered-jobs-url')
+export class FilteredJobsUrlController {
+  private readonly logger = new Logger(FilteredJobsUrlController.name);
   private readonly jobstashBaseUrl = 'https://jobstash.xyz/jobs';
 
   constructor(
