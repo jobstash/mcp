@@ -4,7 +4,7 @@ import { McpManagerProviderModule } from './mcp-manager-provider.module';
 
 @Module({
   imports: [
-    McpManagerProviderModule, // Provides McpManagerProviderService
+    McpManagerProviderModule, 
   ],
   controllers: [QueryController],
 })
