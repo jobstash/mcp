@@ -42,48 +42,36 @@ We'll use a modular architecture with separate packages:
 - [x] Write tests for MCP package
 - [x] Create documentation for MCP package
 
-### 3. Milestone 2: Server Core & UI-less Prototype
+### 3. Milestone 2: Server Core & URL Construction
 - [x] Setup NestJS Server (`jobstash-mcp-server`)
 - [x] Refactor MCP package (`@jobstash/mcp`)
   - [x] Rename `JobStashMcpServer` to `McpManager`.
-  - [x] Make `McpManager` configurable via server-provided filter definitions (derived from `filters.json`).
-  - [x] Implement `getStructuredData` method in `McpManager` using configured filter definitions and env API key.
+  - [x] Configure `McpManager` to use relevant filter list defined by server.
+  - [x] Implement `getStructuredData` method in `McpManager` using configured filter list and env API key.
 - [x] Integrate `McpManager` into Server (`jobstash-mcp-server`)
   - [x] Add `@jobstash/mcp` dependency.
-  - [x] Create `McpManagerProviderService` to read/process `filters.json` and instantiate `McpManager`.
+  - [x] Create `McpManagerProviderService` to define relevant filter list and instantiate `McpManager`.
   - [x] Configure necessary modules (`McpManagerProviderModule`).
 - [x] Implement Server Endpoints
   - [x] Create `QueryController` and `POST /api/v1/query` endpoint.
   - [x] Create `StructuredDataController` and `POST /api/v1/structured-data/extract-params` for testing extraction.
-- [ ] Implement Core Logic in `QueryController`
+- [x] Implement URL Construction Logic in `QueryController`
   - [x] Use `McpManagerProviderService` to call `McpManager.getStructuredData`.
-- [ ] Implement `mapToJobstashParams` (Mapper: Structured Data -> JobStash API Params).
-- [ ] Restore/Fix `JobstashService` and `JobstashModule` for JobStash API calls.
-- [ ] Implement `formatJobstashResponse` (Formatter: JobStash Response -> Client Response).
-- [ ] Implement URL Construction Logic in `QueryController`
-  - [x] Use `McpManagerProviderService` to call `McpManager.getStructuredData`.
-  - [ ] Implement logic to map structured data to JobStash website URL query parameters.
-  - [ ] Return the constructed JobStash website URL.
-- [ ] Testing
-  - [x] Test parameter extraction via `/api/v1/structured-data/extract-params` using script/curl.
-  - [ ] Implement unit/integration tests for URL construction.
-  - [ ] Test end-to-end flow via `/api/v1/query`.
-- [ ] Documentation / Optimization
-  - [ ] Document findings, optimize prompts/mapping.
+  - [x] Implement logic (`buildUrlQueryString`) to map structured data to JobStash website URL query parameters.
+  - [x] Return the constructed JobStash website URL (`https://jobstash.xyz/jobs?...`).
+- [ ] Refinement & Testing
+  - [x] Test parameter extraction via `/api/v1/structured-data/extract-params`.
+  - [x] Test end-to-end URL construction via `/api/v1/query` using script.
+  - [ ] Refine `buildUrlQueryString` logic for edge cases and parameter types.
+  - [ ] Consider dynamic filter configuration using `filters.json` structure (instead of hardcoded list in provider).
+  - [ ] Implement unit/integration tests for `QueryController` / URL construction.
+  - [ ] Enhance error handling.
+  - [ ] Perform security testing for the endpoints.
+- [ ] Documentation & Handoff
+  - [ ] Add/Update README with setup, env vars, usage instructions.
+  - [ ] Await decisions on UI integration and deployment strategy.
 
-### 4. Milestone 3: Simple Text Chat Interface
-- [ ] Design simple chat UI for website embedding
-- [ ] Create chat API endpoints
-- [ ] Implement session management
-- [ ] Develop job results API
-- [ ] Create redirection logic from chat to job results
-- [ ] Add pagination for job results
-- [ ] Implement basic filtering options
-- [ ] Create documentation for website integration
-- [ ] Test user flows
-- [ ] Optimize response times and UX
-
-### 5. Milestone 4: CV Parsing Capability
+### 3. Milestone 3: CV Parsing Capability
 - [ ] Research CV parsing strategies with LLMs
 - [ ] Implement file upload API
 - [ ] Create CV parsing service using OpenAI
@@ -94,8 +82,10 @@ We'll use a modular architecture with separate packages:
 - [ ] Add storage for user preferences (optional)
 - [ ] Test with various CV formats
 - [ ] Optimize parsing accuracy
+- [ ] Write unit and integration tests for CV parsing capabilities
 
-### 6. Integration & Deployment
+### 4. Milestone 4: Integration & Deployment
+- [ ] Integrate server endpoint (/api/v1/query) into JobStash website search bar
 - [ ] Set up CI/CD pipeline
 - [ ] Create container configuration
 - [ ] Write deployment documentation
@@ -103,26 +93,33 @@ We'll use a modular architecture with separate packages:
 - [ ] Create backup and recovery plan
 - [ ] Deploy to staging environment
 - [ ] Perform integration testing
+- [ ] Perform load testing
+- [ ] User acceptance testing (Website integration)
 - [ ] Deploy to production
 - [ ] Create user documentation
-
-### 7. Testing & Quality Assurance
-- [x] Develop unit tests for MCP package
-- [ ] Develop unit tests for server application
-- [ ] Create integration tests
-- [ ] Perform load testing
-- [ ] Security testing
-- [ ] User acceptance testing
 - [ ] Bug fixing and refinement
+
+### 5. Milestone 5: AI Agent Integration
+- [ ] Create OpenAPI specification for the server endpoints
+- [ ] Implement MCP manifest.json following plugin standards
+- [ ] Create discovery endpoint (/.well-known/ai-plugin.json)
+- [ ] Implement authentication for external services
+- [ ] Add rate limiting and usage tracking
+- [ ] Create comprehensive documentation for AI integration
+  - [ ] Add examples for different AI platforms
+  - [ ] Document authentication flow
+  - [ ] Include usage guidelines
+- [ ] Test integration with various AI agents
+- [ ] Implement versioning strategy for API endpoints
+- [ ] Security testing for external access
 
 ## Timeline Estimates
 - Project Setup: 1 week
 - Milestone 1 (MCP Package): 2 weeks
-- Milestone 2 (Server Core & UI-less Prototype): 2 weeks
-- Milestone 3 (Simple Text Chat): 2 weeks
-- Milestone 4 (CV Parsing): 3 weeks
-- Integration & Deployment: 1-2 weeks
-- Testing & QA: Ongoing
+- Milestone 2 (Server Core & URL Construction): 2 weeks
+- Milestone 3 (CV Parsing): 3 weeks
+- Milestone 4 (Integration & Deployment): 1-2 weeks
+- Milestone 5 (AI Agent Integration): 1-2 weeks
 
 ## Resources Required
 - Access to JobStash API documentation and credentials

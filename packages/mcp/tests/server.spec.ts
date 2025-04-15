@@ -1,4 +1,4 @@
-import { JobStashMcpServer } from '../src/server';
+import { McpManager } from '../src/server';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio";
 
 // Mock OpenAI API
@@ -55,10 +55,10 @@ describe('JobStashMcpServer', () => {
   let server;
 
   beforeEach(() => {
-    server = new JobStashMcpServer({
+    server = new McpManager({
       name: 'test-server',
       version: '1.0.0',
-      openaiApiKey: 'test-key'
+      supportedFilters: []
     });
   });
 

@@ -1,0 +1,303 @@
+
+David
+  4:34 PM
+https://x.com/chipagosfinest/status/1911789540483686884?s=46
+X (formerly Twitter)X (formerly Twitter)
+alec.eth :face_with_cowboy_hat: (@Chipagosfinest) on X
+the @interestedfyi matcher is starting to match. (63 kB)
+https://x.com/chipagosfinest/status/1911789540483686884?s=46
+
+4:34
+This guy…
+4:35
+@defuera
+ lets show him what we can do
+:saluting_face:
+1
+:party-doge:
+1
+
+4:35
+Im tired of this dude getting attention for what essentially is a shitty agency
+
+
+David
+  4:53 PM
+@Eliane
+ any question on your end?
+4:54
+@Matheus Pagani
+ anything we should clarify?
+
+
+Matheus Pagani
+  5:01 PM
+Hello 
+@David
+ we're starting to digest the info and study the figma today. Expect more questions down the week as we go through hehehe
+
+
+defuera
+  5:05 PM
+@David
+ let's do it, just need to understand what to do exactly :grin:
+
+
+David
+  5:12 PM
+nice.
+So, the guy thinks that building a telegram native ui is cool.
+lets prove him wrong :slightly_smiling_face:
+5:13
+image.png
+ 
+image.png
+
+
+5:14
+imo what’s needed is that when the user puts in a bigass string it suggests as the first item in the overlay to parse that with AI
+5:14
+and if the user inputs a CV, it should offer the same
+
+
+David
+  5:15 PM
+cc 
+@Matheus Pagani
+ this will impact your design work
+
+1 reply
+15 hours agoView thread
+
+
+David
+  5:16 PM
+you saw this ui in function on EV right 
+@defuera
+?
+5:16
+https://ecosystem.vision/
+ecosystem.visionecosystem.vision
+Ecosystem Vision
+Explore and visualize grants and ecosystem trends with actionable insights.
+5:16
+go here, and search for anything
+5:17
+the overlay that pops up is where we can go and provide the search experience we want
+5:17
+i think of that overlay as a sort of routing UI to direct users towards the thing/entity type they want to find
+5:18
+https://ecosystem.vision/projects/tags/react 
+@John
+ is still fucked btw
+5:18
+cc 
+@Temi
+ if you know anything about that?
+
+
+defuera
+  5:20 PM
+Sounds good to me. I can start prototyping, maybe let's have a call tomorrow to discuss it a bit more
+
+
+John
+  5:22 PM
+https://middleware.dev.jobstash.xyz/search/pillar?nav=projects&pillar=tags&item=react&tags=react
+returns {"success":true,"message":"Pillar not found","data":null}
+5:22
+@Temi
+ 
+@David
+ ^
+5:23
+weird because react appears as one of the options for tags
+image.png
+ 
+image.png
+
+
+
+
+David
+  5:27 PM
+@defuera
+ i think to bring this to where it should be, we should have decent CV parsing in place, which also guards against malicious pdf and document exploits.
+imo it should out of the box use something like https://dangerzone.rocks (edited) 
+dangerzone.rocksdangerzone.rocks
+Dangerzone
+Take potentially dangerous PDFs, office documents, or images and convert them to a safe PDF. (19 kB)
+https://dangerzone.rocks/
+
+5:28
+but ultimately we dont really care as we should just pass this to the LLM without much fanfare
+5:29
+The only thing i’m not super keen on is getting spammed with requests and users burning through our AI costs, so i wonder if this should be a payed feature, which would also make the whole platform a bit more sustainable
+5:29
+wdyt sirs 
+@defuera
+ 
+@Matheus Pagani
+?
+5:31
+@Laura
+ would like your input on this as well
+
+
+Laura
+  5:37 PM
+@David
+ 100% we should have security in place and guard against malicious files.
+The only challenge around this being a paid feature, is that its very tricky to charge job seekers. We could offer this free, and have a paid dashboard for recruiters to gain visibility of matches OR alerts when a match aligns with a vacancy
+5:38
+This essentially is a flipped lead gen product. The cost could sit with gaining access to the match
+5:39
+We also could cap the number of matches allowed in the free, and offer unlimited as paid
+5:40
+The alert could be an add on to StashPool, on a higher tier bundle you receive alerts when a job seeker matches with your org (edited) 
+
+
+David
+  5:41 PM
+cap matches allowed
+5:41
+where there’s an incentive, there’s a sybil
+
+
+Laura
+  5:42 PM
+hmm true
+
+
+David
+  5:42 PM
+anyhow, its not like we’re paying a fortune for now
+5:42
+we can launch it and see how it does and set up a spending cap
+
+
+Laura
+  5:44 PM
+we can cap so it's something like 5 matches every 12 hours, something like that. We can say that's all your matches for now, check back later to see if more matches are available
+5:44
+Otta did something like this
+5:45
+https://uk.welcometothejungle.com/
+uk.welcometothejungle.comuk.welcometothejungle.com
+The better way to find a job in tech
+Only matches tailored to your preferences. Only the most exciting, innovative and fast-moving companies. (338 kB)
+https://uk.welcometothejungle.com/
+
+
+
+David
+  5:46 PM
+otta?
+
+
+Laura
+  5:48 PM
+We should also try to understand the most commonly uses filters, and use these as part key questions when they start the bot.
+Preferred tech stack
+Preferred chain?
+Company size? Start up vs scale up?
+This way, we use their personal preference in line with CV when narrowing down options to show. We can show the ones most likely to convert to an application
+
+
+David
+  5:48 PM
+wallets are cheap to create :slightly_smiling_face:
+:pedro:
+1
+
+
+
+Laura
+  5:48 PM
+Otta is an AI job matching platform
+
+
+David
+  5:48 PM
+is otta owned by welcometothejungle?
+
+
+Laura
+  5:49 PM
+Ah yeah, they were acquired a year or so ago. No idea why they changed the name, they had a good brand as Otta
+
+
+David
+  5:50 PM
+ah, welcometothejungle.. yeah sorry but i’m not importing any learnings from them.
+explicitly banned them from jobstash for being rubbish and costing me a week of dev time for nothing
+
+
+Laura
+  5:50 PM
+Oooh interesting
+
+
+David
+  5:50 PM
+i’ll generalize it and say i refuse to learn anything at all from a french software company
+5:50
+20 years of software has done this to me
+5:50
+its not me
+5:50
+its them
+
+
+Laura
+  5:51 PM
+That's handy, I actually got hired through them once - just assumed their tech was sound
+
+
+David
+  5:51 PM
+its the opposite
+5:52
+anyhow. rants aside. :slightly_smiling_face:
+5:52
+i think that ratelimits are bad, people will circumvent them anyhow
+5:52
+and if they circumvent we lose tracking
+5:52
+and we end up with a whole new problem i dont want to tackle, which is reconciling sybilled identities
+
+
+Laura
+  5:53 PM
+So,  unlimited matches and we move the cost to a commercial product for recruiters / orgs?
+
+
+David
+  5:53 PM
+lets see what it costs first
+:100:
+1
+
+
+
+Laura
+  5:54 PM
+Hopefully not a lot, I don't see exceptional candidates paying to find a job
+5:54
+I think it would end up being the weaker candidates who pay and potentially don't get the desired outcome, but let's see
+
+
+David
+  5:55 PM
+i see a few thousand users trying this out per month, which should not be too crazy expensive given current LLM costs
+:pedro:
+1
+
+
+
+____
+References
+
+
+https://x.com/chipagosfinest/status/1911789540483686884?s=46
+A video of a interestedfyi matcher service that receives CV file and returns list of jobs
