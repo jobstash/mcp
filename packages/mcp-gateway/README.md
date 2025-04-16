@@ -1,0 +1,67 @@
+# JobStash NL->MCP Gateway (`@jobstash/mcp-gateway`)
+
+This package contains the NestJS server responsible for providing a user-friendly HTTP API that translates natural language job queries into structured MCP calls.
+
+## Purpose
+
+This server acts as the NL->MCP Gateway (Server 2 in the project architecture). Its primary goal is to bridge the gap between simple, natural language requests and the standardized, structured interface provided by the **MCP Host Server** (`@jobstash/mcp-server`).
+
+It allows clients to:
+
+1.  Submit a plain text job search query.
+2.  Receive a constructed JobStash search URL or potentially a summarized list of jobs, without needing to understand the MCP protocol itself.
+
+Internally, this server uses:
+*   An LLM (like OpenAI) to perform Natural Language Understanding (NLU) on the input query.
+*   An MCP Client component to communicate with the `@jobstash/mcp-server` via its MCP transport (e.g., stdio).
+
+## API Endpoints
+
+The server exposes the following v1 endpoints:
+
+### 1. Get Filtered Jobs URL (via NL)
+
+-   **Endpoint:** `POST /api/v1/filtered-jobs-url`
+-   **Description:** Takes a natural language query, uses an LLM to extract structured parameters, calls the `get_search_jobs_url` tool on the MCP Host Server via MCP, and returns the resulting JobStash search URL.
+-   **Request Body:**
+    ```json
+    {
+      "query": "Your natural language job query"
+    }
+    ```
+-   **Example Success Response (200 OK):**
+    ```json
+    {
+      "jobstashUrl": "https://jobstash.xyz/jobs?locations=Remote"
+    }
+    ```
+
+### 2. Extract Structured Parameters (NLU Only)
+
+-   **Endpoint:** `POST /api/v1/structured-data/extract-params`
+-   **Description:** Takes a natural language query and returns a JSON object containing structured parameters extracted using the LLM NLU logic, guided by `filters.json`. **Note:** This endpoint only performs the NLU step and does *not* interact with the MCP Host Server.
+-   **Request Body:**
+    ```json
+    {
+      "query": "Your natural language job query"
+    }
+    ```
+-   **Example Success Response (200 OK):**
+    ```json
+    {
+      "tags": ["Software engineer"],
+      "locations": ["London"]
+    }
+    ```
+
+## Configuration
+
+-   **`.env` (Root Directory):** Requires `OPENAI_API_KEY` (or other LLM provider keys) for the NLU step. May require additional variables for configuring the MCP Client connection to the MCP Host Server (e.g., path to the runner script for stdio transport).
+-   **`filters.json` (Package Directory):** Defines available job filters to guide the LLM during NLU.
+-   **Port:** Runs on port `3000` by default (configurable via `PORT` env var).
+
+## Running & Testing
+
+This server requires the **MCP Host Server (`@jobstash/mcp-server`)** to be running separately for the `/api/v1/filtered-jobs-url` endpoint to function correctly.
+
+Refer to the root [README.md](../../README.md) for instructions on setup, build, running this gateway server, and testing its endpoints.

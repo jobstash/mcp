@@ -1,5 +1,5 @@
 {
-  "name": "@jobstash/mcp",
+  "name": "@jobstash/mcp-server",
   "version": "0.1.0",
   "description": "Model Context Protocol package for JobStash",
   "main": "dist/index.js",
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
-    "openai": "^4.24.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
