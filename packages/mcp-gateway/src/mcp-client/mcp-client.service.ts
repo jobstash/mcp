@@ -29,14 +29,12 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
 
     // Read configuration using ConfigService with defaults
     const serverCommand = this.configService.get<string>('MCP_SERVER_COMMAND', 'node');
-    // Adjust default path to be relative to monorepo root (assuming gateway runs from root or dist)
-    // NOTE: This path might need careful adjustment based on deployment structure!
-    const defaultServerPath = 'packages/mcp-server/dist/mcp-runner.js';
-    // ConfigService might store arrays as strings, e.g., "path1,path2". Handle this.
+    // Re-applying corrected default path relative from the gateway package
+    const defaultServerPath = '../mcp-server/dist/mcp-runner.js';
     const serverArgsInput = this.configService.get<string | string[]>('MCP_SERVER_ARGS', [defaultServerPath]);
     const serverArgs = typeof serverArgsInput === 'string'
-        ? serverArgsInput.split(',').map(s => s.trim()) // Split comma-separated string
-        : serverArgsInput; // Use as array if already array
+        ? serverArgsInput.split(',').map(s => s.trim()) 
+        : serverArgsInput; 
 
     const clientName = this.configService.get<string>('MCP_CLIENT_NAME', 'mcp-gateway-client');
     const clientVersion = this.configService.get<string>('MCP_CLIENT_VERSION', '0.1.0');
