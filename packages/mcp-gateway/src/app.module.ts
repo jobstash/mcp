@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { JobUrlModule } from './job-url/job-url.module';
-import { JobListModule } from './job-list/job-list.module';
+import { JobsListModule } from './jobs-list/jobs-list.module';
+import { JobsSearchUrlModule } from './jobs-search-url/jobs-search-url.module';
 import { NluModule } from './nlu/nlu.module';
 import { McpClientModule } from './mcp-client/mcp-client.module';
 
@@ -11,10 +11,12 @@ import { McpClientModule } from './mcp-client/mcp-client.module';
       isGlobal: true,
       envFilePath: '../../.env',
     }),
-    JobUrlModule,
-    JobListModule,
+    JobsListModule,
+    JobsSearchUrlModule,
     NluModule,
     McpClientModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

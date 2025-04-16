@@ -11,9 +11,9 @@ import { QueryDto } from '../common/dtos/query.dto';
 import { NluService } from '../nlu/nlu.service';
 import { McpClientService } from '../mcp-client/mcp-client.service';
 
-@Controller('api/v1/filtered-jobs-url')
-export class JobUrlController {
-  private readonly logger = new Logger(JobUrlController.name);
+@Controller('api/v1/jobs-search-url')
+export class JobsSearchUrlController {
+  private readonly logger = new Logger(JobsSearchUrlController.name);
 
   constructor(
     private readonly nluService: NluService,

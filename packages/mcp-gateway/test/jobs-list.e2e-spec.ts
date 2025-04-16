@@ -23,7 +23,7 @@ const mockMcpClientService = {
 };
 
 
-describe('JobListController (e2e)', () => {
+describe('JobsListController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -53,7 +53,7 @@ describe('JobListController (e2e)', () => {
       mockMcpClientService.callTool.mockResolvedValue(mockMcpResultJobList);
   });
 
-  it('/jobs/search (POST) - should process query and call MCP', () => {
+  it('/api/v1/jobs/list (POST) - should process query, call MCP search_jobs, and return job list', () => {
     const searchQuery = "senior backend engineer remote";
 
     return request(app.getHttpServer())
@@ -78,7 +78,7 @@ describe('JobListController (e2e)', () => {
       });
   });
 
-  it('/jobs/search (POST) - should handle NLU failure', () => {
+  it('/api/v1/jobs/list (POST) - should handle NLU failure', () => {
       const searchQuery = "some query causing nlu error";
       const nluError = new Error("NLU Processing Failed");
       mockNluService.performNlu.mockRejectedValueOnce(nluError);
@@ -95,7 +95,7 @@ describe('JobListController (e2e)', () => {
           });
   });
 
-  it('/jobs/search (POST) - should handle MCP call failure', () => {
+  it('/api/v1/jobs/list (POST) - should handle MCP call failure', () => {
       const searchQuery = "some query causing mcp error";
       const mcpError = new Error("MCP Tool Call Failed");
       mockMcpClientService.callTool.mockRejectedValueOnce(mcpError);
@@ -111,7 +111,7 @@ describe('JobListController (e2e)', () => {
           });
   });
 
-    it('/jobs/search (POST) - should handle missing query parameter', () => {
+    it('/api/v1/jobs/list (POST) - should handle missing query parameter', () => {
         return request(app.getHttpServer())
             .post('/api/v1/jobs/list')
             .send({}) // Send empty body

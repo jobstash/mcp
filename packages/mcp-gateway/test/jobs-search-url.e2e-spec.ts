@@ -22,7 +22,7 @@ const mockMcpClientService = {
   isConnected: true, // Assume connected for mock
 };
 
-describe('App E2E Tests', () => {
+describe('JobsSearchUrlController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => { // Use beforeAll as the app setup is needed once per suite
@@ -50,33 +50,31 @@ describe('App E2E Tests', () => {
     mockMcpClientService.callTool.mockResolvedValue(mockMcpResultJobUrl);
   });
 
-  // Test for POST /api/v1/filtered-jobs-url
-  describe('/api/v1/filtered-jobs-url (POST)', () => {
-    it('should process a query and return a JobStash URL', () => {
-      const query = 'senior backend engineer remote';
-      return request(app.getHttpServer())
-        .post('/api/v1/filtered-jobs-url')
-        .send({ query })
-        .expect(201) // Corrected: Expect 201 Created for successful POST
-        .expect((res) => {
-          expect(res.body).toBeDefined();
-          expect(res.body.jobstashUrl).toBeDefined();
-          expect(res.body.jobstashUrl).toEqual(mockMcpResultJobUrl.jobstashUrl); // Check the actual URL
-          // Check mocks were called
-          expect(mockNluService.performNlu).toHaveBeenCalledWith(query);
-          expect(mockMcpClientService.callTool).toHaveBeenCalledWith({
-              name: 'get_search_jobs_url',
-              arguments: mockNluResult
-          });
+  // Test for POST /api/v1/jobs-search-url
+  it('POST /api/v1/jobs-search-url - should process query and return a JobStash URL', () => {
+    const query = 'senior backend engineer remote';
+    return request(app.getHttpServer())
+      .post('/api/v1/jobs-search-url')
+      .send({ query })
+      .expect(201) // Corrected: Expect 201 Created for successful POST
+      .expect((res) => {
+        expect(res.body).toBeDefined();
+        expect(res.body.jobstashUrl).toBeDefined();
+        expect(res.body.jobstashUrl).toEqual(mockMcpResultJobUrl.jobstashUrl); // Check the actual URL
+        // Check mocks were called
+        expect(mockNluService.performNlu).toHaveBeenCalledWith(query);
+        expect(mockMcpClientService.callTool).toHaveBeenCalledWith({
+            name: 'get_search_jobs_url',
+            arguments: mockNluResult
         });
-    });
+      });
+  });
 
-    it('should return 400 for missing query', () => {
-      return request(app.getHttpServer())
-        .post('/api/v1/filtered-jobs-url')
-        .send({}) // Send empty body
-        .expect(400); // Expect Bad Request
-    });
+  it('POST /api/v1/jobs-search-url - should return 400 for missing query', () => {
+    return request(app.getHttpServer())
+      .post('/api/v1/jobs-search-url')
+      .send({}) // Send empty body
+      .expect(400); // Expect Bad Request
   });
 
   // Removed tests for /api/v1/parameters/extract as the endpoint doesn't seem to exist

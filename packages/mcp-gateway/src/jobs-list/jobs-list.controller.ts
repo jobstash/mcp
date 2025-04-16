@@ -12,8 +12,8 @@ import {
   import { McpClientService } from '../mcp-client/mcp-client.service';
   
   @Controller('api/v1/jobs')
-  export class JobListController {
-    private readonly logger = new Logger(JobListController.name);
+  export class JobsListController {
+    private readonly logger = new Logger(JobsListController.name);
   
     constructor(
       private readonly nluService: NluService,

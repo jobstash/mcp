@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { JobUrlController } from './job-url.controller';
+import { JobsListController } from './jobs-list.controller';
 import { NluModule } from '../nlu/nlu.module';
 import { McpClientModule } from '../mcp-client/mcp-client.module';
 
 @Module({
   imports: [NluModule, McpClientModule],
-  controllers: [JobUrlController],
+  controllers: [JobsListController],
   providers: [],
 })
-export class JobUrlModule {} 
+export class JobsListModule {} 
