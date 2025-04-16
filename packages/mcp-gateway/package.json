@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@jobstash/mcp-server": "0.1.0",
+    "@modelcontextprotocol/sdk": "^1.9.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^10.0.0",
@@ -28,6 +29,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "openai": "^4.24.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

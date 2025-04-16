@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { FilteredJobsUrlModule } from './filtered-jobs-url/filtered-jobs-url.module';
-import { ParameterExtractionModule } from './parameter-extraction/parameter-extraction.module';
+import { JobUrlModule } from './job-url/job-url.module';
+import { JobListModule } from './job-list/job-list.module';
+import { NluModule } from './nlu/nlu.module';
+import { McpClientModule } from './mcp-client/mcp-client.module';
 
 @Module({
   imports: [
@@ -9,8 +11,10 @@ import { ParameterExtractionModule } from './parameter-extraction/parameter-extr
       isGlobal: true,
       envFilePath: '../../.env',
     }),
-    FilteredJobsUrlModule,
-    ParameterExtractionModule,
+    JobUrlModule,
+    JobListModule,
+    NluModule,
+    McpClientModule,
   ],
 })
 export class AppModule {}
