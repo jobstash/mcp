@@ -16,17 +16,11 @@ async function main() {
     process.exit(1);
   }
 
-  // Check if cli.js exists
-  const cliPath = path.join(__dirname, 'cli.js');
-  if (!fs.existsSync(cliPath)) {
-    console.error(`Error: Server script not found at ${cliPath}`);
+  // Find the correct path for the server script
+  const mcpRunnerPath = path.join(__dirname, 'mcp-runner.js');
+  if (!fs.existsSync(mcpRunnerPath)) {
+    console.error(`Error: Server script not found at ${mcpRunnerPath}`);
     console.error('Make sure to build the package first: npm run build');
-    process.exit(1);
-  }
-
-  // Ensure OPENAI_API_KEY is available from process.env
-  if (!process.env.OPENAI_API_KEY) {
-    console.error('Error: OPENAI_API_KEY environment variable is required');
     process.exit(1);
   }
 
@@ -35,21 +29,20 @@ async function main() {
 
   // Prepare environment for server
   const serverEnv = {
-    ...process.env,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY || ''
+    ...process.env
   };
 
-  // Spawn the server process with explicit environment variables
-  const serverProcess = spawn(nodePath, [cliPath], {
+  // Spawn the server process with environment variables
+  const serverProcess = spawn(nodePath, [mcpRunnerPath], {
     env: serverEnv,
     stdio: ['pipe', 'pipe', 'inherit'] // pipe stdin/stdout, inherit stderr
   });
 
-  // Create transport with explicit environment
+  // Create transport
   const transport = new StdioClientTransport({
     command: nodePath,
-    args: [cliPath],
-    env: { OPENAI_API_KEY: process.env.OPENAI_API_KEY || '' }
+    args: [mcpRunnerPath],
+    env: serverEnv
   });
 
   // Create client
@@ -63,11 +56,20 @@ async function main() {
     await client.connect(transport);
     console.log('Connected to MCP server');
 
-    // Call the processJobQuery tool
-    console.log(`Processing query: "${query}"`);
+    // Create a simple job search parameters object from the query
+    const searchParams = {
+      query: query,
+      tags: extractKeywords(query)
+    };
+
+    console.log(`Processing search: ${JSON.stringify(searchParams, null, 2)}`);
+    
+    // Call the search_jobs tool with JSON string
     const result = await client.callTool({
-      name: 'processJobQuery',
-      arguments: { query }
+      name: 'search_jobs',
+      arguments: { 
+        query: JSON.stringify(searchParams)
+      }
     });
 
     if (result && typeof result === 'object' && 'content' in result) {
@@ -75,9 +77,40 @@ async function main() {
       if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
         const text = 'text' in content[0] ? String(content[0].text) : '';
         if (text) {
-          const response = JSON.parse(text);
-          console.log('\nProcessed Result:');
-          console.log(JSON.stringify(response, null, 2));
+          try {
+            const response = JSON.parse(text);
+            console.log('\nSearch Results:');
+            console.log(JSON.stringify(response, null, 2));
+          } catch (e) {
+            console.error('Error parsing response:', e);
+            console.log('Raw response:', text);
+          }
+        }
+      }
+    }
+    
+    // Now call the get_search_jobs_url tool
+    console.log("\nGetting JobStash URL...");
+    const urlResult = await client.callTool({
+      name: 'get_search_jobs_url',
+      arguments: { 
+        query: JSON.stringify(searchParams)
+      }
+    });
+
+    if (urlResult && typeof urlResult === 'object' && 'content' in urlResult) {
+      const content = urlResult.content;
+      if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
+        const text = 'text' in content[0] ? String(content[0].text) : '';
+        if (text) {
+          try {
+            const response = JSON.parse(text);
+            console.log('\nJobStash URL:');
+            console.log(response.jobstashUrl);
+          } catch (e) {
+            console.error('Error parsing URL response:', e);
+            console.log('Raw response:', text);
+          }
         }
       }
     }
@@ -95,6 +128,24 @@ async function main() {
     // Kill the server process
     serverProcess.kill();
   }
+}
+
+// Helper function to extract keywords from the query
+function extractKeywords(query) {
+  // Very simple extractor that looks for common tech words
+  const commonTechKeywords = [
+    'javascript', 'typescript', 'react', 'node', 'solidity',
+    'blockchain', 'web3', 'smart contract', 'defi', 'crypto',
+    'frontend', 'backend', 'fullstack'
+  ];
+  
+  // Convert query to lowercase for case-insensitive matching
+  const lowerQuery = query.toLowerCase();
+  
+  // Find matching keywords
+  return commonTechKeywords.filter(keyword => 
+    lowerQuery.includes(keyword.toLowerCase())
+  );
 }
 
 main().catch(error => {
