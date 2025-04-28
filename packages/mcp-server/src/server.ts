@@ -1,11 +1,17 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { URLSearchParams } from 'url';
-import { z } from 'zod';
-import {
-  type SearchJobsInputArgs
-} from './schemas'; // Import only the types for validation
+// import { z } from 'zod'; // <<< Comment out or remove standard import
+import { z } from "@modelcontextprotocol/sdk/node_modules/zod"; // <<< Use SDK's Zod
 
-// Define updated configuration for McpManager
+import { 
+    search_jobs_input_schema, 
+    search_jobs_output_schema,
+    get_search_jobs_url_output_schema,
+    type SearchJobsInputArgs
+} from './schemas.js';
+
+
+// Define the interface directly if not imported
 export interface McpManagerConfig {
   name: string;
   version: string;
@@ -20,100 +26,166 @@ export class McpManager {
     // Configure JobStash base URL, default if not provided
     this.jobstashBaseUrl = config.jobstashBaseUrl || 'https://jobstash.xyz/jobs';
 
-    // Initialize MCP Server (name/version are still useful for identification)
+    // Initialize MCP Server
     this.server = new McpServer({
       name: config.name,
       version: config.version
     });
 
-    // Setup the new tools
-    this.setupTools();
+    this.setupTools(); // Use setupTools again
   }
 
+
+
   private setupTools() {
+    console.log("Registering MCP tools...");
+
+    
+    const calculateBmiInputSchema = z.object({
+      weightKg: z.number(),
+      heightM: z.number()
+    });
+    
+    const calculateBmiOutputSchema = z.object({
+      bmi: z.number()
+    });
+    
+    this.server.tool(
+      "calculate-bmi",
+      "Calculates Body Mass Index.",
+      {
+        inputSchema: calculateBmiInputSchema,
+        outputSchema: calculateBmiOutputSchema
+      },
+      async (args: any, _extra) => {
+        console.log("Received args:", args);
+    
+        if (typeof args?.weightKg !== 'number' || typeof args?.heightM !== 'number' || args.heightM <= 0) {
+           console.error("MCP Server: Invalid arguments for calculate-bmi:", args);
+           return {
+            content: [{ type: "text", text: "Error: Invalid arguments. Requires positive heightM and numeric weightKg." }],
+            isError: true
+          };
+        }
+    
+        const bmi = args.weightKg / (args.heightM * args.heightM);
+        console.log("MCP Server: Calculated BMI:", bmi);
+    
+        const response = { bmi };
+        try {
+          calculateBmiOutputSchema.parse(response);
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }]
+          };
+        } catch (error: any) {
+           console.error("MCP Server: BMI Output schema validation failed:", error);
+           return {
+             content: [{ type: "text", text: JSON.stringify({ error: `Internal error: Output validation failed: ${error.message}`}) }],
+             isError: true
+           }
+        }
+      }
+    );
+
     // --- Register search_jobs tool ---
     this.server.tool(
       "search_jobs",
-      "Searches for JobStash jobs based on structured filters and returns a list of matching jobs.",
-      { query: z.string() },
-      async (params: { query: string }) => {
-        console.log("MCP Server: Received search_jobs call with params:", params);
-        
-        try {
-          // Parse the input as SearchJobsInputArgs
-          const args = params.query ? JSON.parse(params.query) : {};
-          console.log("MCP Server: Parsed args:", args);
-          
-          // Validate args (optional, but helps catch errors early)
-          // Removed schema validation to avoid errors
-          
-          // --- Mock Response ---
-          const mockJobs = [
-            {
-              title: "Mock Solidity Developer",
-              company: "MockChain Inc.",
-              location: args.locations ? args.locations.join(', ') : "Remote",
-              url: "https://jobstash.xyz/jobs/mock1",
-              description: "Develop mock smart contracts.",
-              tags: args.tags || ["solidity", "blockchain"]
-            },
-            {
-              title: "Mock Frontend Engineer",
-              company: "Mock DApp Solutions",
-              location: "Remote",
-              url: "https://jobstash.xyz/jobs/mock2",
-              description: "Build mock user interfaces.",
-              tags: ["react", "web3"]
-            }
-          ];
+      "Searches for jobs based on query, tags, location.",
+      {
+        inputSchema: search_jobs_input_schema,
+        outputSchema: search_jobs_output_schema
+      },
+      async (_context: any, extra: any) => {
+        const parseResult = await search_jobs_input_schema.safeParseAsync(extra);
 
-          // Create response object
-          const response = {
-            jobs: mockJobs
-          };
-
-          console.log("MCP Server: Returning job list as text.");
-          
-          // Return as text content
+        if (!parseResult.success) {
+          console.error("MCP Server: Invalid arguments for search_jobs:", parseResult.error);
           return {
             content: [{ 
               type: "text", 
-              text: JSON.stringify(response) 
-            }]
-          };
-        } catch (error) {
-          console.error("Error processing search_jobs request:", error);
-          return {
-            content: [{ 
-              type: "text", 
-              text: JSON.stringify({
-                error: "Failed to process job search request."
-              }) 
+              text: JSON.stringify({ error: `Invalid arguments: ${parseResult.error.message}` })
             }],
             isError: true
           };
         }
+        const args = parseResult.data;
+
+        console.log("MCP Server: Received search_jobs call with validated args:", args);
+        
+        // try {
+        //   const mockJobs = [
+        //     {
+        //       title: "Mock Solidity Developer",
+        //       company: "MockChain Inc.",
+        //       location: args.locations ? args.locations.join(', ') : "Remote",
+        //       url: "https://jobstash.xyz/jobs/mock1",
+        //       description: "Develop mock smart contracts.",
+        //       tags: args.tags || ["solidity", "blockchain"]
+        //     },
+        //     {
+        //       title: "Mock Frontend Engineer",
+        //       company: "Mock DApp Solutions",
+        //       location: "Remote",
+        //       url: "https://jobstash.xyz/jobs/mock2",
+        //       description: "Build mock user interfaces.",
+        //       tags: ["react", "web3"]
+        //     }
+        //   ];
+        //   const response = { jobs: mockJobs };
+
+        //   search_jobs_output_schema.parse(response);
+
+        //   console.log("MCP Server: Returning job list as text.");
+        //   return {
+        //     content: [{ 
+        //       type: "text", 
+        //       text: JSON.stringify(response) 
+        //     }]
+        //   };
+        // } catch (error: any) {
+        //   console.error("Error processing search_jobs request:", error);
+        //   return {
+        //     content: [{ 
+        //       type: "text", 
+        //       text: JSON.stringify({ error: `Failed to process search_jobs: ${error.message}` })
+        //     }],
+        //     isError: true
+        //   };
+        // }
       }
     );
 
     // --- Register get_search_jobs_url tool ---
     this.server.tool(
       "get_search_jobs_url",
-      "Constructs a JobStash website URL based on structured job search filters.",
-      { query: z.string() },
-      async (params: { query: string }) => {
-        console.log("MCP Server: Received get_search_jobs_url call with params:", params);
+      "Generates a JobStash URL for given search criteria.",
+      {
+        inputSchema: z.object({}).optional(),
+        outputSchema: get_search_jobs_url_output_schema
+      },
+      async (_context: any, extra: any) => {
+        const parseResult = await search_jobs_input_schema.safeParseAsync(extra);
+
+        if (!parseResult.success) {
+          console.error("MCP Server: Invalid arguments for get_search_jobs_url:", parseResult.error);
+          return {
+            content: [{ 
+              type: "text", 
+              text: JSON.stringify({ error: `Invalid arguments: ${parseResult.error.message}` })
+            }],
+            isError: true
+          };
+        }
+        const args = parseResult.data;
+
+        console.log("MCP Server: Received get_search_jobs_url call with validated args:", args);
         
         try {
-          // Parse the input as SearchJobsInputArgs
-          const args = params.query ? JSON.parse(params.query) : {};
-          console.log("MCP Server: Parsed args:", args);
-          
-          // Build query string from structured args
           const searchParams = new URLSearchParams();
           for (const key in args) {
-            if (args.hasOwnProperty(key) && args[key] != null) {
-              const value = args[key];
+            const typedKey = key as keyof SearchJobsInputArgs;
+            if (args.hasOwnProperty(typedKey) && args[typedKey] != null) {
+              const value = args[typedKey];
               if (Array.isArray(value)) {
                 if (value.length > 0) {
                   searchParams.set(key, value.join(','));
@@ -125,35 +197,33 @@ export class McpManager {
           }
           const queryString = searchParams.toString();
           const finalUrl = `${this.jobstashBaseUrl}?${queryString}`;
-
           console.log(`MCP Server: Constructed URL: ${finalUrl}`);
+
+          const response = { jobstashUrl: finalUrl };
+
+          get_search_jobs_url_output_schema.parse(response);
           
-          // Create response object
-          const response = {
-            jobstashUrl: finalUrl
-          };
-          
-          // Return as text content
+          console.log("MCP Server: Returning URL as text.");
           return {
             content: [{ 
               type: "text", 
               text: JSON.stringify(response) 
             }]
           };
-        } catch (error) {
+        } catch (error: any) {
           console.error("Error processing get_search_jobs_url request:", error);
           return {
             content: [{ 
               type: "text", 
-              text: JSON.stringify({
-                error: "Failed to construct JobStash URL."
-              }) 
+              text: JSON.stringify({ error: `Failed to construct JobStash URL: ${error.message}` })
             }],
             isError: true
           };
         }
       }
     );
+
+ 
   }
 
   /**

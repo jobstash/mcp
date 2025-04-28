@@ -27,5 +27,11 @@
     "url": "https://github.com/jobstash/mcp/issues"
   },
   "homepage": "https://github.com/jobstash/mcp#readme",
-  "description": "JobStash MCP integration"
+  "description": "JobStash MCP integration",
+  "dependencies": {
+    "@bankless/onchain-mcp": "^1.0.6"
+  },
+  "resolutions": {
+    "zod": "^3.24.1"
+  }
 }

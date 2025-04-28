@@ -1,48 +1,47 @@
 // packages/mcp/src/schemas.ts
-import { z } from 'zod';
+// import { z } from 'zod'; // <<< Comment out or remove standard import
+import { z } from "@modelcontextprotocol/sdk/node_modules/zod"; // <<< Use SDK's Zod
+import { zodToJsonSchema } from 'zod-to-json-schema';
 
-// Input schema - used by both tools
+// Simplified Input schema
 export const search_jobs_input_schema = z.object({
-    // Optional free-text query
-    query: z.string().optional().describe("Optional free-text query to refine search (passed to backend if supported)."),
-    // List of skills or keywords
-    tags: z.array(z.string()).optional().describe("List of skills or keywords (e.g., ['solidity', 'foundry'])"),
-    // List of desired locations
-    locations: z.array(z.string()).optional().describe("List of desired locations (e.g., ['Remote', 'London']). Use 'Remote' for remote jobs."),
-    // List of specific company names
-    companyNames: z.array(z.string()).optional().describe("List of specific company names to filter by."),
-    // List of desired experience levels
-    seniority: z.array(z.string()).optional().describe("List of desired experience levels (e.g., ['junior', 'senior'])."),
-    // Minimum desired salary
-    salaryMin: z.number().int().positive().optional().describe("Minimum desired salary (numeric value)."),
-    // Maximum desired salary
-    salaryMax: z.number().int().positive().optional().describe("Maximum desired salary (numeric value)."),
-    // Filter for jobs offering equity
-    equity: z.boolean().optional().describe("Filter for jobs offering equity (true/false)."),
-    // Add other relevant filters supported by JobStash backend
-  }).strict() // Disallow properties not explicitly defined
-  .describe("Input parameters for searching jobs on JobStash.");
+    query: z.string().optional().describe("Keywords or job title to search for"),
+    tags: z.array(z.string()).optional().describe("Specific skill tags (e.g., ['typescript', 'react'])"),
+    location: z.string().optional().describe("Desired job location"),
+    maxResults: z.number().int().positive().optional().default(10).describe("Maximum number of results to return")
+});
+  // .strict() // Temporarily remove strict
+  // .describe("Input parameters for searching jobs on JobStash."); // Temporarily remove describe
 
 // Type helper for input args
 export type SearchJobsInputArgs = z.infer<typeof search_jobs_input_schema>;
 
-// Output schema for search_jobs (returns job list)
+// Simplified Output schema for search_jobs
 export const search_jobs_output_schema = z.object({
     jobs: z.array(z.object({
-        title: z.string().describe("Job title"),
-        company: z.string().describe("Company name"),
-        location: z.string().describe("Job location description (e.g., 'Remote', 'London, UK')"),
-        url: z.string().url().describe("Direct URL to the job posting"),
-        description: z.string().optional().describe("Short description or snippet of the job details"),
-        tags: z.array(z.string()).optional().describe("Relevant skills or tags"),
-        // Add other relevant job properties from JobStash backend
-      }).strict() // Ensure individual job objects don't have extra properties
-    ).describe("List of matching jobs.")
-  }).strict() // Disallow properties other than 'jobs'
-  .describe("Output containing a list of matching jobs found on JobStash.");
+        id: z.string(),
+        title: z.string(),
+        company: z.string(),
+        location: z.string(),
+        descriptionSnippet: z.string(),
+        url: z.string().url()
+    })).describe("List of found jobs")
+      // .strict() // Temporarily remove strict
+    // }).describe("List of matching jobs.") // Temporarily remove describe
+  });
+  // .strict() // Temporarily remove strict
+  // .describe("Output containing a list of matching jobs found on JobStash.");
 
-// Output schema for get_search_jobs_url (returns URL)
+// Simplified Output schema for get_search_jobs_url
 export const get_search_jobs_url_output_schema = z.object({
-    jobstashUrl: z.string().url().describe("The fully constructed URL to the JobStash website displaying the filtered job results.")
-  }).strict() // Disallow properties other than 'jobstashUrl'
-  .describe("Output containing the URL for the filtered JobStash job search results page."); 
+    searchUrl: z.string().url().describe("The direct URL to the JobStash search results page")
+  });
+  // .strict() // Temporarily remove strict
+  // .describe("Output containing the URL for the filtered JobStash job search results page."); 
+
+// --- Utility Functions (Optional) ---
+
+// Function to convert Zod schema to JSON Schema
+export function getJsonSchema(schema: z.ZodType<any, any>) {
+  return zodToJsonSchema(schema, { $refStrategy: 'none' });
+} 
