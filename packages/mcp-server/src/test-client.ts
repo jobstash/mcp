@@ -11,9 +11,17 @@ async function main() {
   // Debug information
   console.log("JobStash MCP Test Client");
   console.log("------------------------");
-  console.log("Node.js version:", process.version);
-  console.log("Working directory:", process.cwd());
+  console.log(`Node.js version: ${process.version}`);
+  console.log(`Working directory: ${process.cwd()}`);
   
+  // Check for query argument
+  const query = process.argv[2];
+  if (!query) {
+    console.error('Error: Please provide a job search query');
+    console.error('Usage: node test-client.js "your job search query"');
+    process.exit(1);
+  }
+
   // Find the correct path for the server script
   const mcpRunnerPath = path.join(__dirname, 'mcp-runner.js');
   if (!fs.existsSync(mcpRunnerPath)) {
@@ -62,38 +70,6 @@ async function main() {
     console.log("Connecting to MCP server...");
     await client.connect(transport);
     console.log('✓ Connected to MCP server');
-
-    // --- Ensure we are calling calculate-bmi ---
-    const toolName = "calculate-bmi";
-    const toolArgs = { weightKg: 70, heightM: 1.75 }; // Example arguments
-
-    console.log(`\nCalling ${toolName} with arguments:`, toolArgs);
-
-    const result = await client.callTool({
-      name: toolName,
-      arguments: toolArgs
-    });
-
-    console.log("\n✓ Tool call successful:");
-    console.log("Raw result:", result);
-
-    // --- Parse and display BMI result ---
-    if (result.content && result.content[0]?.type === 'text') {
-        try {
-          const parsedContent = JSON.parse(result.content[0].text);
-          if (parsedContent.error) {
-            console.error(`Tool Error: ${parsedContent.error}`);
-          } else if (typeof parsedContent.bmi === 'number') {
-            console.log(`BMI Result: ${parsedContent.bmi}`);
-          } else {
-            console.warn("Result content received, but BMI value not found.", parsedContent);
-          }
-        } catch (e) {
-          console.warn("Could not parse result content as JSON: ", result.content[0].text);
-        }
-    } else {
-        console.warn("Result content is not in the expected text format.");
-    }
 
     // Now call the get_search_jobs_url tool with the same structured arguments
     console.log("\nGetting JobStash URL with arguments:", toolArgs);
