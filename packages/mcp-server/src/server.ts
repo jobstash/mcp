@@ -37,19 +37,6 @@ export class McpManager {
   private setupTools() {
     console.log("Registering MCP tools...");
 
-
-
-    this.server.resource(
-      "echo",
-      new ResourceTemplate("echo://{message}", { list: undefined }),
-      async (uri, { message }) => ({
-          contents: [{
-              uri: uri.href,
-              text: `Resource echo: ${message}`
-          }]
-      })
-  );
-
   this.server.tool(
       "echo",
       { message: z.string() },
@@ -58,19 +45,6 @@ export class McpManager {
       })
   );
 
-  this.server.prompt(
-      "echo",
-      { message: z.string() },
-      ({ message }) => ({
-          messages: [{
-              role: "user",
-              content: {
-                  type: "text",
-                  text: `Please process this message: ${message}`
-              }
-          }]
-      })
-  );
 
 
     // // --- Register search_jobs tool ---

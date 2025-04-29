@@ -13,7 +13,7 @@ async function main() {
   console.log("------------------------");
   console.log(`Node.js version: ${process.version}`);
   console.log(`Working directory: ${process.cwd()}`);
-  
+
   // Check for query argument
   const query = process.argv[2];
   if (!query) {
@@ -43,7 +43,7 @@ async function main() {
 
   // Prepare environment for server with all variables
   const serverEnv = { ...process.env };
-  
+
   // Spawn the server process with environment variables
   console.log("Spawning MCP server process...");
   const serverProcess = spawn(nodePath, [mcpRunnerPath], {
@@ -66,9 +66,6 @@ async function main() {
   });
 
   try {
-    
-    
-
     console.log("Connecting client to server...");
     await client.connect(transport);
     console.log("✓ Client connected!");
@@ -82,33 +79,13 @@ async function main() {
     const toolMessage = "Hello from Client Tool!";
     console.log(`Calling 'echo' tool with message: "${toolMessage}"`);
     const toolResult = await client.callTool({
-        name: "echo",
-        arguments: { message: toolMessage }
+      name: "echo",
+      arguments: { message: toolMessage }
     });
     if (toolResult.content && Array.isArray(toolResult.content) && toolResult.content[0]?.type === 'text') {
-         console.log("✓ Tool Response:", toolResult.content[0].text);
+      console.log("✓ Tool Response:", toolResult.content[0].text);
     } else {
-         console.warn("Unexpected tool response format:", toolResult);
-    }
-
-
-    // 3. List Resources
-    console.log("Listing resources...");
-    const resources = await client.listResources();
-    console.log("Available resources:", resources);
-
-
-    // 4. Read Resource
-    const resourceMessage = "Hello from Client Resource!";
-    const resourceUri = `echo://${encodeURIComponent(resourceMessage)}`;
-    console.log(`Reading resource: ${resourceUri}`);
-    const resourceResult = await client.readResource({
-        uri: resourceUri
-    });
-     if (resourceResult.contents?.[0]) {
-         console.log("✓ Resource Response:", resourceResult.contents[0].text);
-    } else {
-         console.warn("Unexpected resource response format:", resourceResult);
+      console.warn("Unexpected tool response format:", toolResult);
     }
 
     console.log("Client finished successfully.");
@@ -120,7 +97,7 @@ async function main() {
     // Kill the server process
     console.log("Shutting down server process...");
     serverProcess.kill();
-    
+
     // Ensure clean exit
     setTimeout(() => {
       process.exit(0);
