@@ -7,7 +7,7 @@
     "type": "commonjs",
     "scripts": {
         "build": "tsc",
-        "start": "node dist/main.js"
+        "start": "nodemon src/main.ts"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "*",
@@ -15,6 +15,7 @@
     },
     "devDependencies": {
         "@types/node": "^20.14.10",
+        "nodemon": "^3.1.10",
         "ts-node": "^10.9.2",
         "typescript": "^5.5.3"
     }
