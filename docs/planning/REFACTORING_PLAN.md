@@ -6,19 +6,19 @@
 
 ## Phase 1: Refactor `@jobstash/mcp-server` (MCP Host Server)
 
-1.  **Schemas:** Define `search_jobs` input/output JSON Schemas (`packages/mcp-server/src/types.ts` or `packages/mcp-server/src/schemas.ts`).
-2.  **`McpManager` (`packages/mcp-server/src/server.ts`):**
+1.  **[x] Schemas:** Define `search_jobs` input/output JSON Schemas (`packages/mcp-server/src/types.ts` or `packages/mcp-server/src/schemas.ts`).
+2.  **[x] `McpManager` (`packages/mcp-server/src/server.ts`):**
     *   Remove `getStructuredData`, `processJobQuery`.
     *   Remove `OpenAI` client, config, dependency.
     *   Register `search_jobs` tool (using schemas).
     *   Implement `search_jobs` callback: structured args -> JobStash backend -> structured results.
     *   Update `McpManagerConfig` for JobStash backend interaction.
-3.  **Remove Files:** Delete `packages/mcp-server/src/prompts.ts`, `packages/mcp-server/src/parameter-extractor.ts`.
-4.  **Cleanup `types.ts`:** Remove unused types (e.g., `MCPResponse`) from `packages/mcp-server/src/types.ts` (or delete file).
-5.  **Tests (`packages/mcp-server/tests/server.spec.ts`):** Remove OpenAI mocks. Test `search_jobs` registration, mock/verify backend call & output.
-6.  **MCP Runner (`packages/mcp-server/src/mcp-runner.ts`):** Create script to instantiate `McpManager`, connect `McpServer` via `StdioServerTransport`.
-7.  **Docs (`packages/mcp-server/README.md`):** Update role, `search_jobs` details, runner usage.
-8.  **Dependencies (`packages/mcp-server/package.json`):** Remove `openai`. Ensure `@modelcontextprotocol/sdk`.
+3.  **[x] Remove Files:** Delete `packages/mcp-server/src/prompts.ts`, `packages/mcp-server/src/parameter-extractor.ts`.
+4.  **[x] Cleanup `types.ts`:** Remove unused types (e.g., `MCPResponse`) from `packages/mcp-server/src/types.ts` (or delete file).
+5.  **[ ] Tests (`packages/mcp-server/tests/server.spec.ts`):** Remove OpenAI mocks. Test `search_jobs` registration, mock/verify backend call & output.
+6.  **[x] MCP Runner (`packages/mcp-server/src/mcp-runner.ts`):** Create script to instantiate `McpManager`, connect `McpServer` via `StdioServerTransport`.
+7.  **[ ] Docs (`packages/mcp-server/README.md`):** Update role, `search_jobs` details, runner usage.
+8.  **[x] Dependencies (`packages/mcp-server/package.json`):** Remove `openai`. Ensure `@modelcontextprotocol/sdk`.
 
 ---
 
