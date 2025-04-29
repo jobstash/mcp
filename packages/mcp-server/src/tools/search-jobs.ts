@@ -39,30 +39,30 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
             console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
             console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
 
-            // const apiResponse = await fetch(apiUrl, {
-            //     method: 'GET',
-            //     headers: { 'accept': 'application/json' }
-            // });
+            const apiResponse = await fetch(apiUrl, {
+                method: 'GET',
+                headers: { 'accept': 'application/json' }
+            });
 
-            // if (!apiResponse.ok) {
-            //     const errorText = await apiResponse.text();
-            //     console.log(`\n\n\n\nMCPMCPMCPMCPMCPMCP\n\n\n\n: ${apiUrl}`);
-            //     console.error(`MCP Server (search_jobs tool): JobStash API request failed with status ${apiResponse.status}: ${errorText}`);
-            //     // Return standard error structure
-            //     return {
-            //         content: [{ type: "text", text: JSON.stringify({ error: `JobStash API request failed: ${apiResponse.statusText} - ${errorText}` }) }],
-            //         isError: true
-            //     };
-            // }
+            if (!apiResponse.ok) {
+                const errorText = await apiResponse.text();
+                console.log(`\n\n\n\nMCPMCPMCPMCPMCPMCP\n\n\n\n: ${apiUrl}`);
+                console.error(`MCP Server (search_jobs tool): JobStash API request failed with status ${apiResponse.status}: ${errorText}`);
+                // Return standard error structure
+                return {
+                    content: [{ type: "text", text: JSON.stringify({ error: `JobStash API request failed: ${apiResponse.statusText} - ${errorText}` }) }],
+                    isError: true
+                };
+            }
 
-            // const responseData = await apiResponse.json();
-            // const jobs = responseData.data || [];
-            // const response = { jobs: jobs };
+            const responseData = await apiResponse.json();
+            const jobs = responseData.data || [];
+            const response = { jobs: jobs };
 
-            // console.log(`MCP Server (search_jobs tool): Returning ${jobs.length} job(s) from API.`);
+            console.log(`MCP Server (search_jobs tool): Returning ${jobs.length} job(s) from API.`);
             // Return standard success structure
             return {
-                content: [{ type: "text", text: JSON.stringify({}) }]
+                content: [{ type: "text", text: JSON.stringify(response) }]
             };
         } catch (error: any) {
             console.error("Error processing search_jobs request:", error);
