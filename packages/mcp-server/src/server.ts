@@ -2,12 +2,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { URLSearchParams } from 'url';
 import { z } from "zod";
 
-import {
-  search_jobs_input_schema,
-  search_jobs_output_schema,
-  get_search_jobs_url_output_schema,
-  type SearchJobsInputArgs
-} from './schemas';
+import { search_jobs_input_schema, search_jobs_output_schema } from './schemas';
 
 export interface McpManagerConfig {
   name: string;
@@ -37,83 +32,78 @@ export class McpManager {
   private setupTools() {
     console.log("Registering MCP tools...");
 
-  this.server.tool(
+    this.server.tool(
       "echo",
       { message: z.string() },
       async ({ message }) => ({
-          content: [{ type: "text", text: `Tool echo: ${message}` }]
+        content: [{ type: "text", text: `Tool echo: ${message}` }]
       })
-  );
+    );
 
+    // --- Register search_jobs tool ---
+    this.server.tool(
+      "search_jobs",
+      "Searches for JobStash jobs based on structured filters and returns a list of matching jobs.",
+      search_jobs_input_schema.shape,
+      async (_context: any, extra: any) => {
+        const parseResult = await search_jobs_input_schema.safeParseAsync(extra);
 
+        if (!parseResult.success) {
+          console.error("MCP Server: Invalid arguments for search_jobs:", parseResult.error);
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify({ error: `Invalid arguments: ${parseResult.error.message}` })
+            }],
+            isError: true
+          };
+        }
+        const args = parseResult.data;
 
-    // // --- Register search_jobs tool ---
-    // this.server.tool(
-    //   "search_jobs",
-    //   "Searches for JobStash jobs based on structured filters and returns a list of matching jobs.",
-    //   {
-    //     inputSchema: search_jobs_input_schema as any,
-    //     outputSchema: search_jobs_output_schema as any
-    //   },
-    //   async (_context: any, extra: any) => {
-    //     const parseResult = await search_jobs_input_schema.safeParseAsync(extra);
+        console.log("MCP Server: Received search_jobs call with validated args:", args);
 
-    //     if (!parseResult.success) {
-    //       console.error("MCP Server: Invalid arguments for search_jobs:", parseResult.error);
-    //       return {
-    //         content: [{ 
-    //           type: "text", 
-    //           text: JSON.stringify({ error: `Invalid arguments: ${parseResult.error.message}` })
-    //         }],
-    //         isError: true
-    //       };
-    //     }
-    //     const args = parseResult.data;
+        try {
+          const mockJobs = [
+            {
+              title: "Mock Solidity Developer",
+              company: "MockChain Inc.",
+              location: args.locations ? args.locations.join(', ') : "Remote",
+              url: "https://jobstash.xyz/jobs/mock1",
+              description: "Develop mock smart contracts.",
+              tags: args.tags || ["solidity", "blockchain"]
+            },
+            {
+              title: "Mock Frontend Engineer",
+              company: "Mock DApp Solutions",
+              location: "Remote",
+              url: "https://jobstash.xyz/jobs/mock2",
+              description: "Build mock user interfaces.",
+              tags: ["react", "web3"]
+            }
+          ];
+          const response = { jobs: mockJobs };
 
-    //     console.log("MCP Server: Received search_jobs call with validated args:", args);
-        
-    //     try {
-    //       const mockJobs = [
-    //         {
-    //           title: "Mock Solidity Developer",
-    //           company: "MockChain Inc.",
-    //           location: args.locations ? args.locations.join(', ') : "Remote",
-    //           url: "https://jobstash.xyz/jobs/mock1",
-    //           description: "Develop mock smart contracts.",
-    //           tags: args.tags || ["solidity", "blockchain"]
-    //         },
-    //         {
-    //           title: "Mock Frontend Engineer",
-    //           company: "Mock DApp Solutions",
-    //           location: "Remote",
-    //           url: "https://jobstash.xyz/jobs/mock2",
-    //           description: "Build mock user interfaces.",
-    //           tags: ["react", "web3"]
-    //         }
-    //       ];
-    //       const response = { jobs: mockJobs };
+          search_jobs_output_schema.parse(response);
 
-    //       search_jobs_output_schema.parse(response);
-
-    //       console.log("MCP Server: Returning job list as text.");
-    //       return {
-    //         content: [{ 
-    //           type: "text", 
-    //           text: JSON.stringify(response) 
-    //         }]
-    //       };
-    //     } catch (error: any) {
-    //       console.error("Error processing search_jobs request:", error);
-    //       return {
-    //         content: [{ 
-    //           type: "text", 
-    //           text: JSON.stringify({ error: `Failed to process search_jobs: ${error.message}` })
-    //         }],
-    //         isError: true
-    //       };
-    //     }
-    //   }
-    // );
+          console.log("MCP Server: Returning job list as text.");
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify(response)
+            }]
+          };
+        } catch (error: any) {
+          console.error("Error processing search_jobs request:", error);
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify({ error: `Failed to process search_jobs: ${error.message}` })
+            }],
+            isError: true
+          };
+        }
+      }
+    );
 
     // // --- Register get_search_jobs_url tool ---
     // this.server.tool(
@@ -139,7 +129,7 @@ export class McpManager {
     //     const args = parseResult.data;
 
     //     console.log("MCP Server: Received get_search_jobs_url call with validated args:", args);
-        
+
     //     try {
     //       const searchParams = new URLSearchParams();
     //       for (const key in args) {
@@ -162,7 +152,7 @@ export class McpManager {
     //       const response = { jobstashUrl: finalUrl };
 
     //       get_search_jobs_url_output_schema.parse(response);
-          
+
     //       console.log("MCP Server: Returning URL as text.");
     //       return {
     //         content: [{ 
