@@ -4,11 +4,10 @@
     "private": true,
     "description": "MCP SDK Echo Server and Client Example",
     "main": "dist/main.js",
-    "type": "module",
+    "type": "commonjs",
     "scripts": {
         "build": "tsc",
-        "start": "node dist/main.js",
-        "dev": "node --loader ts-node/esm src/main.ts"
+        "start": "node dist/main.js"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "*",
