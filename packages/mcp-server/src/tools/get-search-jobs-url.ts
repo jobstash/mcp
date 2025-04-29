@@ -38,7 +38,7 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
             // searchParams.set('limit', '20');
 
             const queryString = searchParams.toString();
-            const finalUrl = `${jobstashBaseUrl}/list?${queryString}`; // Assuming '/list' is the correct path for browsing too
+            const finalUrl = `${jobstashBaseUrl}/jobs?${queryString}`; 
             console.log(`MCP Server (get_search_jobs_url tool): Constructed URL: ${finalUrl}`);
 
             const response = { jobstashUrl: finalUrl };

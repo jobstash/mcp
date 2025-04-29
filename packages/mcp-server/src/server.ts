@@ -13,7 +13,7 @@ export class McpManager {
   private jobstashBaseUrl: string;
 
   constructor(config: McpManagerConfig) {
-    this.jobstashBaseUrl = config.jobstashBaseUrl || 'https://middleware.jobstash.xyz/public-api'; // Use middleware URL
+    this.jobstashBaseUrl = config.jobstashBaseUrl || 'https://jobstash.xyz';
 
     this.server = new McpServer({
       name: config.name,

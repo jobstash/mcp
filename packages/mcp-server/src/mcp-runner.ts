@@ -10,7 +10,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 const config = {
   name: process.env.MCP_SERVER_NAME || 'jobstash-mcp-host',
   version: process.env.MCP_SERVER_VERSION || '0.1.0',
-  jobstashBaseUrl: process.env.JOBSTASH_BASE_URL || 'https://middleware.jobstash.xyz/public-api'
+  jobstashBaseUrl: process.env.JOBSTASH_BASE_URL || 'https://jobstash.xyz'
 };
 
 async function runServer() {
