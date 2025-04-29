@@ -4,7 +4,6 @@ import { search_jobs_input_schema, SearchJobsInputArgs } from '../schemas';
 // Function to create the handler
 const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
     return async (args: SearchJobsInputArgs, _extra: any): Promise<any> => {
-        console.log("MCP Server (get_search_jobs_url tool): Received call with validated args:", args);
 
         try {
             const searchParams = new URLSearchParams();
@@ -38,8 +37,7 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
             // searchParams.set('limit', '20');
 
             const queryString = searchParams.toString();
-            const finalUrl = `${jobstashBaseUrl}/jobs?${queryString}`; 
-            console.log(`MCP Server (get_search_jobs_url tool): Constructed URL: ${finalUrl}`);
+            const finalUrl = `${jobstashBaseUrl}/jobs?${queryString}`;
 
             const response = { jobstashUrl: finalUrl };
 
@@ -60,6 +58,6 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
 export const getSearchJobsUrlTool = (jobstashBaseUrl: string) => ({
     name: "get_search_jobs_url",
     description: "Constructs a JobStash website URL based on structured job search filters.",
-    inputSchema: search_jobs_input_schema.shape, 
+    inputSchema: search_jobs_input_schema.shape,
     handler: createGetSearchJobsUrlHandler(jobstashBaseUrl),
 }); 

@@ -5,8 +5,6 @@ import { search_jobs_input_schema, SearchJobsInputArgs } from '../schemas';
 const createSearchJobsHandler = (jobstashBaseUrl: string) => {
     return async (args: SearchJobsInputArgs, _extra: any): Promise<any> => {
 
-        console.log("MCP Server (search_jobs tool): Received call with validated args:", args);
-
         try {
             const searchParams = new URLSearchParams({
                 page: '1',
@@ -34,10 +32,6 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
             }
             // https://middleware.jobstash.xyz/public-api
             const apiUrl = `${jobstashBaseUrl}/list?${searchParams.toString()}`;
-            console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
-            console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
-            console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
-            console.log(`MCP Server (search_jobs tool): Fetching jobs from JobStash API: ${apiUrl}`);
 
             const apiResponse = await fetch(apiUrl, {
                 method: 'GET',
@@ -46,7 +40,6 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
 
             if (!apiResponse.ok) {
                 const errorText = await apiResponse.text();
-                console.log(`\n\n\n\nMCPMCPMCPMCPMCPMCP\n\n\n\n: ${apiUrl}`);
                 console.error(`MCP Server (search_jobs tool): JobStash API request failed with status ${apiResponse.status}: ${errorText}`);
                 // Return standard error structure
                 return {
@@ -59,7 +52,6 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
             const jobs = responseData.data || [];
             const response = { jobs: jobs };
 
-            console.log(`MCP Server (search_jobs tool): Returning ${jobs.length} job(s) from API.`);
             // Return standard success structure
             return {
                 content: [{ type: "text", text: JSON.stringify(response) }]
@@ -78,6 +70,6 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
 export const getSearchJobsTool = (jobstashBaseUrl: string) => ({
     name: "search_jobs",
     description: "Searches for JobStash jobs based on structured filters and returns a list of matching jobs.",
-    inputSchema: search_jobs_input_schema.shape, 
+    inputSchema: search_jobs_input_schema.shape,
     handler: createSearchJobsHandler(jobstashBaseUrl),
 }); 
