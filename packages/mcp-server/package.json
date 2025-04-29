@@ -9,7 +9,8 @@
     "build": "tsc",
     "test": "jest",
     "lint": "eslint src/",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test:client": "npm run build && node ./dist/test-client.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",

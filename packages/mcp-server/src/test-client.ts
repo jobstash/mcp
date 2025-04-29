@@ -66,35 +66,52 @@ async function main() {
   });
 
   try {
-    // Connect client to transport
-    console.log("Connecting to MCP server...");
-    await client.connect(transport);
-    console.log('✓ Connected to MCP server');
-
-    // Now call the get_search_jobs_url tool with the same structured arguments
-    console.log("\nGetting JobStash URL with arguments:", toolArgs);
-    const urlResult = await client.callTool({
-      name: 'get_search_jobs_url',
-      arguments: toolArgs
-    });
-
-    if (urlResult && typeof urlResult === 'object' && 'content' in urlResult) {
-      const content = urlResult.content;
-      if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
-        const text = 'text' in content[0] ? String(content[0].text) : '';
-        if (text) {
-          try {
-            const response = JSON.parse(text);
-            console.log('\nJobStash URL:');
-            console.log(response.jobstashUrl);
-          } catch (e) {
-            console.error('Error parsing URL response:', e);
-            console.log('Raw response:', text);
-          }
-        }
-      }
-    }
     
+    
+
+    console.log("Connecting client to server...");
+    await client.connect(transport);
+    console.log("✓ Client connected!");
+
+    // 1. List Tools
+    console.log("Listing tools...");
+    const tools = await client.listTools();
+    console.log("Available tools:", tools);
+
+    // 2. Call Tool
+    const toolMessage = "Hello from Client Tool!";
+    console.log(`Calling 'echo' tool with message: "${toolMessage}"`);
+    const toolResult = await client.callTool({
+        name: "echo",
+        arguments: { message: toolMessage }
+    });
+    if (toolResult.content && Array.isArray(toolResult.content) && toolResult.content[0]?.type === 'text') {
+         console.log("✓ Tool Response:", toolResult.content[0].text);
+    } else {
+         console.warn("Unexpected tool response format:", toolResult);
+    }
+
+
+    // 3. List Resources
+    console.log("Listing resources...");
+    const resources = await client.listResources();
+    console.log("Available resources:", resources);
+
+
+    // 4. Read Resource
+    const resourceMessage = "Hello from Client Resource!";
+    const resourceUri = `echo://${encodeURIComponent(resourceMessage)}`;
+    console.log(`Reading resource: ${resourceUri}`);
+    const resourceResult = await client.readResource({
+        uri: resourceUri
+    });
+     if (resourceResult.contents?.[0]) {
+         console.log("✓ Resource Response:", resourceResult.contents[0].text);
+    } else {
+         console.warn("Unexpected resource response format:", resourceResult);
+    }
+
+    console.log("Client finished successfully.");
     console.log("\nTest client finished successfully.");
   } catch (error) {
     console.error("\n⚠ Error:", error);
@@ -109,24 +126,6 @@ async function main() {
       process.exit(0);
     }, 100);
   }
-}
-
-// Helper function to extract keywords from the query
-function extractKeywords(query: string): string[] {
-  // Very simple extractor that looks for common tech words
-  const commonTechKeywords = [
-    'javascript', 'typescript', 'react', 'node', 'solidity',
-    'blockchain', 'web3', 'smart contract', 'defi', 'crypto',
-    'frontend', 'backend', 'fullstack'
-  ];
-  
-  // Convert query to lowercase for case-insensitive matching
-  const lowerQuery = query.toLowerCase();
-  
-  // Find matching keywords
-  return commonTechKeywords.filter(keyword => 
-    lowerQuery.includes(keyword.toLowerCase())
-  );
 }
 
 main().catch(error => {
