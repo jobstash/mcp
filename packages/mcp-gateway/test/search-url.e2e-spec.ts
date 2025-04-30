@@ -22,17 +22,17 @@ const mockMcpClientService = {
   isConnected: true, // Assume connected for mock
 };
 
-describe('JobsSearchUrlController (e2e)', () => {
+describe('SearchUrlController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => { // Use beforeAll as the app setup is needed once per suite
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     })
-    // Override the real services with our mocks
-    .overrideProvider(NluService).useValue(mockNluService)
-    .overrideProvider(McpClientService).useValue(mockMcpClientService)
-    .compile();
+      // Override the real services with our mocks
+      .overrideProvider(NluService).useValue(mockNluService)
+      .overrideProvider(McpClientService).useValue(mockMcpClientService)
+      .compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
@@ -50,11 +50,11 @@ describe('JobsSearchUrlController (e2e)', () => {
     mockMcpClientService.callTool.mockResolvedValue(mockMcpResultJobUrl);
   });
 
-  // Test for POST /api/v1/jobs-search-url
-  it('POST /api/v1/jobs-search-url - should process query and return a JobStash URL', () => {
+  // Test for POST /api/v1/search-url
+  it('POST /api/v1/search-url - should process query and return a JobStash URL', () => {
     const query = 'senior backend engineer remote';
     return request(app.getHttpServer())
-      .post('/api/v1/jobs-search-url')
+      .post('/api/v1/search-url')
       .send({ query })
       .expect(201) // Corrected: Expect 201 Created for successful POST
       .expect((res) => {
@@ -64,15 +64,15 @@ describe('JobsSearchUrlController (e2e)', () => {
         // Check mocks were called
         expect(mockNluService.performNlu).toHaveBeenCalledWith(query);
         expect(mockMcpClientService.callTool).toHaveBeenCalledWith({
-            name: 'get_search_jobs_url',
-            arguments: mockNluResult
+          name: 'get_search_jobs_url',
+          arguments: mockNluResult
         });
       });
   });
 
-  it('POST /api/v1/jobs-search-url - should return 400 for missing query', () => {
+  it('POST /api/v1/search-url - should return 400 for missing query', () => {
     return request(app.getHttpServer())
-      .post('/api/v1/jobs-search-url')
+      .post('/api/v1/search-url')
       .send({}) // Send empty body
       .expect(400); // Expect Bad Request
   });

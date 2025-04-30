@@ -11,9 +11,9 @@ import { QueryDto } from '../common/dtos/query.dto';
 import { NluService } from '../nlu/nlu.service';
 import { McpClientService } from '../mcp-client/mcp-client.service';
 
-@Controller('api/v1/jobs-search-url')
-export class JobsSearchUrlController {
-  private readonly logger = new Logger(JobsSearchUrlController.name);
+@Controller('api/v1/search-url')
+export class SearchUrlController {
+  private readonly logger = new Logger(SearchUrlController.name);
 
   constructor(
     private readonly nluService: NluService,
@@ -29,9 +29,9 @@ export class JobsSearchUrlController {
       const structuredArgs = await this.nluService.performNlu(body.query);
       this.logger.log(`NLU Extracted Args: ${JSON.stringify(structuredArgs)}`);
 
-      this.logger.log('Calling MCP Host Server tool: get_search_jobs_url via McpClientService...');
+      this.logger.log('Calling MCP Host Server tool: get_search_url via McpClientService...');
       const mcpResult = await this.mcpClientService.callTool({
-        name: 'get_search_jobs_url',
+        name: 'get_search_url',
         arguments: structuredArgs
       });
 

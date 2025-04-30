@@ -55,8 +55,8 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
 };
 
 // Export a function that returns the tool configuration
-export const getSearchJobsUrlTool = (jobstashBaseUrl: string) => ({
-    name: "get_search_jobs_url",
+export const getSearchUrlTool = (jobstashBaseUrl: string) => ({
+    name: "get_search_url",
     description: "Constructs a JobStash website URL based on structured job search filters.",
     inputSchema: search_jobs_input_schema.shape,
     handler: createGetSearchJobsUrlHandler(jobstashBaseUrl),

@@ -1,11 +1,11 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { getSearchJobsTool } from "./tools/search-jobs.js";
-import { getSearchJobsUrlTool } from "./tools/get-search-jobs-url.js"; // Import the new tool
+import { getSearchJobsTool } from "./tools/search-jobs";
+import { getSearchUrlTool } from "./tools/get-search-url";
 
 export interface McpManagerConfig {
   name: string;
   version: string;
-  jobstashBaseUrl?: string; 
+  jobstashBaseUrl?: string;
 }
 
 export class McpManager {
@@ -37,15 +37,15 @@ export class McpManager {
 
     console.log(`Registered tool: ${searchJobsToolConfig.name}`);
 
-    // --- Register get_search_jobs_url tool --- 
-    const getSearchJobsUrlToolConfig = getSearchJobsUrlTool(this.jobstashBaseUrl);
+    // --- Register get_search_url tool --- 
+    const getSearchUrlToolConfig = getSearchUrlTool(this.jobstashBaseUrl);
     this.server.tool(
-      getSearchJobsUrlToolConfig.name,
-      getSearchJobsUrlToolConfig.description,
-      getSearchJobsUrlToolConfig.inputSchema,
-      getSearchJobsUrlToolConfig.handler
+      getSearchUrlToolConfig.name,
+      getSearchUrlToolConfig.description,
+      getSearchUrlToolConfig.inputSchema,
+      getSearchUrlToolConfig.handler
     );
-    console.log(`Registered tool: ${getSearchJobsUrlToolConfig.name}`);
+    console.log(`Registered tool: ${getSearchUrlToolConfig.name}`);
 
   }
 
