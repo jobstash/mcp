@@ -35,13 +35,13 @@ Exposes JobStash job data and search URL construction via MCP tools.
     *   `jobs` (array): A list of job objects, each with properties like `title`, `company`, `location`, `url`, `description`, `tags`.
     *   *(Refer to `src/schemas.ts` for the complete schema definition)*
 
-#### 2. `get_search_jobs_url`
+#### 2. `get_search_url`
 
 *   **Description:** Constructs a JobStash website URL based on structured job search filters. This URL leads to the filtered search results page on `jobstash.xyz`.
 *   **Input Schema:** Accepts a JSON object matching the `search_jobs_input_schema` defined in `src/schemas.ts` (the same schema used by `search_jobs`).
-*   **Output Schema:** Returns a JSON object matching `get_search_jobs_url_output_schema` defined in `src/schemas.ts`, containing:
+*   **Output Structure:** Returns a JSON object containing:
     *   `jobstashUrl` (string, uri): The fully constructed JobStash search URL.
-    *   *(Refer to `src/schemas.ts` for the complete schema definition)*
+    *   *(The exact output schema is defined within the tool handler itself.)*
 
 ## Transport & Connection (Stdio)
 
@@ -83,7 +83,7 @@ try {
 
   // Example: Get the URL for remote senior solidity jobs
   const urlResult = await client.callTool({
-    name: 'get_search_jobs_url',
+    name: 'get_search_url',
     arguments: {
       locations: ["Remote"],
       seniority: ["senior"],

@@ -19,10 +19,10 @@ Internally, this server uses:
 
 The server exposes the following v1 endpoints:
 
-### 1. Get Filtered Jobs URL (via NL)
+### 1. Get Search URL (via NL)
 
--   **Endpoint:** `POST /api/v1/filtered-jobs-url`
--   **Description:** Takes a natural language query, uses an LLM to extract structured parameters, calls the `get_search_jobs_url` tool on the MCP Host Server via MCP, and returns the resulting JobStash search URL.
+-   **Endpoint:** `POST /api/v1/search-url`
+-   **Description:** Takes a natural language query, uses an LLM to extract structured parameters, calls the `get_search_url` tool on the MCP Host Server via MCP, and returns the resulting JobStash search URL.
 -   **Request Body:**
     ```json
     {
@@ -36,7 +36,34 @@ The server exposes the following v1 endpoints:
     }
     ```
 
-### 2. Extract Structured Parameters (NLU Only)
+### 2. Search Jobs (via NL)
+
+-   **Endpoint:** `POST /api/v1/search-jobs`
+-   **Description:** Takes a natural language query, uses an LLM to extract structured parameters, calls the `search_jobs` tool on the MCP Host Server via MCP, and returns the list of matching jobs.
+-   **Request Body:**
+    ```json
+    {
+      "query": "Your natural language job query"
+    }
+    ```
+-   **Example Success Response (200 OK):**
+    ```json
+    {
+      "jobs": [
+        {
+          "title": "Senior Solidity Engineer",
+          "company": "Web3 Co",
+          "location": "Remote",
+          "url": "https://jobstash.xyz/job/123",
+          "description": "...",
+          "tags": ["solidity", "blockchain"]
+        }
+        // ... other jobs
+      ]
+    }
+    ```
+
+### 3. Extract Structured Parameters (NLU Only)
 
 -   **Endpoint:** `POST /api/v1/structured-data/extract-params`
 -   **Description:** Takes a natural language query and returns a JSON object containing structured parameters extracted using the LLM NLU logic, guided by `filters.json`. **Note:** This endpoint only performs the NLU step and does *not* interact with the MCP Host Server.
@@ -62,6 +89,6 @@ The server exposes the following v1 endpoints:
 
 ## Running & Testing
 
-This server requires the **MCP Host Server (`@jobstash/mcp-server`)** to be running separately for the `/api/v1/filtered-jobs-url` endpoint to function correctly.
+This server requires the **MCP Host Server (`@jobstash/mcp-server`)** to be running separately for the `/api/v1/search-url` and `/api/v1/search-jobs` endpoints to function correctly.
 
 Refer to the root [README.md](../../README.md) for instructions on setup, build, running this gateway server, and testing its endpoints.

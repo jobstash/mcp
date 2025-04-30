@@ -1,17 +1,20 @@
 # JobStash MCP Integration
 
-This monorepo contains the JobStash integration with the Model Context Protocol (MCP). It allows users to search for crypto jobs using natural language queries.
+This monorepo enables searching JobStash via natural language, using a two-server Model Context Protocol (MCP) architecture.
+
+1.  **`@jobstash/mcp-server`**: Core MCP Host Server providing structured tools (`get_search_url`, `search_jobs`).
+2.  **`@jobstash/mcp-gateway`**: NestJS Gateway translating natural language (via LLM) to MCP calls.
 
 ## Project Structure
 
 ```
 /
-├── packages/               # Modular packages
-│   ├── mcp/                # MCP implementation as a standalone module
-│   └── jobstash-mcp-server/ # NestJS server implementing MCP endpoints
-├── scripts/                # Utility and testing scripts
-├── .env                    # Environment variables (needs OpenAI key)
-└── package.json            # Root package.json for workspace
+├── packages/
+│   ├── mcp-server/     # Core MCP Host Server
+│   └── mcp-gateway/    # NestJS NL->MCP Gateway
+├── docs/                 # Planning, Architecture docs
+├── .env                  # Required: OPENAI_API_KEY
+└── package.json          # Workspace root
 ```
 
 ## Getting Started
@@ -19,87 +22,80 @@ This monorepo contains the JobStash integration with the Model Context Protocol 
 ### Prerequisites
 
 - Node.js 18+
-- Yarn package manager
+- Yarn
 - OpenAI API key (set in `.env` file)
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/jobstash/mcp.git
-cd mcp
+# Clone, cd mcp
+git clone <repo-url> && cd mcp
 
-# Create .env file from example and add your key
-cp .env.example .env
-# Add your OPENAI_API_KEY to the .env file
+# Create .env if it doesn't exist (add OPENAI_API_KEY)
+# Example: echo "OPENAI_API_KEY=sk-..." > .env
 
-# Install dependencies for all packages
+# Install all dependencies
 yarn install
 ```
 
 ### Build
 
 ```bash
-# Build all packages (@jobstash/mcp and jobstash-mcp-server)
+# Build both packages
 yarn build
+# Or individually: yarn workspace @jobstash/mcp-server build, yarn workspace @jobstash/mcp-gateway build
 ```
 
-### Running the MCP Client Demo
+## Running
 
-This demo uses the `@jobstash/mcp` package directly to process a query.
+Both servers need to run concurrently for the full NL->MCP flow.
 
-```bash
-# Ensure .env file exists and OPENAI_API_KEY is set
-# Run the demo script with a job search query
-./demo.sh "Looking for a senior Solidity developer role in a remote position"
-```
+1.  **Start MCP Server (Server 1):**
+    ```bash
+    # From workspace root
+    node packages/mcp-server/dist/mcp-runner.js
+    ```
 
-### Running the MCP Server
+2.  **Start Gateway (Server 2):**
+    ```bash
+    # From workspace root, in a new terminal
+    yarn workspace @jobstash/mcp-gateway start:dev
+    # Gateway runs on http://localhost:3000 by default
+    ```
 
-This starts the NestJS server which provides API endpoints.
+## Testing
 
-```bash
-# Run the server in development mode (watches for changes)
-# Make sure you are in the root directory
-cd packages/jobstash-mcp-server
-yarn start:dev
-# Server will run on http://localhost:3000 by default
-```
-
-### Testing the Server Endpoints
-
-End-to-end tests for the server API are included within the `jobstash-mcp-server` package. Ensure the server is **not** running separately, then run the tests from the server package directory:
-
-```bash
-# Make sure you are in the root directory
-cd packages/jobstash-mcp-server
-yarn test:e2e
-```
+-   **MCP Server E2E (via test client):**
+    ```bash
+    # From workspace root
+    yarn workspace @jobstash/mcp-server test:client "your query here"
+    ```
+-   **Gateway Unit/Integration Tests:**
+    ```bash
+    # From workspace root
+    yarn workspace @jobstash/mcp-gateway test
+    ```
+-   **Gateway E2E Tests (Requires separate test setup/db if applicable):**
+    ```bash
+    # From workspace root
+    yarn workspace @jobstash/mcp-gateway test:e2e
+    ```
+-   **Manual Gateway Test (Servers running):**
+    ```bash
+    curl -X POST http://localhost:3000/api/v1/search-url -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
+    curl -X POST http://localhost:3000/api/v1/search-jobs -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
+    ```
 
 ## Project Status
 
-This project is in active development. Here's what's implemented so far:
+- ✅ MCP Server (`@jobstash/mcp-server`) implemented with `search_jobs` and `get_search_url` tools.
+- ✅ Gateway (`@jobstash/mcp-gateway`) implemented.
+- ✅ Gateway `/api/v1/search-url` endpoint functional (NL -> URL).
+- ⏳ Gateway `/api/v1/search-jobs` endpoint initial implementation complete (NL -> Job List).
+- ⬜ CV Parsing capability blocked.
+- ⬜ Frontend Integration blocked.
 
-- ✅ MCP package (`@jobstash/mcp`) with OpenAI integration
-- ✅ NestJS Server (`jobstash-mcp-server`) implementing MCP logic
-  - ✅ Endpoint for natural language to structured job parameters conversion
-  - ✅ Endpoint for constructing JobStash search URLs from queries
-- ✅ Demo script for `@jobstash/mcp` package
-- ✅ End-to-end tests for server endpoints (`yarn test:e2e`)
-- ✅ Basic unit tests (some require environment setup)
-
-Coming soon:
-- Full integration with JobStash API for actual job fetching
-- Web chat interface
-- CV parsing functionality
-
-## Development
-
-See the [PROJECT_PLAN.md](PROJECT_PLAN.md) for the roadmap and details on planned features.
-
-## Architecture
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for details on the system design.
+See `/docs` for planning and architecture details.
 
 ## License
 
