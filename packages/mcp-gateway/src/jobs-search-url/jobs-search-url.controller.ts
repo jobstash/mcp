@@ -18,7 +18,7 @@ export class JobsSearchUrlController {
   constructor(
     private readonly nluService: NluService,
     private readonly mcpClientService: McpClientService
-  ) {}
+  ) { }
 
   @Post()
   async handleQuery(@Body(new ValidationPipe()) body: QueryDto) {
@@ -37,9 +37,28 @@ export class JobsSearchUrlController {
 
       this.logger.log(`Received MCP Result: ${JSON.stringify(mcpResult)}`);
 
-      const jobstashUrl = mcpResult?.jobstashUrl;
+      let jobstashUrl: string | undefined;
+      if (
+        mcpResult?.content &&
+        Array.isArray(mcpResult.content) &&
+        mcpResult.content.length > 0 &&
+        mcpResult.content[0]?.type === 'text' &&
+        typeof mcpResult.content[0]?.text === 'string'
+      ) {
+        try {
+          const innerResult = JSON.parse(mcpResult.content[0].text);
+          jobstashUrl = innerResult?.jobstashUrl;
+        } catch (parseError) {
+          this.logger.error(
+            `Failed to parse inner JSON from MCP response: ${parseError}`,
+          );
+        }
+      }
+
       if (!jobstashUrl || typeof jobstashUrl !== 'string') {
-          throw new Error('Invalid response format from MCP Host Server.');
+        throw new Error(
+          'Failed to extract valid jobstashUrl from MCP Host Server response.',
+        );
       }
 
       return { jobstashUrl };
