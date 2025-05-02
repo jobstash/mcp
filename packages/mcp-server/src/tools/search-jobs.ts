@@ -30,6 +30,10 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
             if (args.equity !== undefined) {
                 searchParams.set('token', String(args.equity));
             }
+            // contract type
+            // investor
+            // job category
+            
             // https://middleware.jobstash.xyz/public-api
             const apiUrl = `${jobstashBaseUrl}/list?${searchParams.toString()}`;
 
