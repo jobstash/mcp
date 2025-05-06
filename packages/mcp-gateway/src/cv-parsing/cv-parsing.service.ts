@@ -1,10 +1,9 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { NluService } from '../nlu/nlu.service';
 import { McpClientService } from '../mcp-client/mcp-client.service';
-import { OpenAIFileParserService, FileParserInput, FILE_PARSER_SERVICE } from '@jobstash/file-parser';
+import { OpenAIFileParserService, FileParserInput } from '@jobstash/file-parser';
 import { UserProfile } from '../common/dtos/user-profile.dto';
 import { CvJobData } from '../common/dtos/cv-job-data.dto'; // Correct DTO path
-import type { Express } from 'express'; // For Multer.File type
 
 // Define the expected structure of the MCP tool response for process_cv_job_data
 interface McpProcessCvResponse {
@@ -63,20 +62,34 @@ export class CvParsingService {
                 // The MCP tool also accepts 'fullCvText'. If NLU is designed to provide it within CvJobData, it will be passed.
                 // Otherwise, if 'fullCvText' is always needed by the MCP tool, it should be explicitly added here:
                 // const mcpToolArgs = { ...nluResult.cvJobData, fullCvText: cvText };
-                const mcpToolArgs = nluResult.cvJobData; // Assuming NLU's CvJobData is the complete payload for now
+                const mcpToolArgs = nluResult.cvJobData;
 
-                const mcpResult = await this.mcpClientService.callTool({
-                    toolName: 'process_cv_job_data', // Name of the MCP tool
-                    toolArguments: mcpToolArgs as any, // Cast to any if type alignment is complex or for flexibility
+                const mcpRawResult = await this.mcpClientService.callTool({
+                    name: 'process_cv_job_data',
+                    arguments: mcpToolArgs as any,
                 });
-                const mcpResponse = mcpResult as McpProcessCvResponse; // Assert type here
 
-                if (mcpResponse && typeof mcpResponse.jobstashUrl === 'string') {
-                    jobstashUrl = mcpResponse.jobstashUrl;
+                let parsedMcpText: McpProcessCvResponse | null = null;
+
+                if (
+                    mcpRawResult?.content &&
+                    Array.isArray(mcpRawResult.content) &&
+                    mcpRawResult.content.length > 0 &&
+                    mcpRawResult.content[0]?.type === 'text' &&
+                    typeof mcpRawResult.content[0]?.text === 'string'
+                ) {
+                    try {
+                        parsedMcpText = JSON.parse(mcpRawResult.content[0].text) as McpProcessCvResponse;
+                    } catch (e) {
+                        this.logger.error('Failed to parse JSON from MCP tool response text', { text: mcpRawResult.content[0].text, error: e });
+                    }
+                }
+
+                if (parsedMcpText && typeof parsedMcpText.jobstashUrl === 'string') {
+                    jobstashUrl = parsedMcpText.jobstashUrl;
                     this.logger.log(`Successfully received jobstashUrl from MCP: ${jobstashUrl}`);
                 } else {
-                    this.logger.warn('MCP tool did not return a valid jobstashUrl.', mcpResponse);
-                    // Potentially throw an error or return a specific status
+                    this.logger.warn('MCP tool response did not contain a valid jobstashUrl after parsing.', { rawResponse: mcpRawResult });
                 }
             } catch (error) {
                 this.logger.error(`Failed to call MCP tool or process its response: ${error.message}`, error.stack);

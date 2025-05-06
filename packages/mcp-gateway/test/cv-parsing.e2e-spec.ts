@@ -7,6 +7,7 @@ import { McpClientService } from '../src/mcp-client/mcp-client.service';
 import { CvParsingService } from '../src/cv-parsing/cv-parsing.service'; // Need to potentially mock its internal parsing
 import { UserProfile } from '../src/common/dtos/user-profile.dto';
 import { CvJobData } from '../src/common/dtos/cv-job-data.dto';
+import { OpenAIFileParserService, FILE_PARSER_SERVICE } from '@jobstash/file-parser';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -31,27 +32,25 @@ describe('CvParsingController (e2e)', () => {
     const mockJobstashUrl = "https://jobstash.xyz/jobs?tags=nestjs%2Ctypescript&locations=Remote&seniority=senior";
     const mockMcpUrlResult = { content: [{ type: "text", text: JSON.stringify({ jobstashUrl: mockJobstashUrl }) }] };
 
+    // Mock implementations
+    const mockFileParserService = {
+        parse: jest.fn(),
+    };
+
+    const mockNluService = {
+        extractCvData: jest.fn(),
+    };
+
+    const mockMcpClientService = {
+        callTool: jest.fn(),
+    };
+
     beforeAll(async () => {
-        // --- Mock NLU Service ---
-        const mockNluService = {
-            // Mock the specific method used by CvParsingService
-            extractCvData: jest.fn().mockResolvedValue({
-                cvJobData: mockCvJobData,
-                userProfile: mockUserProfile
-            }),
-            // Keep other methods if they exist, or mock them as needed
-            performNlu: jest.fn(), // Example: Mock other methods if needed elsewhere
-        };
-
-        // --- Mock MCP Client Service ---
-        const mockMcpClientService = {
-            callTool: jest.fn().mockResolvedValue(mockMcpUrlResult),
-            // Add other methods if they exist and need mocking
-        };
-
         const moduleFixture: TestingModule = await Test.createTestingModule({
             imports: [AppModule],
         })
+            .overrideProvider(OpenAIFileParserService)
+            .useValue(mockFileParserService)
             .overrideProvider(NluService)
             .useValue(mockNluService)
             .overrideProvider(McpClientService)
@@ -59,7 +58,8 @@ describe('CvParsingController (e2e)', () => {
             .compile();
 
         app = moduleFixture.createNestApplication();
-        app.useGlobalPipes(new ValidationPipe()); // Ensure pipes are applied
+        app.setGlobalPrefix('api/v1'); // Assuming global prefix is set as per typical NestJS setup
+        app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true })); // Ensure validation pipes are active
         await app.init();
 
         // Get references to services if needed for spying later
@@ -70,7 +70,9 @@ describe('CvParsingController (e2e)', () => {
 
     beforeEach(() => {
         // Reset mocks before each test
-        jest.clearAllMocks();
+        mockFileParserService.parse.mockReset();
+        mockNluService.extractCvData.mockReset();
+        mockMcpClientService.callTool.mockReset();
         // Re-mock NLU service to return the standard mock data for each test
         (nluService.extractCvData as jest.Mock).mockResolvedValue({
             cvJobData: mockCvJobData,
@@ -119,6 +121,71 @@ describe('CvParsingController (e2e)', () => {
 
         parseCvFileSpy.mockRestore(); // Clean up spy
     });
+
+    describe('POST /api/v1/cv/parse', () => {
+        it('should successfully parse a CV and return jobstash URL and user profile', async () => {
+            // Prepare mock responses
+            const mockParsedText = 'This is the parsed CV text.';
+            const mockCvJobData: CvJobData = {
+                skills: ['NestJS', 'TypeScript'],
+                jobTitles: ['Software Engineer'],
+                locations: ['Remote'],
+            };
+            const mockUserProfile: UserProfile = {
+                name: 'Test User',
+                location: { city: 'Test City', country: 'Testland' },
+            };
+            const mockMcpUrl = 'https://jobstash.com/search/123';
+
+            mockFileParserService.parse.mockResolvedValue(mockParsedText);
+            mockNluService.extractCvData.mockResolvedValue({
+                cvJobData: mockCvJobData,
+                userProfile: mockUserProfile,
+            });
+            mockMcpClientService.callTool.mockResolvedValue({ jobstashUrl: mockMcpUrl });
+
+            // Perform the request
+            const response = await request(app.getHttpServer())
+                .post('/api/v1/cv/parse')
+                .attach('cv', path.resolve(__dirname, '../../../test/test_cvs/test_cv_1.pdf')) // 'cv' is the field name expected by FileInterceptor
+                .expect(201); // Assuming POST returns 201 Created
+
+            // Assertions
+            expect(response.body).toBeDefined();
+            expect(response.body.jobstashUrl).toEqual(mockMcpUrl);
+            expect(response.body.userProfile).toEqual(mockUserProfile);
+
+            // Verify that mocks were called with expected arguments
+            expect(mockFileParserService.parse).toHaveBeenCalledWith(expect.objectContaining({
+                originalname: path.basename(path.resolve(__dirname, '../../../test/test_cvs/test_cv_1.pdf')),
+                // buffer: expect.any(Buffer) // Buffer content can be tricky to match exactly unless necessary
+            }));
+            expect(mockNluService.extractCvData).toHaveBeenCalledWith(mockParsedText);
+            expect(mockMcpClientService.callTool).toHaveBeenCalledWith(expect.objectContaining({
+                toolName: 'process_cv_job_data',
+                toolArguments: mockCvJobData,
+            }));
+        });
+
+        it('should return 400 if no file is uploaded', async () => {
+            return request(app.getHttpServer())
+                .post('/api/v1/cv/parse')
+                .expect(400);
+            // Add more specific error message checking if desired
+        });
+
+        it('should return 500 if file parsing fails', async () => {
+            mockFileParserService.parse.mockRejectedValue(new Error('Parsing failed'));
+
+            return request(app.getHttpServer())
+                .post('/api/v1/cv/parse')
+                .attach('cv', path.resolve(__dirname, '../../../test/test_cvs/test_cv_1.pdf'))
+                .expect(500) // Or 422 if you mapped to Unprocessable Entity
+                .then(response => {
+                    expect(response.body.message).toContain('Failed to process CV content: Error parsing CV file: Parsing failed');
+                });
+        });
+ });
 
     // Add more tests:
     // - File too large

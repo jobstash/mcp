@@ -12,7 +12,7 @@ export class NluService implements OnModuleInit {
   constructor(private configService: ConfigService) { }
 
   onModuleInit() {
-    const openaiApiKey = this.configService.get<string>('');
+    const openaiApiKey = this.configService.get<string>('OPENAI_API_KEY');
     if (!openaiApiKey) {
       this.logger.error('OPENAI_API_KEY is not configured.');
       throw new Error('OPENAI_API_KEY must be configured for NLU.');

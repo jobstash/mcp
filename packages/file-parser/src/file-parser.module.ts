@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { OpenAIFileParserService } from './openai-file-parser.service';
 import { FILE_PARSER_SERVICE } from './file-parser.constants';
 
 @Module({
-    imports: [],
+    imports: [ConfigModule],
     providers: [
         {
             provide: FILE_PARSER_SERVICE,
