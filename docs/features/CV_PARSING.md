@@ -25,8 +25,8 @@
 ## 3. Key Implementation Steps
 
 1.  **MCP Server:** Define `cv_job_data_schema`. Implement `process_cv_job_data` tool (handler, mapping). Register tool. Create dedicated test script (`test-process-cv.ts`) and run it. - *(Largely DONE, tool exists)*
-2.  **Gateway:** Define `UserProfile` DTO. Update `NluService` for dual extraction. Create `cv-parsing` module (controller, service) to handle file upload, parsing, NLU, MCP call, and response. Update `app.module.ts`.
-3.  **Testing:** Unit tests for mapping, NLU, service orchestration. E2E tests for API with mocks.
+2.  **Gateway:** Define `UserProfile` DTO. Update `NluService` for dual extraction. Create `cv-parsing` module (controller, service) to handle file upload, parsing, NLU, MCP call, and response. Update `app.module.ts`. - *(DONE)*
+3.  **Testing:** Unit tests for mapping, NLU, service orchestration. E2E tests for API with mocks. - *(E2E for main flow in progress/verified)*
 
 ## 4. Challenges & Considerations
 
@@ -66,13 +66,13 @@
 
 6.  **`packages/mcp-gateway/src/common/dtos/user-profile.dto.ts` (Create):** - **DONE**
     *   Define the `UserProfile` interface/class according to the required structure.
-7.  **`packages/mcp-gateway/src/nlu/nlu.service.ts` (Modify):** - *NEXT*
+7.  **`packages/mcp-gateway/src/nlu/nlu.service.ts` (Modify):** - **DONE** (Initial implementation complete, refinement pending)
     *   Create/adapt method `extractCvData(cvText: string): Promise<{ cvJobData: CvJobData, userProfile: UserProfile }>` (import `CvJobData` type definition or mirror it).
     *   Develop/adapt OpenAI system prompt for dual extraction targeting `CvJobData` and `UserProfile` schemas.
     *   Implement OpenAI call and response parsing.
-8.  **`packages/mcp-gateway/src/cv-parsing/cv-parsing.module.ts` (Create):**
+8.  **`packages/mcp-gateway/src/cv-parsing/cv-parsing.module.ts` (Create):** - **DONE**
     *   Create basic NestJS module. Import `NluModule`, `McpClientModule`, `FileParserModule` (from `@jobstash/file-parser`). Declare `CvParsingController`, `CvParsingService`.
-9.  **`packages/mcp-gateway/src/cv-parsing/cv-parsing.service.ts` (Create):**
+9.  **`packages/mcp-gateway/src/cv-parsing/cv-parsing.service.ts` (Create):** - **DONE**
     *   Inject `NluService`, `McpClientService`, `Logger`, and `OpenAIFileParserService` (from `@jobstash/file-parser`).
     *   Implement `handleCvUpload(file: Express.Multer.File)`:
         *   Calls `fileParserService.parse(inputFile)` -> `cvText`. (Utilizes `@jobstash/file-parser`)
@@ -81,17 +81,17 @@
         *   Parses MCP response -> `jobstashUrl`.
         *   Returns `{ jobstashUrl, userProfile }`.
     *   ~~Implement `parseCvFile(buffer: Buffer): Promise<string>`~~ (Replaced by `@jobstash/file-parser` service).
-10. **`packages/mcp-gateway/src/cv-parsing/cv-parsing.controller.ts` (Create):**
+10. **`packages/mcp-gateway/src/cv-parsing/cv-parsing.controller.ts` (Create):** - **DONE**
     *   Create basic NestJS controller for `POST /api/v1/cv/parse`.
     *   Inject `CvParsingService`.
     *   Implement endpoint handler using `@UploadedFile()` and `@UseInterceptors(FileInterceptor('cv', { /* options like limits, storage */ }))` to receive the file.
     *   Add file validation (size, type).
     *   Call service method and return result.
-11. **`packages/mcp-gateway/src/app.module.ts` (Modify):**
+11. **`packages/mcp-gateway/src/app.module.ts` (Modify):** - **DONE**
     *   Import and add `CvParsingModule` to the `imports` array.
 
 **Phase 3: Testing & Refinement**
 
-12. **Unit Tests:** Add tests for mapping logic (`process-cv-job-data.ts`), NLU dual extraction (`nlu.service.spec.ts`), Gateway service orchestration (`cv-parsing.service.spec.ts`), and Gateway controller (`cv-parsing.controller.spec.ts`).
-13. **E2E Test:** Create `cv-parsing.e2e-spec.ts` for the Gateway endpoint, mocking parsing, NLU, and MCP calls.
-14. **Refine:** ~~Implement actual PDF/DOCX parsing in `CvParsingService`~~ (Addressed by `@jobstash/file-parser`). Refine NLU prompts. Refine mapping logic. 
+12. **Unit Tests:** Add tests for mapping logic (`process-cv-job-data.ts`), NLU dual extraction (`nlu.service.spec.ts`), Gateway service orchestration (`cv-parsing.service.spec.ts`), and Gateway controller (`cv-parsing.controller.spec.ts`). - *(Partially addressed by individual component testing, more comprehensive unit tests pending)*
+13. **E2E Test:** Create `cv-parsing.e2e-spec.ts` for the Gateway endpoint, mocking parsing, NLU, and MCP calls. - *(Real E2E test created and main flow validated, mocked E2E can still be useful)*
+14. **Refine:** ~~Implement actual PDF/DOCX parsing in `CvParsingService`~~ (Addressed by `@jobstash/file-parser`). Refine NLU prompts. Refine mapping logic. - *(NLU/mapping refinement pending)* 

@@ -15,6 +15,7 @@ This server acts as the standard MCP endpoint (MCP Host Server). Its sole purpos
 ## Functionality
 
 Exposes JobStash job data and search URL construction via MCP tools.
+It also provides a tool to process structured data extracted from a CV to generate a relevant JobStash search URL.
 
 ### Available Tools
 
@@ -41,6 +42,22 @@ Exposes JobStash job data and search URL construction via MCP tools.
 *   **Input Schema:** Accepts a JSON object matching the `search_jobs_input_schema` defined in `src/schemas.ts` (the same schema used by `search_jobs`).
 *   **Output Structure:** Returns a JSON object containing:
     *   `jobstashUrl` (string, uri): The fully constructed JobStash search URL.
+    *   *(The exact output schema is defined within the tool handler itself.)*
+
+#### 3. `process_cv_job_data`
+
+*   **Description:** Takes structured job-related data (extracted from a CV by a client), maps it to standard search filters, and then constructs a JobStash website URL. This tool does *not* process the CV file itself, nor does it extract user profile information.
+*   **Input Schema:** Accepts a JSON object matching the `cv_job_data_schema` defined in `src/schemas.ts`. This schema includes fields like:
+    *   `jobTitles` (string[], optional): Job titles mentioned in the CV.
+    *   `skills` (string[], optional): Skills extracted from the CV.
+    *   `locations` (string[], optional): Locations preferred or mentioned.
+    *   `seniorityKeywords` (string[], optional): Keywords indicating experience level.
+    *   `companyNames` (string[], optional): Companies worked at.
+    *   `educationLevel` (string, optional): Highest education level.
+    *   `yearsExperience` (integer, optional): Total years of experience.
+    *   *(Refer to `src/schemas.ts` for the complete `cv_job_data_schema` definition)*
+*   **Output Schema:** Returns a JSON object containing:
+    *   `jobstashUrl` (string, uri): The fully constructed JobStash search URL based on the processed CV data.
     *   *(The exact output schema is defined within the tool handler itself.)*
 
 ## Transport & Connection (Stdio)
