@@ -4,6 +4,7 @@ import { SearchJobsModule } from './search-jobs/search-jobs.module';
 import { SearchUrlModule } from './search-url/search-url.module';
 import { NluModule } from './nlu/nlu.module';
 import { McpClientModule } from './mcp-client/mcp-client.module';
+import { CvParsingModule } from './cv-parsing/cv-parsing.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { McpClientModule } from './mcp-client/mcp-client.module';
     SearchUrlModule,
     NluModule,
     McpClientModule,
+    CvParsingModule,
   ],
   controllers: [],
   providers: [],
