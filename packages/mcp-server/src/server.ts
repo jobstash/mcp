@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getSearchJobsTool } from "./tools/search-jobs";
 import { getSearchUrlTool } from "./tools/get-search-url";
+import { getProcessCvJobDataTool } from './tools/process-cv-job-data';
 
 export interface McpManagerConfig {
   name: string;
@@ -17,7 +18,12 @@ export class McpManager {
 
     this.server = new McpServer({
       name: config.name,
-      version: config.version
+      version: config.version,
+      tools: [
+        getSearchUrlTool(this.jobstashBaseUrl),
+        getSearchJobsTool(this.jobstashBaseUrl),
+        getProcessCvJobDataTool(this.jobstashBaseUrl),
+      ],
     });
 
     this.setupTools();
@@ -46,6 +52,16 @@ export class McpManager {
       getSearchUrlToolConfig.handler
     );
     console.log(`Registered tool: ${getSearchUrlToolConfig.name}`);
+
+    // --- Register process_cv_job_data tool ---
+    const processCvToolConfig = getProcessCvJobDataTool(this.jobstashBaseUrl);
+    this.server.tool(
+      processCvToolConfig.name,
+      processCvToolConfig.description,
+      processCvToolConfig.inputSchema,
+      processCvToolConfig.handler
+    );
+    console.log(`Registered tool: ${processCvToolConfig.name}`);
 
   }
 

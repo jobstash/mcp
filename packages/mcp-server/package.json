@@ -8,9 +8,11 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "eslint src/",
-    "dev": "tsc --watch",
-    "test:client": "npm run build && node ./dist/test-client.js"
+    "start": "node dist/mcp-runner.js",
+    "test:client": "npm run build && node ./dist/test-client.js",
+    "test:cv": "npm run build && node ./dist/test-process-cv.js",
+    "dev": "tsc -w",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
