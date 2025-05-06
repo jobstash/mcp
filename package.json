@@ -11,10 +11,7 @@
     "lint": "yarn workspaces run lint",
     "dev": "yarn workspaces run dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jobstash/mcp.git"
-  },
+  "repository": "git+https://github.com/jobstash/mcp.git",
   "keywords": [
     "jobstash",
     "mcp",
@@ -33,5 +30,6 @@
   },
   "resolutions": {
     "zod": "^3.24.1"
-  }
+  },
+  "main": "index.js"
 }

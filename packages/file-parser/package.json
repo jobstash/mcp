@@ -1,0 +1,23 @@
+{
+    "name": "@jobstash/file-parser",
+    "version": "0.1.0",
+    "description": "Package for parsing file content (e.g., CVs) into text",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@nestjs/common": "^10.3.10",
+        "@nestjs/config": "^3.2.3",
+        "openai": "^4.53.2"
+    },
+    "devDependencies": {
+        "typescript": "^5.2.2",
+        "@types/node": "^20.8.7"
+    }
+}
