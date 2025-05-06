@@ -4,57 +4,62 @@ import {
     UploadedFile,
     UseInterceptors,
     ParseFilePipe,
-    FileTypeValidator,
     MaxFileSizeValidator,
-    Logger,
+    FileTypeValidator,
     HttpException,
     HttpStatus,
+    Logger,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CvParsingService } from './cv-parsing.service';
-import { Express } from 'express'; // For Multer file type
+import type { Express } from 'express'; // For Multer.File type
+import { UserProfile } from '../common/dtos/user-profile.dto';
 
-// Example: Define file size and type constants
-const MAX_CV_SIZE_MB = 5;
-const MAX_CV_SIZE_BYTES = MAX_CV_SIZE_MB * 1024 * 1024;
-// Adjust allowed MIME types as needed (PDF, DOCX, potentially plain text)
-const ALLOWED_CV_MIME_TYPES = [
-    'application/pdf',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
-    'text/plain',
-];
+// Define a DTO for the response to ensure consistency
+export class CvParseResponseDto {
+    jobstashUrl: string | null;
+    userProfile: UserProfile | null;
+}
 
-@Controller('api/v1/cv/parse')
+@Controller('cv') // Assuming the route base is /api/v1/cv from the plan
 export class CvParsingController {
     private readonly logger = new Logger(CvParsingController.name);
 
     constructor(private readonly cvParsingService: CvParsingService) { }
 
-    @Post()
-    @UseInterceptors(FileInterceptor('cv')) // 'cv' is the field name in form-data
+    @Post('parse')
+    @UseInterceptors(FileInterceptor('cv')) // 'cv' is the field name for the file in form-data
     async parseCv(
         @UploadedFile(
             new ParseFilePipe({
                 validators: [
-                    new MaxFileSizeValidator({ maxSize: MAX_CV_SIZE_BYTES }),
-                    new FileTypeValidator({ fileType: new RegExp(`^(${ALLOWED_CV_MIME_TYPES.join('|')})$`) }),
+                    //TODO: make file size configurable
+                    new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }), // 5MB limit
+                    new FileTypeValidator({ fileType: '(pdf|doc|docx|txt|md)' }), // Allowed file types regex
                 ],
-                fileIsRequired: true, // Ensure a file is actually uploaded
+                fileIsRequired: true,
             }),
         )
         file: Express.Multer.File,
-    ) {
-        this.logger.log(`Received CV file upload request: ${file.originalname}`);
+    ): Promise<CvParseResponseDto> {
+        this.logger.log(`Received file for parsing: ${file.originalname}, type: ${file.mimetype}, size: ${file.size} bytes`);
+
+        if (!file) {
+            this.logger.error('No file uploaded.');
+            throw new HttpException('No file uploaded.', HttpStatus.BAD_REQUEST);
+        }
+
         try {
             const result = await this.cvParsingService.handleCvUpload(file);
-            return result; // Returns { jobstashUrl, userProfile }
+            this.logger.log(`Successfully processed CV: ${file.originalname}`);
+            return result;
         } catch (error) {
-            // Catch specific errors if needed, otherwise rethrow standard HttpExceptions
-            if (error instanceof HttpException) {
-                throw error;
+            this.logger.error(`Error during CV processing for ${file.originalname}: ${error.message}`, error.stack);
+            // Determine appropriate HTTP status based on error type if possible
+            if (error.message.includes('Error parsing CV file') || error.message.includes('Error processing CV content')) {
+                throw new HttpException(`Failed to process CV content: ${error.message}`, HttpStatus.UNPROCESSABLE_ENTITY);
             }
-            this.logger.error(`Unexpected error during CV processing: ${error.message}`, error.stack);
-            throw new HttpException('Internal server error during CV processing', HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new HttpException('An unexpected error occurred while processing the CV.', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 } 

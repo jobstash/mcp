@@ -12,8 +12,8 @@ Create a system allowing users and AI agents to interact with the JobStash API u
 
 ## Architecture Approach
 Two-server architecture:
-- **`@jobstash/mcp-server`**: The core MCP Host Server. Provides structured MCP tools (`search_jobs`, `get_search_url`) for interacting with the JobStash backend API. Does not use LLMs. (Phase 1 - Complete)
-- **`@jobstash/mcp-gateway`**: The NL -> MCP Gateway (NestJS). Accepts plain text queries, uses an LLM for NLU, acts as an MCP Client to call `@jobstash/mcp-server`, and returns results. (Phase 2 - Complete)
+- **`@jobstash/mcp-server`**: The core MCP Host Server. Provides structured MCP tools (`search_jobs`, `get_search_url`, `process_cv_job_data`) for interacting with the JobStash backend API. Does not use LLMs. (Phase 1 - Complete)
+- **`@jobstash/mcp-gateway`**: The NL -> MCP Gateway (NestJS). Accepts plain text queries and CV uploads, uses an LLM for NLU, acts as an MCP Client to call `@jobstash/mcp-server`, and returns results. (Phase 2 & CV Parsing - Largely Complete)
 
 ## Remaining Milestones & Tasks
 
@@ -30,18 +30,21 @@ Two-server architecture:
 - [ ] Implement dynamic schema generation if feasible.
 - [ ] Update `@jobstash/mcp-server` tool registration/handling if schema becomes dynamic.
 
-### 3. Implement CV Parsing Capability (`@jobstash/mcp-gateway`)
-- [ ] Define API endpoint in Gateway to accept CV file uploads.
-- [ ] Implement logic to call OpenAI API (or similar) for parsing CV content (text extraction).
-- [ ] Implement NLU within the Gateway to extract structured job search parameters (skills, experience, etc.) from the parsed CV text.
-- [ ] Define flow for using extracted parameters (e.g., call `get_search_url` on Server 1 with CV parameters? Or perhaps call `search_jobs` if we re-introduce it later?).
-- [ ] Determine response format for the CV parsing endpoint.
+### 3. Implement CV Parsing Capability (`@jobstash/mcp-gateway`) - SUBSTANTIALLY COMPLETE (Pending E2E Tests)
+- [x] Define API endpoint in Gateway to accept CV file uploads (`CvParsingController`).
+- [x] Implement logic to call OpenAI API (or similar) for parsing CV content (text extraction) (via `@jobstash/file-parser` used in `CvParsingService`).
+- [x] Implement NLU within the Gateway to extract structured job search parameters (`CvJobData`) and `UserProfile` from the parsed CV text (`NluService.extractCvData`).
+- [x] Define flow for using extracted parameters: `FileParserService` -> `NluService` -> `McpClientService` (calling `process_cv_job_data` tool).
+- [x] Determine response format for the CV parsing endpoint (`{ jobstashUrl, userProfile }`).
 
-### 4. Frontend Integration (Blocked - Waiting Design)
-- [ ] Integrate Gateway API calls (`/search-url`, potentially CV upload endpoint) into the JobStash frontend.
+### 4. End-to-End Testing for CV Parsing
+- [ ] Create E2E tests for the CV parsing API endpoint (`/api/v1/cv/parse`), potentially mocking downstream services if necessary for focused testing.
 
-### 5. MCP Server Publication (AI Agent Integration)
-- [ ] Finalize documentation for `@jobstash/mcp-server`.
+### 5. Frontend Integration (Blocked - Waiting Design)
+- [ ] Integrate Gateway API calls (`/search-url`, CV upload endpoint) into the JobStash frontend.
+
+### 6. MCP Server Publication (AI Agent Integration)
+- [ ] Finalize documentation for `@jobstash/mcp-server` tools, including `process_cv_job_data`.
 - [ ] Consider deployment/publication strategy for external AI agent access.
 
  
