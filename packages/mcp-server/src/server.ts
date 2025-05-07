@@ -6,23 +6,26 @@ import { getProcessCvJobDataTool } from './tools/process-cv-job-data';
 export interface McpManagerConfig {
   name: string;
   version: string;
-  jobstashBaseUrl?: string;
+  jobstashSiteUrl: string;
+  jobstashApiUrl: string;
 }
 
 export class McpManager {
   private server: McpServer;
-  private jobstashBaseUrl: string;
+  private jobstashSiteUrl: string;
+  private jobstashApiUrl: string;
 
   constructor(config: McpManagerConfig) {
-    this.jobstashBaseUrl = config.jobstashBaseUrl || 'https://jobstash.xyz';
+    this.jobstashSiteUrl = config.jobstashSiteUrl;
+    this.jobstashApiUrl = config.jobstashApiUrl;
 
     this.server = new McpServer({
       name: config.name,
       version: config.version,
       tools: [
-        getSearchUrlTool(this.jobstashBaseUrl),
-        getSearchJobsTool(this.jobstashBaseUrl),
-        getProcessCvJobDataTool(this.jobstashBaseUrl),
+        getSearchUrlTool(this.jobstashSiteUrl),
+        getSearchJobsTool(this.jobstashApiUrl),
+        getProcessCvJobDataTool(this.jobstashSiteUrl),
       ],
     });
 
@@ -33,7 +36,7 @@ export class McpManager {
     console.log("Registering MCP tools...");
 
     // --- Register search_jobs tool using the imported factory ---
-    const searchJobsToolConfig = getSearchJobsTool(this.jobstashBaseUrl);
+    const searchJobsToolConfig = getSearchJobsTool(this.jobstashApiUrl);
     this.server.tool(
       searchJobsToolConfig.name,
       searchJobsToolConfig.description,
@@ -43,8 +46,8 @@ export class McpManager {
 
     console.log(`Registered tool: ${searchJobsToolConfig.name}`);
 
-    // --- Register get_search_url tool --- 
-    const getSearchUrlToolConfig = getSearchUrlTool(this.jobstashBaseUrl);
+    // --- Register search_url tool ---
+    const getSearchUrlToolConfig = getSearchUrlTool(this.jobstashSiteUrl);
     this.server.tool(
       getSearchUrlToolConfig.name,
       getSearchUrlToolConfig.description,
@@ -54,7 +57,7 @@ export class McpManager {
     console.log(`Registered tool: ${getSearchUrlToolConfig.name}`);
 
     // --- Register process_cv_job_data tool ---
-    const processCvToolConfig = getProcessCvJobDataTool(this.jobstashBaseUrl);
+    const processCvToolConfig = getProcessCvJobDataTool(this.jobstashSiteUrl);
     this.server.tool(
       processCvToolConfig.name,
       processCvToolConfig.description,

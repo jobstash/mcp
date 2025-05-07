@@ -2,7 +2,7 @@ import { URLSearchParams } from 'url';
 import { search_jobs_input_schema, SearchJobsInputArgs } from '../schemas';
 
 // Function to create the handler
-const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
+const createGetSearchJobsUrlHandler = (jobstashSiteUrl: string) => {
     return async (args: SearchJobsInputArgs, _extra: any): Promise<any> => {
 
         try {
@@ -37,7 +37,7 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
             // searchParams.set('limit', '20');
 
             const queryString = searchParams.toString();
-            const finalUrl = `${jobstashBaseUrl}/jobs?${queryString}`;
+            const finalUrl = `${jobstashSiteUrl}/jobs?${queryString}`;
 
             const response = { jobstashUrl: finalUrl };
 
@@ -54,10 +54,9 @@ const createGetSearchJobsUrlHandler = (jobstashBaseUrl: string) => {
     };
 };
 
-// Export a function that returns the tool configuration
-export const getSearchUrlTool = (jobstashBaseUrl: string) => ({
+export const getSearchUrlTool = (jobstashSiteUrl: string) => ({
     name: "get_search_url",
     description: "Constructs a JobStash website URL based on structured job search filters.",
     inputSchema: search_jobs_input_schema.shape,
-    handler: createGetSearchJobsUrlHandler(jobstashBaseUrl),
+    handler: createGetSearchJobsUrlHandler(jobstashSiteUrl),
 }); 

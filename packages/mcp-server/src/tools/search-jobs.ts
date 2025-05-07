@@ -2,7 +2,7 @@ import { URLSearchParams } from 'url';
 import { search_jobs_input_schema, SearchJobsInputArgs } from '../schemas';
 
 // Function to create the search_jobs handler, accepting the base URL
-const createSearchJobsHandler = (jobstashBaseUrl: string) => {
+const createSearchJobsHandler = (jobstashApiUrl: string) => {
     return async (args: SearchJobsInputArgs, _extra: any): Promise<any> => {
 
         try {
@@ -33,9 +33,8 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
             // contract type
             // investor
             // job category
-            
-            // https://middleware.jobstash.xyz/public-api
-            const apiUrl = `${jobstashBaseUrl}/list?${searchParams.toString()}`;
+
+            const apiUrl = `${jobstashApiUrl}/jobs/list?${searchParams.toString()}`;
 
             const apiResponse = await fetch(apiUrl, {
                 method: 'GET',
@@ -44,7 +43,7 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
 
             if (!apiResponse.ok) {
                 const errorText = await apiResponse.text();
-                console.error(`MCP Server (search_jobs tool): JobStash API request failed with status ${apiResponse.status}: ${errorText}`);
+                console.error(`MCP Server (search_jobs tool): JobStash API request to ${apiUrl} failed with status ${apiResponse.status}: ${errorText}`);
                 // Return standard error structure
                 return {
                     content: [{ type: "text", text: JSON.stringify({ error: `JobStash API request failed: ${apiResponse.statusText} - ${errorText}` }) }],
@@ -71,9 +70,9 @@ const createSearchJobsHandler = (jobstashBaseUrl: string) => {
     };
 };
 
-export const getSearchJobsTool = (jobstashBaseUrl: string) => ({
+export const getSearchJobsTool = (jobstashApiUrl: string) => ({
     name: "search_jobs",
     description: "Searches for JobStash jobs based on structured filters and returns a list of matching jobs.",
     inputSchema: search_jobs_input_schema.shape,
-    handler: createSearchJobsHandler(jobstashBaseUrl),
+    handler: createSearchJobsHandler(jobstashApiUrl),
 }); 

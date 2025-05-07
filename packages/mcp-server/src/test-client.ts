@@ -7,10 +7,38 @@ import path from 'path';
 import fs from 'fs';
 
 async function main() {
-  const query = process.argv[2];
-  if (!query) {
-    console.error('Error: Please provide a job search query');
+  const argv = process.argv.slice(2);
+  let cliArgs = [...argv]; // Use a mutable copy for processing
+  let toolToTest = "";
+  let queryFromCli = ""; // Store the query string from CLI
+
+  const toolArgIndex = cliArgs.findIndex(arg => arg === '--tool');
+
+  if (toolArgIndex !== -1) {
+    // Found --tool
+    if (cliArgs[toolArgIndex + 1]) {
+      toolToTest = cliArgs[toolArgIndex + 1];
+      cliArgs.splice(toolArgIndex, 2); // Remove --tool and its value from cliArgs
+    } else {
+      console.error("Error: --tool flag requires a tool name.");
+      console.error('Supported tools: search_jobs, get_search_url');
+      console.error('Usage: node test-client.js --tool <tool_name>');
+      console.error('Usage: node test-client.js "your job search query"');
+      process.exit(1);
+    }
+  }
+
+  // Any remaining positional argument is considered the query string
+  if (cliArgs.length > 0) {
+    queryFromCli = cliArgs[0];
+  }
+
+  // Validate arguments based on mode
+  if (!toolToTest && !queryFromCli) {
+    // If --tool is NOT specified (default mode), queryFromCli is mandatory.
+    console.error('Error: Please provide a job search query when not using --tool.');
     console.error('Usage: node test-client.js "your job search query"');
+    console.error('Usage: node test-client.js --tool <search_jobs|get_search_url>');
     process.exit(1);
   }
 
@@ -33,7 +61,7 @@ async function main() {
     env: serverEnv,
     stderr: 'inherit' // <= ADD THIS
   });
-  
+
   const client = new Client({
     name: 'jobstash-mcp-test-client',
     version: '0.1.0'
@@ -43,52 +71,115 @@ async function main() {
     await client.connect(transport);
     console.log('✅🤝Connected to MCP server');
 
-    const searchParams = {
-      query: query,
-      tags: extractKeywords(query)
+    const specificNluArgsForTesting = { // Arguments for targeted tool testing
+      tags: ["solidity"],
+      locations: ["Remote"],
+      seniority: ["senior"]
     };
 
-    console.log(`Processing search: ${JSON.stringify(searchParams, null, 2)}`);
-    const result = await client.callTool({
-      name: 'search_jobs',
-      arguments: { ...searchParams }
-    });
+    if (toolToTest) {
+      // --- Specific tool testing mode ---
+      console.log(`Targeted test for tool: ${toolToTest}`);
 
-    if (result && typeof result === 'object' && 'content' in result) {
-      const content = result.content;
-      if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
-        const text = 'text' in content[0] ? String(content[0].text) : '';
-        if (text) {
-          try {
-            const response = JSON.parse(text);
-            console.log('\nSearch Results:');
-            console.log(JSON.stringify(response, null, 2));
-          } catch (e) {
-            console.error('Error parsing response:', e);
-            console.log('Raw response:', text);
+      if (toolToTest === 'search_jobs') {
+        console.log(`\nCalling search_jobs with specific NLU-like arguments: ${JSON.stringify(specificNluArgsForTesting, null, 2)}`);
+        const result = await client.callTool({
+          name: 'search_jobs',
+          arguments: { ...specificNluArgsForTesting }
+        });
+        // Result processing for search_jobs
+        if (result && typeof result === 'object' && 'content' in result) {
+          const content = result.content;
+          if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
+            const text = 'text' in content[0] ? String(content[0].text) : '';
+            if (text) {
+              try {
+                const response = JSON.parse(text);
+                console.log('\nSearch Results (from search_jobs):');
+                console.log(JSON.stringify(response, null, 2));
+              } catch (e) {
+                console.error('Error parsing search_jobs response:', e);
+                console.log('Raw search_jobs response:', text);
+              }
+            }
+          }
+        }
+      } else if (toolToTest === 'get_search_url') {
+        console.log(`\nCalling get_search_url with specific NLU-like arguments: ${JSON.stringify(specificNluArgsForTesting, null, 2)}`);
+        const urlResult = await client.callTool({
+          name: 'get_search_url',
+          arguments: { ...specificNluArgsForTesting }
+        });
+        // Result processing for get_search_url
+        if (urlResult && typeof urlResult === 'object' && 'content' in urlResult) {
+          const content = urlResult.content;
+          if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
+            const text = 'text' in content[0] ? String(content[0].text) : '';
+            if (text) {
+              try {
+                const response = JSON.parse(text);
+                console.log('\nJobStash URL (from get_search_url):');
+                console.log(response.jobstashUrl);
+              } catch (e) {
+                console.error('Error parsing get_search_url response:', e);
+                console.log('Raw get_search_url response:', text);
+              }
+            }
+          }
+        }
+      } else {
+        console.warn(`Warning: Unknown tool specified for targeted test: '${toolToTest}'. Supported: search_jobs, get_search_url`);
+      }
+    } else {
+      // --- Default mode: test with query string from CLI ---
+      console.log(`Running default test sequence with query: "${queryFromCli}"`);
+      const defaultSearchParams = {
+        query: queryFromCli,
+        tags: extractKeywords(queryFromCli)
+      };
+
+      // Call search_jobs
+      console.log(`\nCalling search_jobs with default arguments: ${JSON.stringify(defaultSearchParams, null, 2)}`);
+      const result = await client.callTool({
+        name: 'search_jobs',
+        arguments: { ...defaultSearchParams }
+      });
+      if (result && typeof result === 'object' && 'content' in result) {
+        const content = result.content;
+        if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
+          const text = 'text' in content[0] ? String(content[0].text) : '';
+          if (text) {
+            try {
+              const response = JSON.parse(text);
+              console.log('\nSearch Results (from search_jobs):');
+              console.log(JSON.stringify(response, null, 2));
+            } catch (e) {
+              console.error('Error parsing search_jobs response:', e);
+              console.log('Raw search_jobs response:', text);
+            }
           }
         }
       }
-    }
 
-    console.log("\nGetting JobStash URL...");
-    const urlResult = await client.callTool({
-      name: 'get_search_jobs_url',
-      arguments: { ...searchParams }
-    });
-
-    if (urlResult && typeof urlResult === 'object' && 'content' in urlResult) {
-      const content = urlResult.content;
-      if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
-        const text = 'text' in content[0] ? String(content[0].text) : '';
-        if (text) {
-          try {
-            const response = JSON.parse(text);
-            console.log('\nJobStash URL:');
-            console.log(response.jobstashUrl);
-          } catch (e) {
-            console.error('Error parsing URL response:', e);
-            console.log('Raw response:', text);
+      // Call get_search_url
+      console.log(`\nCalling get_search_url with default arguments: ${JSON.stringify(defaultSearchParams, null, 2)}`);
+      const urlResult = await client.callTool({
+        name: 'get_search_url',
+        arguments: { ...defaultSearchParams }
+      });
+      if (urlResult && typeof urlResult === 'object' && 'content' in urlResult) {
+        const content = urlResult.content;
+        if (Array.isArray(content) && content.length > 0 && typeof content[0] === 'object') {
+          const text = 'text' in content[0] ? String(content[0].text) : '';
+          if (text) {
+            try {
+              const response = JSON.parse(text);
+              console.log('\nJobStash URL (from get_search_url):');
+              console.log(response.jobstashUrl);
+            } catch (e) {
+              console.error('Error parsing get_search_url response:', e);
+              console.log('Raw get_search_url response:', text);
+            }
           }
         }
       }

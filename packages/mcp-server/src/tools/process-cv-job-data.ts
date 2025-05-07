@@ -3,7 +3,7 @@ import { cv_job_data_schema, CvJobData, SearchJobsInputArgs } from '../schemas';
 
 // Placeholder for potential shared URL building logic if we refactor get-search-url.ts
 // For now, we can duplicate or adapt the logic here.
-function buildJobStashUrl(jobstashBaseUrl: string, params: SearchJobsInputArgs): string {
+function buildJobStashUrl(jobstashSiteUrl: string, params: SearchJobsInputArgs): string {
     const searchParams = new URLSearchParams();
 
     // Map SearchJobsInputArgs to query parameters
@@ -33,10 +33,10 @@ function buildJobStashUrl(jobstashBaseUrl: string, params: SearchJobsInputArgs):
     }
 
     const queryString = searchParams.toString();
-    return `${jobstashBaseUrl}/jobs?${queryString}`;
+    return `${jobstashSiteUrl}/jobs?${queryString}`;
 }
 
-const createProcessCvJobDataHandler = (jobstashBaseUrl: string) => {
+const createProcessCvJobDataHandler = (jobstashSiteUrl: string) => {
     return async (args: CvJobData, _extra: any): Promise<any> => {
         try {
             // 1. Map CvJobData to SearchJobsInputArgs
@@ -71,7 +71,7 @@ const createProcessCvJobDataHandler = (jobstashBaseUrl: string) => {
             // Consider how fullCvText might be used if direct fields aren't enough
 
             // 2. Generate JobStash URL using the mapped arguments
-            const finalUrl = buildJobStashUrl(jobstashBaseUrl, searchJobArgs);
+            const finalUrl = buildJobStashUrl(jobstashSiteUrl, searchJobArgs);
             const response = { jobstashUrl: finalUrl };
 
             return {
@@ -87,9 +87,9 @@ const createProcessCvJobDataHandler = (jobstashBaseUrl: string) => {
     };
 };
 
-export const getProcessCvJobDataTool = (jobstashBaseUrl: string) => ({
+export const getProcessCvJobDataTool = (jobstashSiteUrl: string) => ({
     name: "process_cv_job_data",
     description: "Processes structured job-related data extracted from a CV and returns a JobStash search URL.",
     inputSchema: cv_job_data_schema.shape,
-    handler: createProcessCvJobDataHandler(jobstashBaseUrl),
+    handler: createProcessCvJobDataHandler(jobstashSiteUrl),
 }); 
