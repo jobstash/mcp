@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 "use strict";
 
+import dotenv from 'dotenv';
 import path from 'path';
 
-// Determine the base path depending on execution context (ts-node vs. compiled JS)
-// When running as compiled JS in dist/, __dirname will be packages/mcp-server/dist
-// When potentially run with ts-node from src/, __dirname would be packages/mcp-server/src
-const isDist = __dirname.endsWith('dist');
-const projectRoot = isDist ? path.resolve(__dirname, '../../..') : path.resolve(__dirname, '../..');
+const dotEnvPath = path.resolve(__dirname, '../../../.env');
+dotenv.config({ path: dotEnvPath });
 
-// mcp-runner.ts - Runs the JobStash MCP Host Server using Stdio transport
 
 import { McpManager } from './server.js';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";

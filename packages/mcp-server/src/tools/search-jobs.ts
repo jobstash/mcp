@@ -13,13 +13,13 @@ const createSearchJobsHandler = (jobstashApiUrl: string) => {
 
             // Map input args to API query params
             if (args.tags && args.tags.length > 0) {
-                searchParams.set('tags', args.tags.join(','));
+                searchParams.set('tags', args.tags.map(tag => tag.toLowerCase()).join(','));
             }
             if (args.locations && args.locations.length > 0) {
-                searchParams.set('locations', args.locations.join(','));
+                searchParams.set('locations', args.locations.map(loc => loc.toLowerCase()).join(','));
             }
             if (args.seniority && args.seniority.length > 0) {
-                searchParams.set('seniority', args.seniority.join(','));
+                searchParams.set('seniority', args.seniority.map(sen => sen.toLowerCase()).join(','));
             }
             if (args.salaryMin !== undefined) {
                 searchParams.set('minSalaryRange', String(args.salaryMin));
@@ -35,6 +35,7 @@ const createSearchJobsHandler = (jobstashApiUrl: string) => {
             // job category
 
             const apiUrl = `${jobstashApiUrl}/jobs/list?${searchParams.toString()}`;
+            console.error(`[mcp-server/search_jobs] Calling JobStash API: ${apiUrl}`);
 
             const apiResponse = await fetch(apiUrl, {
                 method: 'GET',
