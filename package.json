@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "yarn workspace @jobstash/mcp-server build && yarn workspace @jobstash/file-parser build && yarn workspace @jobstash/mcp-gateway build",
     "test": "yarn workspaces run test",
     "lint": "yarn workspaces run lint",
     "dev": "yarn workspaces run dev"
