@@ -1,38 +1,17 @@
 import { URLSearchParams } from 'url';
 import { search_jobs_input_schema, SearchJobsInputArgs } from '../schemas';
+import { buildJobSearchQuery } from '../utils/filter-utils';
 
 // Function to create the search_jobs handler, accepting the base URL
 const createSearchJobsHandler = (jobstashApiUrl: string) => {
     return async (args: SearchJobsInputArgs, _extra: any): Promise<any> => {
 
         try {
-            const searchParams = new URLSearchParams({
-                page: '1',
-                limit: '20'
-            });
+            const searchParams = buildJobSearchQuery(args);
 
-            // Map input args to API query params
-            if (args.tags && args.tags.length > 0) {
-                searchParams.set('tags', args.tags.map(tag => tag.toLowerCase()).join(','));
-            }
-            if (args.locations && args.locations.length > 0) {
-                searchParams.set('locations', args.locations.map(loc => loc.toLowerCase()).join(','));
-            }
-            if (args.seniority && args.seniority.length > 0) {
-                searchParams.set('seniority', args.seniority.map(sen => sen.toLowerCase()).join(','));
-            }
-            if (args.salaryMin !== undefined) {
-                searchParams.set('minSalaryRange', String(args.salaryMin));
-            }
-            if (args.salaryMax !== undefined) {
-                searchParams.set('maxSalaryRange', String(args.salaryMax));
-            }
-            if (args.equity !== undefined) {
-                searchParams.set('token', String(args.equity));
-            }
-            // contract type
-            // investor
-            // job category
+            // Add default pagination for search_jobs
+            searchParams.set('page', '1');
+            searchParams.set('limit', '20');
 
             const apiUrl = `${jobstashApiUrl}/jobs/list?${searchParams.toString()}`;
             console.error(`[mcp-server/search_jobs] Calling JobStash API: ${apiUrl}`);

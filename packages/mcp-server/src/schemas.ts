@@ -10,6 +10,9 @@ export const search_jobs_input_schema = z.object({
   salaryMin: z.number().int().positive().optional(),
   salaryMax: z.number().int().positive().optional(),
   equity: z.boolean().optional(),
+  commitments: z.array(z.string()).optional(), // For contract type
+  investors: z.array(z.string()).optional(),
+  classifications: z.array(z.string()).optional(), // For job category
 });
 
 export type SearchJobsInputArgs = z.infer<typeof search_jobs_input_schema>;
