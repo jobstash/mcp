@@ -12,10 +12,53 @@ This monorepo enables searching JobStash via natural language, using a two-serve
 ├── packages/
 │   ├── mcp-server/     # Core MCP Host Server
 │   └── mcp-gateway/    # NestJS NL->MCP Gateway
-├── docs/                 # Planning, Architecture docs
+├── docs/                 # Project documentation
 ├── .env                  # Required: OPENAI_API_KEY
 └── package.json          # Workspace root
 ```
+
+## Architecture Overview
+
+The system uses a two-server architecture to separate natural language processing from the core MCP interaction:
+
+1.  **`@jobstash/mcp-server`:** The Jobstash MCP Server.
+    *   **Role:** Acts as a standard MCP Server, exposing Jobstash's job search functionality via structured, machine-readable tools (like `search_jobs` and `get_search_url`) according to the MCP specification.
+    *   **Key Functionality:** It directly interacts with the Jobstash backend (API/DB) based on structured requests from MCP clients. **This server does not use an LLM.**
+2.  **`@jobstash/mcp-gateway`:** The Natural Language (NL) to MCP Gateway.
+    *   **Role:** Serves as a bridge, translating user-friendly natural language queries into structured MCP calls to the `@jobstash/mcp-server`.
+    *   **Key Functionality:** Exposes a simple API (e.g., REST) for plain text queries. It uses an LLM to understand these queries, extract parameters, and then acts as an MCP client to communicate with the `@jobstash/mcp-server`.
+
+### Visual Overview
+
+```
++-------------------+       +------------------------+      +-------------------+      +-------------------+
+|   User / Simple   | ----> | Gateway (NL->MCP GW)   | ---> |                   | ---> | Jobstash Backend  |
+|   Application     |       | (Plain Text API)       |      |                   |      |                   |
++-------------------+       | - Uses LLM for NLU     |      |                   |      +-------------------+
+| Acts as MCP Client|       |                        |      |                   |
++-------------------+       +------------------------+      | Mcp Server        |
++-------------------+                                       |(Jobstash MCP Srv) |
+| External MCP      |                                       |                   |
+| Client / Host App | ------------------------------------->|                   |
++-------------------+                                       |                   |
+| (API / DB)        |                                       +-------------------+
++-------------------+
+```
+
+### Interaction Flow (Example: Job Search)
+
+1.  A user sends a plain text query (e.g., "senior dev remote") to the Gateway's API.
+2.  The Gateway uses an LLM to translate this query into a structured MCP `tools.call` request for the Mcp Server.
+3.  The Gateway (acting as an MCP Client) sends this structured request to the Mcp Server.
+4.  The Mcp Server executes the job search logic against the Jobstash backend using the structured arguments.
+5.  The Mcp Server returns a structured MCP response (e.g., a list of jobs) to the Gateway.
+6.  The Gateway processes this response (potentially summarizing it with an LLM) and returns a user-friendly result to the user.
+
+### Benefits of this Architecture
+
+*   **Reusability:** The `@jobstash/mcp-server` is standard and can be used by any MCP-compliant client.
+*   **Separation of Concerns:** Isolates the MCP protocol logic (Mcp Server) from the NLU/LLM logic (Gateway).
+*   **Flexibility:** Provides both a standard MCP interface for programmatic access and an easy-to-use natural language interface.
 
 ## Getting Started
 

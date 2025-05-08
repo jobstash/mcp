@@ -1,376 +1,801 @@
 {
-    "publicationDate": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "salary": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
+  "publicationDate": {
+    "position": 0,
+    "label": "Publication Date",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_publication_date",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Today",
+        "value": "today"
+      },
+      {
+        "label": "This Week",
+        "value": "this-week"
+      },
+      {
+        "label": "This Month",
+        "value": "this-month"
+      },
+      {
+        "label": "Past 2 Weeks",
+        "value": "past-2-weeks"
+      },
+      {
+        "label": "Past 3 Months",
+        "value": "past-3-months"
+      },
+      {
+        "label": "Past 6 Months",
+        "value": "past-6-months"
       }
-    },
-    "seniority": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "locations": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "headcountEstimate": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
+    ],
+    "paramKey": "publicationDate"
+  },
+  "salary": {
+    "position": 4,
+    "label": "Salary",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_salary",
+    "kind": "RANGE",
+    "prefix": "$",
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minSalaryRange"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxSalaryRange"
       }
-    },
-    "tags": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "fundingRounds": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "investors": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "communities": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "ecosystems": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "organizations": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "chains": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "projects": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "classifications": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "commitments": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "tvl": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
-      }
-    },
-    "monthlyVolume": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
-      }
-    },
-    "monthlyFees": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
-      }
-    },
-    "monthlyRevenue": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "kind": "string",
-      "prefix": "string",
-      "value": {
-        "lowest": {
-          "paramKey": "string",
-          "value": 0
-        },
-        "highest": {
-          "paramKey": "string",
-          "value": 0
-        }
-      }
-    },
-    "audits": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "hacks": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "token": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "onboardIntoWeb3": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "order": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
-    },
-    "orderBy": {
-      "position": 0,
-      "label": "string",
-      "show": true,
-      "googleAnalyticsEventName": "string",
-      "options": [
-        {
-          "label": "string",
-          "value": {}
-        }
-      ],
-      "paramKey": "string",
-      "kind": "string"
     }
+  },
+  "seniority": {
+    "position": 5,
+    "label": "Seniority",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_seniority",
+    "kind": "MULTI_SELECT",
+    "options": [],
+    "paramKey": "seniority"
+  },
+  "locations": {
+    "position": 6,
+    "label": "Location",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_location",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "locations"
+  },
+  "headcountEstimate": {
+    "position": 7,
+    "label": "Head Count",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_head_count",
+    "kind": "RANGE",
+    "prefix": null,
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minHeadCount"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxHeadCount"
+      }
+    }
+  },
+  "tags": {
+    "position": 8,
+    "label": "Skills",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_tags",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [
+      {
+        "label": "reliability",
+        "value": "reliability"
+      },
+      {
+        "label": "digital currencies",
+        "value": "digital-currencies"
+      },
+      {
+        "label": "Industry Engagement",
+        "value": "industry-engagement"
+      },
+      {
+        "label": "sustainability",
+        "value": "sustainability"
+      },
+      {
+        "label": "renewable energy",
+        "value": "renewable-energy"
+      },
+      {
+        "label": "Usability Testing",
+        "value": "usability-testing"
+      },
+      {
+        "label": "office software",
+        "value": "office-software"
+      },
+      {
+        "label": "Wireframe",
+        "value": "wireframe"
+      },
+      {
+        "label": "bower",
+        "value": "bower"
+      },
+      {
+        "label": "Google Suites",
+        "value": "google-suites"
+      },
+      {
+        "label": "Russian",
+        "value": "russian"
+      },
+      {
+        "label": "evaluation",
+        "value": "evaluation"
+      },
+      {
+        "label": "cryptographic protocols",
+        "value": "cryptographic-protocols"
+      },
+      {
+        "label": "Proof of Concept",
+        "value": "proof-of-concept"
+      },
+      {
+        "label": "Twelve-Factor App",
+        "value": "twelve-factor-app"
+      },
+      {
+        "label": "peer-to-peer networking",
+        "value": "peer-to-peer-networking"
+      },
+      {
+        "label": "rendering",
+        "value": "rendering"
+      },
+      {
+        "label": "frontend development",
+        "value": "frontend-development"
+      },
+      {
+        "label": "control systems",
+        "value": "control-systems"
+      },
+      {
+        "label": "engineering best practices",
+        "value": "engineering-best-practices"
+      },
+      {
+        "label": "ReduxSaga",
+        "value": "reduxsaga"
+      },
+      {
+        "label": "crypto technology",
+        "value": "crypto-technology"
+      },
+      {
+        "label": "Reselect",
+        "value": "reselect"
+      },
+      {
+        "label": "Coveralls",
+        "value": "coveralls"
+      },
+      {
+        "label": "Web3-onboard.js",
+        "value": "web3-onboardjs"
+      },
+      {
+        "label": "Webinar",
+        "value": "webinar"
+      },
+      {
+        "label": "Proof-of-Stake",
+        "value": "proof-of-stake"
+      },
+      {
+        "label": "SFRS",
+        "value": "sfrs"
+      },
+      {
+        "label": "Enzyme",
+        "value": "enzyme"
+      },
+      {
+        "label": "Substrate",
+        "value": "substrate"
+      },
+      {
+        "label": "web3js",
+        "value": "web3js"
+      },
+      {
+        "label": "cosmjs",
+        "value": "cosmjs"
+      },
+      {
+        "label": "cloud accounting",
+        "value": "cloud-accounting"
+      },
+      {
+        "label": "Polkadot",
+        "value": "polkadot"
+      },
+      {
+        "label": "financial product innovation",
+        "value": "financial-product-innovation"
+      },
+      {
+        "label": "ambassadors",
+        "value": "ambassadors"
+      },
+      {
+        "label": "Adaptive Design",
+        "value": "adaptive-design"
+      },
+      {
+        "label": "BI tool",
+        "value": "bi-tool"
+      },
+      {
+        "label": "plotly",
+        "value": "plotly"
+      },
+      {
+        "label": "MS Excel",
+        "value": "ms-excel"
+      },
+      {
+        "label": "Trade Finance",
+        "value": "trade-finance"
+      },
+      {
+        "label": "order aggregation",
+        "value": "order-aggregation"
+      },
+      {
+        "label": "Podman",
+        "value": "podman"
+      },
+      {
+        "label": "BFF",
+        "value": "bff"
+      },
+      {
+        "label": "Dash",
+        "value": "dash"
+      },
+      {
+        "label": "crypto knowledge",
+        "value": "crypto-knowledge"
+      },
+      {
+        "label": "logging",
+        "value": "logging"
+      },
+      {
+        "label": "mergers and acquisitions",
+        "value": "mergers-and-acquisitions"
+      },
+      {
+        "label": "cloud software",
+        "value": "cloud-software"
+      },
+      {
+        "label": "data best practices",
+        "value": "data-best-practices"
+      },
+      {
+        "label": "Google Tag Manager",
+        "value": "google-tag-manager"
+      },
+      {
+        "label": "layer-1 network",
+        "value": "layer-1-network"
+      },
+      {
+        "label": "technical features",
+        "value": "technical-features"
+      },
+      {
+        "label": "prototype iterations",
+        "value": "prototype-iterations"
+      },
+      {
+        "label": "alerting systems",
+        "value": "alerting-systems"
+      },
+      {
+        "label": "project designing",
+        "value": "project-designing"
+      },
+      {
+        "label": "solutioning",
+        "value": "solutioning"
+      },
+      {
+        "label": "MSSQL Server",
+        "value": "mssql-server"
+      },
+      {
+        "label": "launch campaigns",
+        "value": "launch-campaigns"
+      },
+      {
+        "label": "external developers",
+        "value": "external-developers"
+      },
+      {
+        "label": "orchestration",
+        "value": "orchestration"
+      },
+      {
+        "label": "creativity",
+        "value": "creativity"
+      },
+      {
+        "label": "mobile-first",
+        "value": "mobile-first"
+      },
+      {
+        "label": "design guidelines",
+        "value": "design-guidelines"
+      },
+      {
+        "label": "brand",
+        "value": "brand"
+      },
+      {
+        "label": "project delivery",
+        "value": "project-delivery"
+      },
+      {
+        "label": "customer pain-points",
+        "value": "customer-pain-points"
+      },
+      {
+        "label": "front end development",
+        "value": "front-end-development"
+      },
+      {
+        "label": "GraphProtocol",
+        "value": "graphprotocol"
+      },
+      {
+        "label": "back end development",
+        "value": "back-end-development"
+      },
+      {
+        "label": "Snapshot voting",
+        "value": "snapshot-voting"
+      },
+      {
+        "label": "Customer empathy",
+        "value": "customer-empathy"
+      },
+      {
+        "label": "High fidelity prototypes",
+        "value": "high-fidelity-prototypes"
+      },
+      {
+        "label": "Presentation Drafting",
+        "value": "presentation-drafting"
+      },
+      {
+        "label": "DataBricks",
+        "value": "databricks"
+      },
+      {
+        "label": "Decentralized notification system",
+        "value": "decentralized-notification-system"
+      },
+      {
+        "label": "Avalanche protocol",
+        "value": "avalanche-protocol"
+      },
+      {
+        "label": "Client Business Analysis",
+        "value": "client-business-analysis"
+      },
+      {
+        "label": "decentralized infrastructure",
+        "value": "decentralized-infrastructure"
+      },
+      {
+        "label": "Correspondence Management",
+        "value": "correspondence-management"
+      },
+      {
+        "label": "content strategy",
+        "value": "content-strategy"
+      },
+      {
+        "label": "transaction settlement",
+        "value": "transaction-settlement"
+      },
+      {
+        "label": "trade matching",
+        "value": "trade-matching"
+      },
+      {
+        "label": "VPC",
+        "value": "vpc"
+      },
+      {
+        "label": "object-oriented programming",
+        "value": "object-oriented-programming"
+      },
+      {
+        "label": "EKS",
+        "value": "eks"
+      },
+      {
+        "label": "Vault",
+        "value": "vault"
+      },
+      {
+        "label": "DNS",
+        "value": "dns"
+      },
+      {
+        "label": "Sanctions Compliance",
+        "value": "sanctions-compliance"
+      },
+      {
+        "label": "optimisation",
+        "value": "optimisation"
+      },
+      {
+        "label": "Unity engine",
+        "value": "unity-engine"
+      },
+      {
+        "label": "V-Ray",
+        "value": "v-ray"
+      },
+      {
+        "label": "Octane",
+        "value": "octane"
+      },
+      {
+        "label": "client reporting",
+        "value": "client-reporting"
+      },
+      {
+        "label": "transparency",
+        "value": "transparency"
+      },
+      {
+        "label": "digital filing system",
+        "value": "digital-filing-system"
+      },
+      {
+        "label": "Cross-compilation",
+        "value": "cross-compilation"
+      },
+      {
+        "label": "authentication",
+        "value": "authentication"
+      },
+      {
+        "label": "Debugger",
+        "value": "debugger"
+      },
+      {
+        "label": "TrustArc",
+        "value": "trustarc"
+      }
+    ],
+    "paramKey": "tags"
+  },
+  "fundingRounds": {
+    "position": 9,
+    "label": "Funding Rounds",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_funding_rounds",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "fundingRounds"
+  },
+  "investors": {
+    "position": 10,
+    "label": "Investors",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_investors",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "investors"
+  },
+  "communities": {
+    "position": 3,
+    "label": "Communities",
+    "show": false,
+    "googleAnalyticsEventName": "filter_joblist_communities",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "communities"
+  },
+  "ecosystems": {
+    "position": 16,
+    "label": "Ecosystems",
+    "show": false,
+    "googleAnalyticsEventName": "filter_joblist_ecosystems",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "ecosystems"
+  },
+  "organizations": {
+    "position": 14,
+    "label": "Organizations",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_organizations",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "organizations"
+  },
+  "chains": {
+    "position": 13,
+    "label": "Chains",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_chains",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "chains"
+  },
+  "projects": {
+    "position": 15,
+    "label": "Projects",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_projects",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "projects"
+  },
+  "classifications": {
+    "position": 1,
+    "label": "Category",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_classifications",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "classifications"
+  },
+  "commitments": {
+    "position": 2,
+    "label": "Commitment",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_commitments",
+    "kind": "MULTI_SELECT_WITH_SEARCH",
+    "options": [],
+    "paramKey": "commitments"
+  },
+  "tvl": {
+    "position": 17,
+    "label": "TVL",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_tvl",
+    "kind": "RANGE",
+    "prefix": "$",
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minTvl"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxTvl"
+      }
+    }
+  },
+  "monthlyVolume": {
+    "position": 18,
+    "label": "Volume/mo",
+    "show": false,
+    "googleAnalyticsEventName": "filter_joblist_monthly_volume",
+    "kind": "RANGE",
+    "prefix": "$",
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minMonthlyVolume"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxMonthlyVolume"
+      }
+    }
+  },
+  "monthlyFees": {
+    "position": 19,
+    "label": "Fees/mo",
+    "show": false,
+    "googleAnalyticsEventName": "filter_joblist_monthly_fees",
+    "kind": "RANGE",
+    "prefix": "$",
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minMonthlyFees"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxMonthlyFees"
+      }
+    }
+  },
+  "monthlyRevenue": {
+    "position": 20,
+    "label": "Revenue/mo",
+    "show": false,
+    "googleAnalyticsEventName": "filter_joblist_monthly_revenue",
+    "kind": "RANGE",
+    "prefix": "$",
+    "value": {
+      "lowest": {
+        "value": 0,
+        "paramKey": "minMonthlyRevenue"
+      },
+      "highest": {
+        "value": 0,
+        "paramKey": "maxMonthlyRevenue"
+      }
+    }
+  },
+  "audits": {
+    "position": 11,
+    "label": "Audits",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_audits",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Has Audits",
+        "value": true
+      },
+      {
+        "label": "Has No Audits",
+        "value": false
+      }
+    ],
+    "paramKey": "audits"
+  },
+  "hacks": {
+    "position": 12,
+    "label": "Hacks",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_hacks",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Has been hacked",
+        "value": true
+      },
+      {
+        "label": "Has not been hacked",
+        "value": false
+      }
+    ],
+    "paramKey": "hacks"
+  },
+  "token": {
+    "position": 21,
+    "label": "Has Token",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_has_token",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Has Token",
+        "value": true
+      },
+      {
+        "label": "Has No Token",
+        "value": false
+      }
+    ],
+    "paramKey": "token"
+  },
+  "onboardIntoWeb3": {
+    "position": 22,
+    "label": "Web3 Beginner Friendly",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_onboard_into_web3",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Web3 Beginner Friendly",
+        "value": true
+      },
+      {
+        "label": "Not Web3 Beginner Friendly",
+        "value": false
+      }
+    ],
+    "paramKey": "onboardIntoWeb3"
+  },
+  "order": {
+    "position": 24,
+    "label": "Order",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_order",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "A-Z",
+        "value": "asc"
+      },
+      {
+        "label": "Z-A",
+        "value": "desc"
+      }
+    ],
+    "paramKey": "order"
+  },
+  "orderBy": {
+    "position": 23,
+    "label": "Order By",
+    "show": true,
+    "googleAnalyticsEventName": "filter_joblist_order_by",
+    "kind": "SINGLE_SELECT",
+    "options": [
+      {
+        "label": "Funding Date",
+        "value": "fundingDate"
+      },
+      {
+        "label": "Head Count",
+        "value": "headcountEstimate"
+      },
+      {
+        "label": "Monthly Fees",
+        "value": "monthlyFees"
+      },
+      {
+        "label": "Monthly Revenue",
+        "value": "monthlyRevenue"
+      },
+      {
+        "label": "Monthly Volume",
+        "value": "monthlyVolume"
+      },
+      {
+        "label": "Number of Audits",
+        "value": "audits"
+      },
+      {
+        "label": "Number of Chains",
+        "value": "chains"
+      },
+      {
+        "label": "Number of Hacks",
+        "value": "hacks"
+      },
+      {
+        "label": "Publication Date",
+        "value": "publicationDate"
+      },
+      {
+        "label": "Salary",
+        "value": "salary"
+      },
+      {
+        "label": "TVL",
+        "value": "tvl"
+      },
+      {
+        "label": "Team Size",
+        "value": "teamSize"
+      }
+    ],
+    "paramKey": "orderBy"
   }
+}
