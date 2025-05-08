@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { OpenAI } from 'openai';
 import { UserProfile } from '../common/dtos/user-profile.dto';
 import { CvJobData } from '../common/dtos/cv-job-data.dto';
+import { filterConfigurations } from '@jobstash/mcp-server';
 
 @Injectable()
 export class NluService implements OnModuleInit {
@@ -22,22 +23,20 @@ export class NluService implements OnModuleInit {
   }
 
   private buildNluSystemPrompt(): string {
-    // Based on search_jobs_input_schema from @jobstash/mcp-server
     const instructions = [
       "You are an expert assistant specializing in parsing job search queries.",
       "Extract relevant parameters from the user's query and return them as a JSON object.",
-      "Use the following keys for the extracted parameters:",
-      "- 'query': (string, optional) Any remaining free-text parts of the query.",
-      "- 'tags': (string[], optional) List of skills, technologies, or keywords mentioned.",
-      "- 'locations': (string[], optional) List of locations mentioned. Use 'Remote' if remote work is specified.",
-      "- 'companyNames': (string[], optional) List of specific company names mentioned.",
-      "- 'seniority': (string[], optional) List of experience levels mentioned (e.g., 'junior', 'senior', 'lead').",
-      "- 'salaryMin': (integer, optional) Minimum desired salary mentioned.",
-      "- 'salaryMax': (integer, optional) Maximum desired salary mentioned.",
-      "- 'equity': (boolean, optional) Whether the user mentioned requiring equity.",
-      "If a parameter is not mentioned in the query, omit its key from the JSON object.",
-      "Ensure the output is a valid JSON object."
+      "Use the following keys for the extracted parameters:"
     ];
+
+    for (const key in filterConfigurations) {
+      const config = filterConfigurations[key];
+      // Constructing the description: "- 'schemaKey': llmDescription"
+      instructions.push(`- '${config.schemaKey}': ${config.llmDescription}`);
+    }
+
+    instructions.push("If a parameter is not mentioned in the query, omit its key from the JSON object.");
+    instructions.push("Ensure the output is a valid JSON object.");
     return instructions.join('\n');
   }
 

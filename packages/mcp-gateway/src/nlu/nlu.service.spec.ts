@@ -16,14 +16,14 @@ jest.mock('openai', () => {
         },
       };
     }),
-    APIError: class MockAPIError extends Error { // Keep simple mock
-        status?: number;
-        type?: string;
-        constructor(status?: number, type?: string, message?: string) {
-            super(message || 'Mock API Error');
-            this.status = status;
-            this.type = type;
-        }
+    APIError: class MockAPIError extends Error {
+      status?: number;
+      type?: string;
+      constructor(status?: number, type?: string, message?: string) {
+        super(message || 'Mock API Error');
+        this.status = status;
+        this.type = type;
+      }
     }
   };
 });
@@ -72,20 +72,20 @@ describe('NluService', () => {
   });
 
   describe('onModuleInit', () => {
-      it('should initialize OpenAI client with API key from ConfigService', () => {
-          // onModuleInit is called in beforeEach, so we check the mock calls
-          expect(configService.get).toHaveBeenCalledWith('OPENAI_API_KEY');
-          expect(MockedOpenAI).toHaveBeenCalledWith({ apiKey: 'test-api-key' });
-      });
+    it('should initialize OpenAI client with API key from ConfigService', () => {
+      // onModuleInit is called in beforeEach, so we check the mock calls
+      expect(configService.get).toHaveBeenCalledWith('OPENAI_API_KEY');
+      expect(MockedOpenAI).toHaveBeenCalledWith({ apiKey: 'test-api-key' });
+    });
 
-      it('should throw error if OPENAI_API_KEY is not configured', () => {
-          // Re-configure mock specifically for this test
-          mockConfigGet.mockImplementation((key: string) => {
-              if (key === 'OPENAI_API_KEY') return undefined;
-              return null;
-          });
-          expect(() => service.onModuleInit()).toThrow('OPENAI_API_KEY must be configured for NLU.');
+    it('should throw error if OPENAI_API_KEY is not configured', () => {
+      // Re-configure mock specifically for this test
+      mockConfigGet.mockImplementation((key: string) => {
+        if (key === 'OPENAI_API_KEY') return undefined;
+        return null;
       });
+      expect(() => service.onModuleInit()).toThrow('OPENAI_API_KEY must be configured for NLU.');
+    });
   });
 
 
@@ -113,9 +113,12 @@ describe('NluService', () => {
       const systemPrompt = mockCreate.mock.calls[0][0].messages.find(m => m.role === 'system').content;
       expect(systemPrompt).toContain("parsing job search queries");
       expect(systemPrompt).toContain("- 'locations': (string[], optional)");
+      expect(systemPrompt).toContain("- 'investors': (string[], optional)");
+      expect(systemPrompt).toContain("- 'commitments': (string[], optional)");
+      expect(systemPrompt).toContain("- 'classifications': (string[], optional)");
     });
 
-     it('should return parsed JSON object on successful completion', async () => {
+    it('should return parsed JSON object on successful completion', async () => {
       mockCreate.mockResolvedValueOnce({
         choices: [{ message: { content: JSON.stringify(expectedArgs) } }],
       });
@@ -125,24 +128,47 @@ describe('NluService', () => {
     });
 
     it('should throw error if OpenAI response content is empty', async () => {
-        mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: null } }] });
-        await expect(service.performNlu(testQuery)).rejects.toThrow('Failed to extract parameters from query: Empty response from LLM.');
+      mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: null } }] });
+      await expect(service.performNlu(testQuery)).rejects.toThrow('Failed to extract parameters from query: Empty response from LLM.');
     });
 
     it('should throw error if LLM response is not valid JSON', async () => {
-        mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'this is not json' } }] });
-        await expect(service.performNlu(testQuery)).rejects.toThrow('Failed to parse parameters from LLM response (Invalid JSON).');
+      mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'this is not json' } }] });
+      await expect(service.performNlu(testQuery)).rejects.toThrow('Failed to parse parameters from LLM response (Invalid JSON).');
     });
 
-     it('should throw error if OpenAI API call fails', async () => {
-        // Simplify mock error creation
-        const apiError = new Error('Simulated API Failure'); 
-        // Add properties if specific error handling depends on them later
-        // (apiError as any).status = 500; 
-        // (apiError as any).type = 'server_error';
+    it('should throw error if OpenAI API call fails', async () => {
+      // Simplify mock error creation
+      const apiError = new Error('Simulated API Failure');
+      // Add properties if specific error handling depends on them later
+      // (apiError as any).status = 500; 
+      // (apiError as any).type = 'server_error';
 
-        mockCreate.mockRejectedValueOnce(apiError);
-        await expect(service.performNlu(testQuery)).rejects.toThrow(`NLU failed: ${apiError.message}`);
+      mockCreate.mockRejectedValueOnce(apiError);
+      await expect(service.performNlu(testQuery)).rejects.toThrow(`NLU failed: ${apiError.message}`);
+    });
+
+    // New test case for investors and other new fields
+    it('should correctly parse a query with investors, commitments, and classifications', async () => {
+      const queryWithNewFields = "Show me senior marketing contract jobs at companies backed by Sequoia Capital";
+      const expectedNluOutput = {
+        seniority: ["senior"],
+        classifications: ["marketing"],
+        commitments: ["contract"],
+        investors: ["Sequoia Capital"]
+      };
+
+      mockCreate.mockResolvedValueOnce({
+        choices: [{ message: { content: JSON.stringify(expectedNluOutput) } }],
+      });
+
+      const result = await service.performNlu(queryWithNewFields);
+      expect(result).toEqual(expectedNluOutput);
+      expect(mockCreate).toHaveBeenCalledWith(expect.objectContaining({
+        messages: expect.arrayContaining([
+          expect.objectContaining({ role: 'user', content: queryWithNewFields })
+        ])
+      }));
     });
 
   });
