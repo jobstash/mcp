@@ -1,0 +1,33 @@
+Alice Wonderland
+Berlin, Germany
+Email: alice.w@example.com, wonderland.dev@example.com
+GitHub: alice-crypto-dev
+Twitter: @AliceCrypto
+
+Summary:
+Highly experienced Senior Blockchain Engineer with 8 years of expertise in smart contract development, DeFi protocols, and L1/L2 infrastructure. Proven track record of leading development teams and delivering robust, secure blockchain solutions. Seeking a challenging remote or Berlin-based principal engineering role.
+
+Experience:
+
+Lead Smart Contract Developer
+Parity Technologies (Remote)
+2020 - Present
+- Led development of core Polkadot and Substrate modules using Rust.
+- Designed and implemented complex smart contracts for parachain projects.
+- Mentored junior engineers and promoted engineering best practices.
+
+Senior Blockchain Engineer
+ChainSafe Systems (Remote)
+2017 - 2020
+- Developed and audited EVM-compatible smart contracts in Solidity.
+- Worked with Hardhat, Foundry, and TypeScript for dApp development.
+- Contributed to Node.js backend services for Web3 applications.
+
+Skills:
+- Programming: Solidity, Rust, TypeScript, Node.js, Python
+- Technologies: EVM, Substrate, Polkadot, Hardhat, Foundry, Docker, Kubernetes
+- Concepts: DeFi, Tokenomics, L2 Scaling, Cryptographic Principles
+
+Education:
+Master's in Computer Science
+Technical University of Berlin

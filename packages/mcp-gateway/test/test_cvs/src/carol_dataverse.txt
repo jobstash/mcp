@@ -1,0 +1,37 @@
+Carol Dataverse
+New York, NY, USA
+Email: carol.data@example.com / c.verse.defi@example.com
+Twitter: @CarolDeFi
+GitHub: carol-analytics
+Wallet: 0x1234567890abcdef1234567890abcdef12345678
+
+Profile:
+Dedicated DeFi Analyst and Crypto Researcher with 4 years of experience in financial modeling, tokenomics, and on-chain data analysis. Proficient in SQL and Python for data extraction and insights. Seeking a mid-level analyst or strategist role in a dynamic DeFi project, open to roles in New York or Remote.
+
+Work History:
+
+DeFi Analyst
+CryptoFund LLC (New York, NY)
+2021 - Present
+- Analyzed and evaluated various DeFi protocols (e.g., Aave, Uniswap, Curve) for investment opportunities.
+- Developed financial models and risk assessment frameworks for digital assets.
+- Utilized Dune Analytics and Nansen for on-chain data tracking.
+
+Blockchain Researcher
+DeFi Insights Co. (Remote)
+2019 - 2021
+- Researched emerging trends in tokenomics and Layer 2 solutions.
+- Authored reports and articles on the DeFi landscape.
+- Contributed to building data pipelines with Python and SQL.
+
+Technical Skills:
+- Data Analysis: SQL, Python (Pandas, NumPy), Dune Analytics, Nansen, Excel
+- DeFi Knowledge: Lending Protocols, DEXs, Yield Farming, AMMs, Impermanent Loss
+- Financial: Financial Modeling, Risk Assessment, Tokenomics
+
+Education & Certifications:
+BSc Economics
+Columbia University
+
+CFA Charterholder
+CFA Institute
