@@ -1,40 +1,5 @@
-import { URLSearchParams } from 'url';
 import { cv_job_data_schema, CvJobData, SearchJobsInputArgs } from '../schemas';
-
-// Placeholder for potential shared URL building logic if we refactor get-search-url.ts
-// For now, we can duplicate or adapt the logic here.
-function buildJobStashUrl(jobstashSiteUrl: string, params: SearchJobsInputArgs): string {
-    const searchParams = new URLSearchParams();
-
-    // Map SearchJobsInputArgs to query parameters
-    if (params.query) {
-        searchParams.set('query', params.query);
-    }
-    if (params.tags && params.tags.length > 0) {
-        searchParams.set('tags', params.tags.join(','));
-    }
-    if (params.locations && params.locations.length > 0) {
-        searchParams.set('locations', params.locations.join(','));
-    }
-    if (params.companyNames && params.companyNames.length > 0) {
-        searchParams.set('companyNames', params.companyNames.join(','));
-    }
-    if (params.seniority && params.seniority.length > 0) {
-        searchParams.set('seniority', params.seniority.join(','));
-    }
-    if (params.salaryMin !== undefined) {
-        searchParams.set('minSalaryRange', String(params.salaryMin));
-    }
-    if (params.salaryMax !== undefined) {
-        searchParams.set('maxSalaryRange', String(params.salaryMax));
-    }
-    if (params.equity !== undefined) {
-        searchParams.set('token', String(params.equity));
-    }
-
-    const queryString = searchParams.toString();
-    return `${jobstashSiteUrl}/jobs?${queryString}`;
-}
+import { buildJobSearchQuery } from '../utils/filter-utils'; // Import centralized utility
 
 const createProcessCvJobDataHandler = (jobstashSiteUrl: string) => {
     return async (args: CvJobData, _extra: any): Promise<any> => {
@@ -42,36 +7,54 @@ const createProcessCvJobDataHandler = (jobstashSiteUrl: string) => {
             // 1. Map CvJobData to SearchJobsInputArgs
             const searchJobArgs: SearchJobsInputArgs = {};
 
-            // Example mapping logic (to be refined):
             if (args.skills && args.skills.length > 0) {
                 searchJobArgs.tags = [...(searchJobArgs.tags || []), ...args.skills];
             }
             if (args.jobTitles && args.jobTitles.length > 0) {
-                searchJobArgs.query = args.jobTitles.join(' '); // Simple concatenation for query
+                // Consider making this more robust, e.g., taking the most prominent title or adding all to tags
+                searchJobArgs.query = args.jobTitles.join(' ');
             }
             if (args.locations && args.locations.length > 0) {
                 searchJobArgs.locations = args.locations;
             }
+
+            if (args.companyNames && args.companyNames.length > 0) { // Added mapping for companyNames
+                searchJobArgs.companyNames = args.companyNames;
+            }
+
             if (args.seniorityKeywords && args.seniorityKeywords.length > 0) {
-                // This needs a more robust mapping to standard seniority terms
-                // For now, just pass them as tags or part of the query
+                // For now, add to tags. Could be mapped to seniority array more intelligently later.
                 searchJobArgs.tags = [...(searchJobArgs.tags || []), ...args.seniorityKeywords];
             }
-            if (args.yearsExperience) {
-                // Example: map years to a seniority tag - very basic
+
+            if (args.yearsExperience !== undefined && args.yearsExperience !== null) {
                 if (args.yearsExperience >= 5) {
                     searchJobArgs.seniority = ['senior'];
                 } else if (args.yearsExperience >= 2) {
                     searchJobArgs.seniority = ['mid'];
-                } else {
+                } else { // Includes 0, 1
                     searchJobArgs.seniority = ['junior'];
                 }
             }
-            // ... map other CvJobData fields as needed (companyNames, educationLevel)
-            // Consider how fullCvText might be used if direct fields aren't enough
 
-            // 2. Generate JobStash URL using the mapped arguments
-            const finalUrl = buildJobStashUrl(jobstashSiteUrl, searchJobArgs);
+            if (args.educationLevel) { // Added mapping for educationLevel to tags
+                searchJobArgs.tags = [...(searchJobArgs.tags || []), args.educationLevel];
+            }
+
+            // Ensure tags are unique if multiple sources contribute to them
+            if (searchJobArgs.tags) {
+                searchJobArgs.tags = Array.from(new Set(searchJobArgs.tags));
+            }
+
+            // 2. Generate JobStash URL using the centralized utility
+            // The buildJobSearchQuery function expects the full base URL (including /jobs)
+            // and then it appends the query string.
+            // The jobstashSiteUrl passed to this handler typically doesn't include /jobs.
+            const baseUrlForUtil = jobstashSiteUrl.endsWith('/jobs') ? jobstashSiteUrl : `${jobstashSiteUrl}/jobs`;
+
+            const searchParams: URLSearchParams = buildJobSearchQuery(searchJobArgs);
+            const queryString = searchParams.toString();
+            const finalUrl = queryString ? `${baseUrlForUtil}?${queryString}` : baseUrlForUtil;
             const response = { jobstashUrl: finalUrl };
 
             return {

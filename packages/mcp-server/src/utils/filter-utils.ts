@@ -2,6 +2,15 @@ import { URLSearchParams } from 'url';
 import { SearchJobsInputArgs } from '../schemas';
 import { filterConfigurations } from '../config/filter-config';
 
+/**
+ * Builds URLSearchParams from SearchJobsInputArgs for a JobStash query.
+ * This function uses 'filterConfigurations' (from 'config/filter-config.ts')
+ * to map input argument keys to their final API parameter names and to format
+ * their values appropriately for the URL.
+ *
+ * @param args - Standardized job search arguments (SearchJobsInputArgs).
+ * @returns A URLSearchParams object representing the configured query.
+ */
 export const buildJobSearchQuery = (args: SearchJobsInputArgs): URLSearchParams => {
     const searchParams = new URLSearchParams();
 
