@@ -16,7 +16,7 @@ export const cv_job_data_schema = z.object({
   jobTitles: z.array(z.string()).optional(),
   locations: z.array(z.string()).optional(),
   seniorityKeywords: z.array(z.string()).optional(),
-  yearsExperience: z.number().int().nonnegative().optional(),
+  yearsExperience: z.number().nonnegative().optional(),
   companyNames: z.array(z.string()).optional(),
   educationLevel: z.string().optional(),
   fullCvText: z.string().optional(),
