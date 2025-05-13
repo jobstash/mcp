@@ -2,7 +2,7 @@
 
 This monorepo enables searching JobStash via natural language, using a two-server Model Context Protocol (MCP) architecture.
 
-1.  **`@jobstash/mcp-server`**: Core MCP Host Server providing structured tools (`get_search_url`, `search_jobs`).
+1.  **`@jobstash/mcp-server`**: Core MCP Host Server providing structured tools (`get_search_url`, `search_jobs`, `process_cv_job_data`).
 2.  **`@jobstash/mcp-gateway`**: NestJS Gateway translating natural language (via LLM) to MCP calls.
 
 ## Project Structure
@@ -22,8 +22,12 @@ This monorepo enables searching JobStash via natural language, using a two-serve
 The system uses a two-server architecture to separate natural language processing from the core MCP interaction:
 
 1.  **`@jobstash/mcp-server`:** The Jobstash MCP Server.
-    *   **Role:** Acts as a standard MCP Server, exposing Jobstash's job search functionality via structured, machine-readable tools (like `search_jobs` and `get_search_url`) according to the MCP specification.
+    *   **Role:** Acts as a standard MCP Server, exposing Jobstash's functionality via structured, machine-readable tools according to the MCP specification.
     *   **Key Functionality:** It directly interacts with the Jobstash backend (API/DB) based on structured requests from MCP clients. **This server does not use an LLM.**
+    *   **Exposed Tools include:**
+        *   `search_jobs`: Searches for JobStash jobs based on structured filters (skills, location, salary, etc.) and returns a list of matching job objects.
+        *   `get_search_url`: Constructs a JobStash website URL based on the same structured job search filters, leading to the results page.
+        *   `process_cv_job_data`: Takes structured job-related data (e.g., skills, job titles, locations, seniority keywords, extracted by a client from a CV) and constructs a relevant JobStash search URL. This tool itself does not parse CV files but uses pre-extracted structured data.
 2.  **`@jobstash/mcp-gateway`:** The Natural Language (NL) to MCP Gateway.
     *   **Role:** Serves as a bridge, translating user-friendly natural language queries into structured MCP calls to the `@jobstash/mcp-server`.
     *   **Key Functionality:** Exposes a simple API (e.g., REST) for plain text queries. It uses an LLM to understand these queries, extract parameters, and then acts as an MCP client to communicate with the `@jobstash/mcp-server`.
@@ -96,7 +100,7 @@ Both servers need to run concurrently for the full NL->MCP flow.
 1.  **Start MCP Server (Server 1):**
     ```bash
     # From workspace root
-    node packages/mcp-server/dist/mcp-runner.js
+    yarn workspace @jobstash/mcp-server start
     ```
 
 2.  **Start Gateway (Server 2):**
@@ -123,23 +127,33 @@ Both servers need to run concurrently for the full NL->MCP flow.
     # From workspace root
     yarn workspace @jobstash/mcp-gateway test:e2e
     ```
--   **Manual Gateway Test (Servers running):**
-    ```bash
-    curl -X POST http://localhost:3000/api/v1/search-url -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
-    curl -X POST http://localhost:3000/api/v1/search-jobs -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
-    ```
+-   **Manual Gateway Endpoint Tests (Servers running):**
+    *   **Using `curl` (examples):**
+        ```bash
+        curl -X POST http://localhost:3000/api/v1/search-url -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
+        curl -X POST http://localhost:3000/api/v1/search-jobs -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
+        ```
+    *   **Using test scripts (examples):**
+        Make sure the scripts are executable (`chmod +x scripts/<script_name>.sh`).
+        ```bash
+        # Test natural language to search URL generation
+        ./scripts/test_gateway_search_url.sh
+
+        # Test CV parsing to search URL generation
+        ./scripts/test_gateway_cv_parsing.sh
+        ```
 
 ## Project Status
 
-- ✅ MCP Server (`@jobstash/mcp-server`) implemented with `search_jobs` and `get_search_url` tools.
-- ✅ Gateway (`@jobstash/mcp-gateway`) implemented.
-- ✅ Gateway `/api/v1/search-url` endpoint functional (NL -> URL).
-- ⏳ Gateway `/api/v1/search-jobs` endpoint initial implementation complete (NL -> Job List).
-- ⬜ CV Parsing capability blocked.
+- ✅ MCP Server (`@jobstash/mcp-server`) tools (`search_jobs`, `get_search_url`, `process_cv_job_data`) are implemented, with `search_jobs` and `get_search_url` now supporting extended, centralized filters.
+- ✅ Gateway (`@jobstash/mcp-gateway`) implemented, with NLU updated for new search filters.
+- ✅ Gateway `/api/v1/search-url` endpoint fully functional (NL -> URL), supporting extended filters.
+- ✅ Gateway `/api/v1/search-jobs` endpoint functional (NL -> Job List), leveraging updated NLU and server tools.
+- ✅ Gateway `/api/v1/cv/parse` endpoint functional (CV upload -> NLU -> MCP `process_cv_job_data` -> URL).
 - ⬜ Frontend Integration blocked.
 
 See `/docs` for planning and architecture details.
 
 ## License
 
-MIT 
+MIT
