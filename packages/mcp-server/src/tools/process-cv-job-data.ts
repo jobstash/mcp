@@ -18,8 +18,8 @@ type CvToSearchArgsMappers = {
  * - query: Uses up to 3 unique 'cvData.jobTitles'.
  * - tags: Aggregates unique 'cvData.skills', 'seniorityKeywords', & 'cvData.educationLevel'.
  * - locations: Directly from 'cvData.locations'.
- * - seniority: From 'cvData.yearsExperience' (e.g., 0-1y: 'junior', 2-4y: 'mid', 5y+: 'senior').
- * - companyNames, salaryMin/Max, equity, commitments, investors, classifications:
+ * - seniority: From 'cvData.yearsExperience' (e.g., 0-1y: ["junior"], 2-4y: ["mid"], 5y+: ["senior"]).
+ * - companyNames, minSalaryRange, maxSalaryRange, token (has crypto token), commitments, investors, classifications:
  *   Intentionally undefined (not derived from CV context by this tool).
  */
 const mappers: CvToSearchArgsMappers = {
@@ -58,11 +58,12 @@ const mappers: CvToSearchArgsMappers = {
         }
         return undefined;
     },
-    // For SearchJobsInputArgs fields not derived from CvJobData in this tool,
-    // provide mappers that explicitly return undefined.
-    salaryMin: (_cvData) => undefined,
-    salaryMax: (_cvData) => undefined,
-    equity: (_cvData) => undefined,
+    // Renamed from salaryMin to minSalaryRange
+    minSalaryRange: (_cvData) => undefined,
+    // Renamed from salaryMax to maxSalaryRange
+    maxSalaryRange: (_cvData) => undefined,
+    // Renamed from equity to token; this tool does not map CV data to 'token' (has crypto token)
+    token: (_cvData) => undefined,
     commitments: (_cvData) => undefined,
     investors: (_cvData) => undefined,
     classifications: (_cvData) => undefined,

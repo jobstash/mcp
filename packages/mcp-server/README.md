@@ -60,6 +60,21 @@ It also provides a tool to process structured data extracted from a CV to genera
     *   `jobstashUrl` (string, uri): The fully constructed JobStash search URL based on the processed CV data.
     *   *(The exact output schema is defined within the tool handler itself.)*
 
+### Supported Search Filters via LLM
+
+The LLM can understand and extract the following filter criteria from your natural language queries. These are then mapped to the JobStash API:
+
+*   `query` (string, optional): Free-text search query.
+*   `tags` (string[], optional): Skills, technologies, or keywords (e.g., `["typescript", "remote"]`).
+*   `locations` (string[], optional): Job locations (e.g., `["london", "remote"]`).
+*   `seniority` (string[] or string, optional): Experience levels (e.g., `["senior"]`, `"3"`, `["1", "5"]`). The API typically expects numeric strings if applicable.
+*   `minSalaryRange` (integer, optional): Minimum desired salary.
+*   `maxSalaryRange` (integer, optional): Maximum desired salary.
+*   `token` (boolean, optional): Whether the project has a cryptocurrency token (true/false).
+*   `commitments` (string[], optional): Job commitment types (e.g., `["full-time", "contract"]`).
+*   `investors` (string[], optional): Investor names or VC firms.
+*   `classifications` (string[], optional): Job categories or functional areas (e.g., `["engineering", "product"]`).
+
 ## Transport & Connection (Stdio)
 
 This server is primarily exposed via **Standard Input/Output (stdio)** transport. This means it runs as a command-line process.

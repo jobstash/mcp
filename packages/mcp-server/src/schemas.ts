@@ -3,7 +3,9 @@ import { filterConfigurations } from './config/filter-config';
 
 const schemaShape: Record<string, z.ZodTypeAny> = {};
 for (const key in filterConfigurations) {
-  schemaShape[filterConfigurations[key].schemaKey] = filterConfigurations[key].zodSchema;
+  if (Object.prototype.hasOwnProperty.call(filterConfigurations, key)) {
+    schemaShape[key] = filterConfigurations[key].zodSchema;
+  }
 }
 
 export const search_jobs_input_schema = z.object(schemaShape);
