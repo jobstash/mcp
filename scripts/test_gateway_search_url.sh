@@ -7,7 +7,7 @@ GATEWAY_ENDPOINT="http://localhost:3000/api/v1/search-url"
 queries=(
     "Senior remote software engineer jobs"
     "Find React, NodeJS, and TypeScript positions with a salary between 100k and 150k per year"
-    "Show me engineering roles that offer equity"
+    "Show me engineering roles with a token opportunity"
     "Are there any contract jobs available in New York City?"
     "Search for Solidity and DeFi roles from companies backed by Andreessen Horowitz or Paradigm"
     "I'm looking for a full-time product manager role, mid to senior level, in Berlin or remote, with a company funded by Coinbase Ventures. Required skills are Full-stack development and API design."
