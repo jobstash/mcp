@@ -1,0 +1,69 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Conventional Commits Guide
+
+## Format
+
+All commit messages should follow the conventional commits format:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Types
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation changes
+- `style`: Changes that don't affect code functionality (formatting, etc.)
+- `refactor`: Code changes that neither fix bugs nor add features
+- `perf`: Performance improvements
+- `test`: Adding or correcting tests
+- `build`: Changes to build system or dependencies
+- `ci`: Changes to CI configuration
+- `chore`: Other changes that don't modify src or test files
+
+## Examples
+
+```
+feat: add new job search filter
+```
+
+```
+fix(filter): resolve issue with tag filtering
+```
+
+```
+docs: update README with filter descriptions
+```
+
+```
+refactor(mcp-server): convert filters.json to filters.ts
+```
+
+## Breaking Changes
+
+For breaking changes, add `!` after the type/scope or add `BREAKING CHANGE:` in the footer:
+
+```
+feat!: completely redesign API
+```
+
+or
+
+```
+feat: update API
+
+BREAKING CHANGE: completely redesign API
+```
+
+## References
+
+- [Conventional Commits Specification](https://www.conventionalcommits.org/)
