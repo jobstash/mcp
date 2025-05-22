@@ -78,7 +78,7 @@ describe('McpClientService', () => {
   describe('onModuleInit', () => {
     it('should read configuration from ConfigService', () => {
       expect(mockConfigGet).toHaveBeenCalledWith('MCP_SERVER_COMMAND', 'node');
-      expect(mockConfigGet).toHaveBeenCalledWith('MCP_SERVER_ARGS', ['../mcp-server/dist/mcp-runner.js']);
+      expect(mockConfigGet).toHaveBeenCalledWith('MCP_SERVER_ARGS', ['../mcp-server/dist/src/mcp-runner.js']);
       expect(mockConfigGet).toHaveBeenCalledWith('MCP_CLIENT_NAME', 'mcp-gateway-client');
       expect(mockConfigGet).toHaveBeenCalledWith('MCP_CLIENT_VERSION', '0.1.0');
     });

@@ -10,7 +10,7 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
   private isConnected = false;
   private transport: StdioClientTransport; // Keep transport for potential reconnect
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
 
   async onModuleInit() {
     await this.initializeAndConnect();
@@ -29,12 +29,12 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
 
     // Read configuration using ConfigService with defaults
     const serverCommand = this.configService.get<string>('MCP_SERVER_COMMAND', 'node');
-    // Re-applying corrected default path relative from the gateway package
-    const defaultServerPath = '../mcp-server/dist/mcp-runner.js';
+    // Updated path to include src directory
+    const defaultServerPath = '../mcp-server/dist/src/mcp-runner.js';
     const serverArgsInput = this.configService.get<string | string[]>('MCP_SERVER_ARGS', [defaultServerPath]);
     const serverArgs = typeof serverArgsInput === 'string'
-        ? serverArgsInput.split(',').map(s => s.trim()) 
-        : serverArgsInput; 
+      ? serverArgsInput.split(',').map(s => s.trim())
+      : serverArgsInput;
 
     const clientName = this.configService.get<string>('MCP_CLIENT_NAME', 'mcp-gateway-client');
     const clientVersion = this.configService.get<string>('MCP_CLIENT_VERSION', '0.1.0');
@@ -60,30 +60,30 @@ export class McpClientService implements OnModuleInit, OnModuleDestroy {
   getClient(): McpClient {
     // Could add a check here to ensure connected or attempt reconnect
     if (!this.isConnected) {
-        this.logger.warn('MCP Client accessed but not connected.');
-        // Optional: Attempt reconnect automatically
-        // this.initializeAndConnect(); // Be careful with async here
+      this.logger.warn('MCP Client accessed but not connected.');
+      // Optional: Attempt reconnect automatically
+      // this.initializeAndConnect(); // Be careful with async here
     }
-     if (!this.client) {
-        throw new Error('MCP Client not initialized.');
+    if (!this.client) {
+      throw new Error('MCP Client not initialized.');
     }
     return this.client;
   }
 
   // Optional: Expose a wrapper for callTool if desired
   async callTool(args: any): Promise<any> {
-      if (!this.isConnected || !this.client) {
-          this.logger.error('Attempted to call MCP tool while disconnected.');
-          // TODO: Better error handling / potential auto-reconnect
-          throw new Error('MCP Client is not connected.');
-      }
-      try {
-          const result = await this.client.callTool(args);
-          return result;
-      } catch (error) {
-          this.logger.error(`Error calling MCP tool '${args.name}': ${error.message}`, error.stack);
-          // Potentially check if error is due to disconnection and update state
-          throw error; // Re-throw the error to be handled by the controller
-      }
+    if (!this.isConnected || !this.client) {
+      this.logger.error('Attempted to call MCP tool while disconnected.');
+      // TODO: Better error handling / potential auto-reconnect
+      throw new Error('MCP Client is not connected.');
+    }
+    try {
+      const result = await this.client.callTool(args);
+      return result;
+    } catch (error) {
+      this.logger.error(`Error calling MCP tool '${args.name}': ${error.message}`, error.stack);
+      // Potentially check if error is due to disconnection and update state
+      throw error; // Re-throw the error to be handled by the controller
+    }
   }
 } 

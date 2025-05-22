@@ -108,7 +108,7 @@ This server is primarily exposed via **Standard Input/Output (stdio)** transport
 2.  **Build:** Build the monorepo and this package using the instructions in the root repository README (e.g., `yarn install && yarn build`).
 3.  **Execute:** Run the compiled runner script from the **monorepo root directory**:
     ```bash
-    node packages/mcp-server/dist/mcp-runner.js # Adjust path if build output differs
+    node packages/mcp-server/dist/src/mcp-runner.js # Adjust path if build output differs
     ```
     The server process will start, waiting for MCP messages on its standard input and sending responses to its standard output.
 
@@ -127,7 +127,7 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
 // Command to run the server (relative to where client is run, or absolute path)
 const serverCommand = 'node';
-const serverArgs = ['packages/mcp-server/dist/mcp-runner.js']; // IMPORTANT: Adjust this path!
+const serverArgs = ['packages/mcp-server/dist/src/mcp-runner.js']; // IMPORTANT: Adjust this path!
 
 const transport = new StdioClientTransport({ command: serverCommand, args: serverArgs });
 const client = new Client({ name: 'my-jobstash-mcp-client', version: '1.0' });
