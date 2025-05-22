@@ -8,9 +8,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "start": "node dist/mcp-runner.js",
-    "test:client": "npm run build && node ./dist/test-client.js",
-    "test:cv": "npm run build && node ./dist/test-process-cv.js",
+    "start": "node dist/src/mcp-runner.js",
+    "test:client": "npm run build && node ./dist/src/test-client.js",
+    "test:cv": "npm run build && node ./dist/src/test-process-cv.js",
     "dev": "tsc -w",
     "lint": "eslint src/"
   },

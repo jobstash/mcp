@@ -4,7 +4,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-const dotEnvPath = path.resolve(__dirname, '../../../.env');
+const dotEnvPath = path.resolve(__dirname, '../../../../.env');
 dotenv.config({ path: dotEnvPath });
 
 
