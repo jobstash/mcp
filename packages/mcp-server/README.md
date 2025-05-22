@@ -93,6 +93,11 @@ The filter descriptions provided to the LLM are dynamically generated based on t
 
 This approach ensures that filter descriptions accurately reflect the current JobStash platform capabilities and provide comprehensive guidance to the LLM.
 
+You can view all generated filter descriptions by running:
+```bash
+yarn print-filters
+```
+
 ## Transport & Connection (Stdio)
 
 This server is primarily exposed via **Standard Input/Output (stdio)** transport. This means it runs as a command-line process.

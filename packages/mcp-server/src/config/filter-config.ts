@@ -1,13 +1,11 @@
 import { z } from 'zod';
+import { filtersJson } from './filters';
 
 export interface FilterConfig {
     zodSchema: z.ZodTypeAny;
     llmDescription: string;
     apiValueFormatter?: (value: any) => string | undefined;
 }
-
-let filtersJson = require('./filters.json');
-
 
 export const filterConfigurations: Record<string, FilterConfig> = {
     query: {
