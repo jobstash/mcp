@@ -2,8 +2,8 @@
   "name": "@jobstash/mcp-server",
   "version": "0.1.0",
   "description": "Model Context Protocol package for JobStash",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -12,7 +12,8 @@
     "test:client": "npm run build && node ./dist/src/test-client.js",
     "test:cv": "npm run build && node ./dist/src/test-process-cv.js",
     "dev": "tsc -w",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "print-filters": "ts-node src/scripts/print-filter-descriptions.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",

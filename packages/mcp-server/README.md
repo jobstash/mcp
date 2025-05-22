@@ -75,6 +75,24 @@ The LLM can understand and extract the following filter criteria from your natur
 *   `investors` (string[], optional): Investor names or VC firms.
 *   `classifications` (string[], optional): Job categories or functional areas (e.g., `["engineering", "product"]`).
 
+#### Filter Description Generation
+
+The filter descriptions provided to the LLM are dynamically generated based on the following:
+
+1. **Filter Configuration Source**: Filter configurations are sourced from a local `filters.json` file, which is a cached copy of the JobStash filters API (from `https://middleware.jobstash.xyz/jobs/filters`). This file contains the available options for each filter type.
+
+2. **Description Building Logic**: Filter descriptions are built based on:
+   - The filter type (single select, multi-select, multi-select with search, etc.)
+   - Available options from the JSON file
+   - Additional explanatory notes when necessary (e.g., seniority level codes)
+
+3. **Filter Types**:
+   - `getMultiSelectDescription`: For filters that accept multiple values from a fixed set (e.g., seniority)
+   - `getMultiSelectWithSearchDescription`: For filters that accept multiple values including both predefined options and free text (e.g., locations)
+   - `getSingleSelectDescription`: For filters that accept a single value from a fixed set (e.g., token)
+
+This approach ensures that filter descriptions accurately reflect the current JobStash platform capabilities and provide comprehensive guidance to the LLM.
+
 ## Transport & Connection (Stdio)
 
 This server is primarily exposed via **Standard Input/Output (stdio)** transport. This means it runs as a command-line process.

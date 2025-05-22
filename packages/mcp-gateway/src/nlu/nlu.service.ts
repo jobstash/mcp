@@ -31,8 +31,8 @@ export class NluService implements OnModuleInit {
 
     for (const key in filterConfigurations) {
       const config = filterConfigurations[key];
-      // Constructing the description: "- 'schemaKey': llmDescription"
-      instructions.push(`- '${config.schemaKey}': ${config.llmDescription}`);
+      // Use the object key directly instead of config.schemaKey
+      instructions.push(`- '${key}': ${config.llmDescription}`);
     }
 
     instructions.push("If a parameter is not mentioned in the query, omit its key from the JSON object.");

@@ -6,6 +6,9 @@ export interface FilterConfig {
     apiValueFormatter?: (value: any) => string | undefined;
 }
 
+let filtersJson = require('./filters.json');
+
+
 export const filterConfigurations: Record<string, FilterConfig> = {
     query: {
         zodSchema: z.string().optional(),
@@ -14,17 +17,17 @@ export const filterConfigurations: Record<string, FilterConfig> = {
     },
     tags: {
         zodSchema: z.array(z.string()).optional(),
-        llmDescription: "(string[], optional) List of skills, technologies, or keywords mentioned.",
+        llmDescription: getMultiSelectDescription('tags'),
         apiValueFormatter: (value: string[]) => value && value.length > 0 ? value.map(tag => tag.toLowerCase()).join(',') : undefined,
     },
     locations: {
         zodSchema: z.array(z.string()).optional(),
-        llmDescription: "(string[], optional) List of locations mentioned. Use 'Remote' if remote work is specified.",
+        llmDescription: getMultiSelectWithSearchDescription('locations'),
         apiValueFormatter: (value: string[]) => value && value.length > 0 ? value.map(loc => loc.toLowerCase()).join(',') : undefined,
     },
     seniority: {
         zodSchema: z.array(z.string()).optional(),
-        llmDescription: "(string[] or string, optional) List of experience levels mentioned (e.g., 'junior', 'senior', 'lead', or 1-5). API expects numeric strings if applicable.",
+        llmDescription: getMultiSelectDescription('seniority', 'Seniority codes: 1-Junior, 2-Mid, 3-Senior, 4-Lead, 5-Head.'),
         apiValueFormatter: (value: string[] | string) => {
             if (Array.isArray(value) && value.length > 0) {
                 return value.map(sen => String(sen).toLowerCase()).join(',');
@@ -47,22 +50,62 @@ export const filterConfigurations: Record<string, FilterConfig> = {
     },
     token: {
         zodSchema: z.boolean().optional(),
-        llmDescription: "(boolean, optional) Whether the project has a cryptocurrency token (true/false).",
+        llmDescription: getSingleSelectDescription('token', 'Whether the project has a cryptocurrency token (true/false).'),
         apiValueFormatter: (value: boolean) => value !== undefined ? String(value) : undefined,
     },
     commitments: {
         zodSchema: z.array(z.string()).optional(),
-        llmDescription: "(string[], optional) List of job commitment types (e.g., 'full-time', 'part-time', 'contract').",
+        llmDescription: getMultiSelectWithSearchDescription('commitments'),
         apiValueFormatter: (value: string[]) => value && value.length > 0 ? value.map(com => com.toLowerCase()).join(',') : undefined,
     },
     investors: {
         zodSchema: z.array(z.string()).optional(),
+        // Multiselect with search, but list is too long, keeping as is
         llmDescription: "(string[], optional) List of investor names or venture capital firms mentioned as backing companies.",
         apiValueFormatter: (value: string[]) => value && value.length > 0 ? value.map(inv => inv.toLowerCase()).join(',') : undefined,
     },
     classifications: {
         zodSchema: z.array(z.string()).optional(),
-        llmDescription: "(string[], optional) List of job categories or functional areas (e.g., 'engineering', 'product', 'marketing').",
+        llmDescription: getMultiSelectWithSearchDescription('classifications'),
         apiValueFormatter: (value: string[]) => value && value.length > 0 ? value.map(cls => cls.toLowerCase()).join(',') : undefined,
     },
-}; 
+};
+
+function getMultiSelectDescription(filterName: string, notes?: string): string {
+    let label = filtersJson[filterName].label;
+    let values = filtersJson[filterName].options.map(option => `'${option.label}'`).join(', ');
+    let description = `(string[], optional) List of ${label}. Must be one or more of: ${values}.`;
+
+    if (notes) {
+        description += `\n${notes}`;
+    }
+
+    return description;
+}
+
+
+function getMultiSelectWithSearchDescription(filterName: string): string {
+    let label = filtersJson[filterName].label;
+    let values = filtersJson[filterName].options.map(option => `'${option.label}'`).join(', ');
+    return `(string[], optional) List of ${label}s. Can include predefined values like: ${values}, or any free text values.`;
+}
+
+function getSingleSelectDescription(filterName: string, notes?: string): string {
+    let label = filtersJson[filterName].label;
+    let options = filtersJson[filterName].options;
+    let optionDescriptions = options.map(option => {
+        let value = typeof option.value === 'boolean' ? option.value : `'${option.value}'`;
+        return `${value}: ${option.label}`;
+    }).join(', ');
+
+    // Determine the type based on the first option's value type
+    let type = typeof options[0]?.value === 'boolean' ? 'boolean' : 'string';
+
+    let description = `(${type}, optional) ${label}. Possible values: ${optionDescriptions}.`;
+
+    if (notes) {
+        description += `\n${notes}`;
+    }
+
+    return description;
+}
