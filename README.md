@@ -132,6 +132,7 @@ Both servers need to run concurrently for the full NL->MCP flow.
         ```bash
         curl -X POST http://localhost:3000/api/v1/search-url -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
         curl -X POST http://localhost:3000/api/v1/search-jobs -H "Content-Type: application/json" -d '{ "query": "senior dev remote" }'
+        curl -X POST http://localhost:3000/cv/parse -H "Content-Type: multipart/form-data" -F "cv=@packages/mcp-gateway/test/test_cvs/cv_alice_wonderland.pdf"
         ```
     *   **Using test scripts (examples):**
         Make sure the scripts are executable (`chmod +x scripts/<script_name>.sh`).
