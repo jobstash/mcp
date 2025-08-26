@@ -30,7 +30,6 @@ RUN [ -f packages/mcp-gateway/dist/main.js ] || [ -f packages/mcp-gateway/dist/s
 # Prune to prod deps
 RUN rm -rf node_modules && yarn install --frozen-lockfile --production
 
-
 # ---------- runtime ----------
 FROM node:22-alpine3.22 AS runtime
 WORKDIR /usr/src/app
@@ -41,12 +40,23 @@ ENV GATEWAY_PORT=3000
 ENV MCP_SERVER_PORT=3333
 ENV MCP_SERVER_URL=http://127.0.0.1:3333
 
-# Copy runtime files
+# 1) Put a tiny "node" shim *before* real node in PATH.
+#    It sources /usr/src/app/.env-runtime (created at container start)
+#    so even if the gateway spawns with a wiped env, the child gets vars.
+RUN mkdir -p /opt/shim && \
+  printf '%s\n' \
+'#!/bin/sh' \
+'# load runtime env if present (key=value lines)' \
+'[ -f /usr/src/app/.env-runtime ] && . /usr/src/app/.env-runtime' \
+'exec /usr/local/bin/node "$@"' \
+> /opt/shim/node && chmod +x /opt/shim/node
+ENV PATH="/opt/shim:${PATH}"
+
+# 2) App files
 COPY --from=build /usr/src/app/package.json ./package.json
 COPY --from=build /usr/src/app/yarn.lock ./yarn.lock
 COPY --from=build /usr/src/app/node_modules ./node_modules
 
-# Workspace manifests + builds
 COPY --from=build /usr/src/app/packages/file-parser/package.json ./packages/file-parser/package.json
 COPY --from=build /usr/src/app/packages/mcp-server/package.json   ./packages/mcp-server/package.json
 COPY --from=build /usr/src/app/packages/mcp-gateway/package.json  ./packages/mcp-gateway/package.json
@@ -55,15 +65,21 @@ COPY --from=build /usr/src/app/packages/file-parser/dist ./packages/file-parser/
 COPY --from=build /usr/src/app/packages/mcp-server/dist  ./packages/mcp-server/dist
 COPY --from=build /usr/src/app/packages/mcp-gateway/dist ./packages/mcp-gateway/dist
 
-RUN mkdir -p /usr/src && ln -s /usr/src/app/packages/mcp-server /usr/src/mcp-server
+# 3) Keep the symlink so the gateway’s "../mcp-server/..." path resolves.
+RUN mkdir -p /usr/src && ln -s /usr/src/app/packages/mcp-server /usr/src/mcp-server || true
 
-
-# Entrypoint (tries both gateway paths)
+# 4) Entrypoint writes a runtime env file and starts both services.
 RUN printf '%s\n' \
 '#!/bin/sh' \
 'set -e' \
+'# Write whitelist of env vars for child spawns (node shim will source this).' \
+': > /usr/src/app/.env-runtime' \
+'for v in JOBSTASH_SITE_URL JOBSTASH_API_URL OPENAI_API_KEY OPENAI_ASSISTANT_ID_PARSER MCP_SERVER_URL MCP_SERVER_PORT GATEWAY_PORT NODE_ENV; do' \
+'  eval "val=\${$v:-}"' \
+'  [ -n "$val" ] && printf "%s=%s\n" "$v" "$val" >> /usr/src/app/.env-runtime' \
+'done' \
+'' \
 'SERVER_JS="packages/mcp-server/dist/src/mcp-runner.js"' \
-'# prefer dist/main.js if it exists, else dist/src/main.js' \
 'GATEWAY_JS="packages/mcp-gateway/dist/main.js"' \
 '[ -f "$GATEWAY_JS" ] || GATEWAY_JS="packages/mcp-gateway/dist/src/main.js"' \
 '[ -f "$SERVER_JS" ]  || { echo "[entrypoint] Missing $SERVER_JS";  ls -R packages/mcp-server || true;  exit 1; }' \
@@ -71,7 +87,7 @@ RUN printf '%s\n' \
 'echo "[entrypoint] Starting MCP Server on ${MCP_SERVER_PORT}..."' \
 'node "$SERVER_JS" --port="${MCP_SERVER_PORT}" & MCP_PID=$!' \
 'echo "[entrypoint] Starting Gateway on ${GATEWAY_PORT} (MCP at ${MCP_SERVER_URL})..."' \
-'export MCP_SERVER_URL OPENAI_API_KEY' \
+'export MCP_SERVER_URL OPENAI_API_KEY JOBSTASH_SITE_URL JOBSTASH_API_URL OPENAI_ASSISTANT_ID_PARSER' \
 'node "$GATEWAY_JS" --port="${GATEWAY_PORT}" & GW_PID=$!' \
 'trap "echo [entrypoint] Stopping...; kill -TERM $MCP_PID $GW_PID 2>/dev/null || true; wait" TERM INT' \
 'wait -n $MCP_PID $GW_PID; EC=$?; echo "[entrypoint] A process exited with code $EC, shutting down..."; kill -TERM $MCP_PID $GW_PID 2>/dev/null || true; wait || true; exit $EC' \
