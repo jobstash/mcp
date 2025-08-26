@@ -55,6 +55,9 @@ COPY --from=build /usr/src/app/packages/file-parser/dist ./packages/file-parser/
 COPY --from=build /usr/src/app/packages/mcp-server/dist  ./packages/mcp-server/dist
 COPY --from=build /usr/src/app/packages/mcp-gateway/dist ./packages/mcp-gateway/dist
 
+RUN mkdir -p /usr/src && ln -s /usr/src/app/packages/mcp-server /usr/src/mcp-server
+
+
 # Entrypoint (tries both gateway paths)
 RUN printf '%s\n' \
 '#!/bin/sh' \
