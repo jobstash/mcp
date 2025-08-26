@@ -39,24 +39,14 @@ ENV NODE_ENV=production
 ENV GATEWAY_PORT=3000
 ENV MCP_SERVER_PORT=3333
 ENV MCP_SERVER_URL=http://127.0.0.1:3333
+# OPENAI_API_KEY / JOBSTASH_* come from your platform env
 
-# 1) Put a tiny "node" shim *before* real node in PATH.
-#    It sources /usr/src/app/.env-runtime (created at container start)
-#    so even if the gateway spawns with a wiped env, the child gets vars.
-RUN mkdir -p /opt/shim && \
-  printf '%s\n' \
-'#!/bin/sh' \
-'# load runtime env if present (key=value lines)' \
-'[ -f /usr/src/app/.env-runtime ] && . /usr/src/app/.env-runtime' \
-'exec /usr/local/bin/node "$@"' \
-> /opt/shim/node && chmod +x /opt/shim/node
-ENV PATH="/opt/shim:${PATH}"
-
-# 2) App files
+# Copy runtime files
 COPY --from=build /usr/src/app/package.json ./package.json
 COPY --from=build /usr/src/app/yarn.lock ./yarn.lock
 COPY --from=build /usr/src/app/node_modules ./node_modules
 
+# Workspace manifests + builds
 COPY --from=build /usr/src/app/packages/file-parser/package.json ./packages/file-parser/package.json
 COPY --from=build /usr/src/app/packages/mcp-server/package.json   ./packages/mcp-server/package.json
 COPY --from=build /usr/src/app/packages/mcp-gateway/package.json  ./packages/mcp-gateway/package.json
@@ -65,14 +55,26 @@ COPY --from=build /usr/src/app/packages/file-parser/dist ./packages/file-parser/
 COPY --from=build /usr/src/app/packages/mcp-server/dist  ./packages/mcp-server/dist
 COPY --from=build /usr/src/app/packages/mcp-gateway/dist ./packages/mcp-gateway/dist
 
-# 3) Keep the symlink so the gateway’s "../mcp-server/..." path resolves.
+# Make gateway’s "../mcp-server/..." relative arg resolve
 RUN mkdir -p /usr/src && ln -s /usr/src/app/packages/mcp-server /usr/src/mcp-server || true
 
-# 4) Entrypoint writes a runtime env file and starts both services.
+# Replace the Node binary with a wrapper that loads runtime env,
+# so child spawns (even with wiped env) still see JOBSTASH_* / OPENAI_*.
+RUN mv /usr/local/bin/node /usr/local/bin/node-real && \
+    printf '%s\n' \
+'#!/bin/sh' \
+'# Load whitelisted runtime env if present' \
+'set -a' \
+'[ -f /usr/src/app/.env-runtime ] && . /usr/src/app/.env-runtime' \
+'set +a' \
+'exec /usr/local/bin/node-real "$@"' \
+> /usr/local/bin/node && chmod +x /usr/local/bin/node
+
+# Entrypoint writes .env-runtime and starts both services
 RUN printf '%s\n' \
 '#!/bin/sh' \
 'set -e' \
-'# Write whitelist of env vars for child spawns (node shim will source this).' \
+'# Write env file consumed by node wrapper' \
 ': > /usr/src/app/.env-runtime' \
 'for v in JOBSTASH_SITE_URL JOBSTASH_API_URL OPENAI_API_KEY OPENAI_ASSISTANT_ID_PARSER MCP_SERVER_URL MCP_SERVER_PORT GATEWAY_PORT NODE_ENV; do' \
 '  eval "val=\${$v:-}"' \
