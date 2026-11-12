@@ -1,5 +1,5 @@
 # ---------- build (toolchain + Yarn v1 pinned) ----------
-FROM node:22-alpine3.22 AS build
+FROM node:22.23.5-alpine3.24 AS build
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache python3 make g++ git libc6-compat wget curl
@@ -31,7 +31,7 @@ RUN [ -f packages/mcp-gateway/dist/main.js ] || [ -f packages/mcp-gateway/dist/s
 RUN rm -rf node_modules && yarn install --frozen-lockfile --production
 
 # ---------- runtime ----------
-FROM node:22-alpine3.22 AS runtime
+FROM node:22.23.5-alpine3.24 AS runtime
 WORKDIR /usr/src/app
 RUN apk add --no-cache tini
 
